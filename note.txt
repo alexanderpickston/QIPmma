@@ -1,0 +1,10 @@
+Folder containing package should be of the same name as the package itself. See FG PDC package for example. Also within this package you need /Kernel/init.m which defines the function required to obtain access to the functions within the package. Also need to look at the syntax of the package:
+
+BeginPackage["ParametricDownConversion`"]
+
+SymbolName::usage = " " (* gives user details of the function *)
+
+Begin["`Private`"] (* implements the package *)
+
+End[] (* correct syntax to end package *)
+EndPackage[] (* correct syntax to end package *)

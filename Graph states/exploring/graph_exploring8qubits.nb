@@ -1,0 +1,4278 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    175311,       4270]
+NotebookOptionsPosition[    171095,       4187]
+NotebookOutlinePosition[    171435,       4202]
+CellTagsIndexPosition[    171392,       4199]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Run the below cell to load the library and make sure the Graph outputs are \
+formatted nicely\
+\>", "Text",
+ CellChangeTimes->{{3.828606545646357*^9, 
+  3.828606571740088*^9}},ExpressionUUID->"51e7ba3e-8bd8-49b6-b951-\
+4f5998f909d8"],
+
+Cell[CellGroupData[{
+
+Cell["Importing library ", "Subsubsection",
+ CellChangeTimes->{{3.828586077422741*^9, 
+  3.828586096510548*^9}},ExpressionUUID->"b7029c89-d8cb-41cf-ae08-\
+da389a22169c"],
+
+Cell[BoxData[
+ RowBox[{"Import", "[", 
+  RowBox[{
+   RowBox[{"NotebookDirectory", "[", "]"}], "<>", 
+   "\"\<library_graphStates.m\>\""}], "]"}]], "Input",
+ CellChangeTimes->{{3.828586048832038*^9, 3.8285860683554087`*^9}, {
+  3.828586847514966*^9, 3.828586868615246*^9}},
+ CellLabel->"In[88]:=",ExpressionUUID->"caefb05c-d6b8-481e-b875-f2cce73b2023"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"style", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"VertexShapeFunction", "\[Rule]", "\"\<Circle\>\""}], ",", 
+     RowBox[{"VertexStyle", "\[Rule]", 
+      RowBox[{"Directive", "[", 
+       RowBox[{
+        RowBox[{"EdgeForm", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Thickness", "[", "0.01", "]"}], ",", "Black"}], "}"}], 
+         "]"}], ",", "LightPurple"}], "]"}]}], ",", 
+     RowBox[{"EdgeStyle", "\[Rule]", 
+      RowBox[{"Directive", "[", 
+       RowBox[{"Black", ",", 
+        RowBox[{"Thickness", "[", "0.01", "]"}]}], "]"}]}], ",", 
+     RowBox[{"VertexLabels", "\[Rule]", 
+      RowBox[{"Placed", "[", 
+       RowBox[{"\"\<Name\>\"", ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"1", "/", "2"}], ",", 
+          RowBox[{"1", "/", "2"}]}], "}"}]}], "]"}]}], ",", 
+     RowBox[{"VertexLabelStyle", "\[Rule]", 
+      RowBox[{"Directive", "[", 
+       RowBox[{"Black", ",", 
+        RowBox[{"FontFamily", "\[Rule]", "\"\<YuMincho\>\""}], ",", "30"}], 
+       "]"}]}], ",", 
+     RowBox[{"VertexSize", "\[Rule]", "0.4"}], ",", 
+     RowBox[{"GraphLayout", "\[Rule]", "\"\<CircularEmbedding\>\""}]}], 
+    "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.8386351112915373`*^9, 3.838635111437867*^9}, {
+  3.838635262190547*^9, 3.8386353683645*^9}},
+ CellLabel->"In[89]:=",ExpressionUUID->"45ad83d5-d2a3-4371-b4dd-9f74d9045cec"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Graph exploring", "Title",
+ CellChangeTimes->{{3.828585895620307*^9, 3.828585899155047*^9}, {
+  3.828605410564176*^9, 
+  3.828605415492956*^9}},ExpressionUUID->"55abcf79-0efc-4800-9aa9-\
+c2f74f461939"],
+
+Cell[CellGroupData[{
+
+Cell["Some useful initial graphs", "Subsubsection",
+ CellChangeTimes->{{3.828605403865034*^9, 3.8286054067662897`*^9}, {
+  3.8401032688086157`*^9, 
+  3.8401032738115873`*^9}},ExpressionUUID->"e4585a4c-dc24-4aeb-a971-\
+7986bc0468ca"],
+
+Cell[BoxData[
+ RowBox[{
+  GraphicsBox[
+   NamespaceBox["NetworkGraphics",
+    DynamicModuleBox[{Typeset`graph = HoldComplete[
+      Graph[{1, 2, 3, 4, 5, 6}, {Null, 
+        SparseArray[
+        Automatic, {6, 6}, 0, {
+         1, {{0, 2, 4, 6, 8, 10, 12}, {{2}, {6}, {1}, {3}, {2}, {4}, {3}, {
+           5}, {4}, {6}, {1}, {5}}}, Pattern}]}, {EdgeStyle -> {
+          Directive[
+           GrayLevel[0], 
+           Thickness[Large]]}, GraphLayout -> "CircularEmbedding", 
+        VertexLabels -> {
+          Placed["Name", {
+            Rational[1, 2], 
+            Rational[1, 2]}]}, VertexLabelStyle -> {
+          Directive[
+           GrayLevel[0], FontFamily -> "Times", 15]}, 
+        VertexShapeFunction -> {"Circle"}, VertexSize -> {0.4}, VertexStyle -> {
+          Directive[
+           EdgeForm[{
+             Thickness[Large], 
+             GrayLevel[0]}], 
+           RGBColor[0.94, 0.88, 0.94]]}}]]}, 
+     TagBox[GraphicsGroupBox[{
+        {GrayLevel[0], Thickness[Large], Opacity[0.7], 
+         LineBox[{{{-0.8660254037844389, 0.5000000000000007}, {
+          1.8369701987210297`*^-16, 1.}}, {{-0.8660254037844389, 
+          0.5000000000000007}, {-0.8660254037844384, -0.4999999999999994}}, {{
+          1.8369701987210297`*^-16, 1.}, {0.8660254037844386, 
+          0.4999999999999993}}, {{0.8660254037844386, 0.4999999999999993}, {
+          0.8660254037844389, -0.5000000000000012}}, {{
+          0.8660254037844389, -0.5000000000000012}, {
+          3.8285686989269494`*^-16, -1.}}, {{
+          3.8285686989269494`*^-16, -1.}, {-0.8660254037844384, \
+-0.4999999999999994}}}]}, 
+        {RGBColor[0.94, 0.88, 0.94], EdgeForm[{GrayLevel[0], Opacity[0.7], 
+         Thickness[
+         Large]}], {
+          DiskBox[{-0.8660254037844389, 0.5000000000000007}, 
+           0.19999999999999987], InsetBox[
+           StyleBox["1",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"Times",
+            FontSize->15,
+            FontColor->GrayLevel[0]], {-0.8660254037844389, 0.5000000000000007},
+           
+           BaseStyle->"Graphics"]}, {
+          DiskBox[{1.8369701987210297*^-16, 1.}, 0.19999999999999987], 
+          InsetBox[
+           StyleBox["2",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"Times",
+            FontSize->15,
+            FontColor->GrayLevel[0]], {1.942890293094024*^-16, 1.},
+           BaseStyle->"Graphics"]}, {
+          DiskBox[{0.8660254037844386, 0.4999999999999993}, 
+           0.19999999999999987], InsetBox[
+           StyleBox["3",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"Times",
+            FontSize->15,
+            FontColor->GrayLevel[0]], {0.8660254037844386, 0.4999999999999993},
+           
+           BaseStyle->"Graphics"]}, {
+          DiskBox[{0.8660254037844389, -0.5000000000000012}, 
+           0.19999999999999987], InsetBox[
+           StyleBox["4",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"Times",
+            FontSize->15,
+            FontColor->GrayLevel[0]], {0.8660254037844389, -0.5000000000000012},
+           
+           BaseStyle->"Graphics"]}, {
+          DiskBox[{3.8285686989269494*^-16, -1.}, 0.19999999999999987], 
+          InsetBox[
+           StyleBox["5",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"Times",
+            FontSize->15,
+            FontColor->GrayLevel[0]], {3.885780586188048*^-16, -1.},
+           BaseStyle->"Graphics"]}, {
+          DiskBox[{-0.8660254037844384, -0.4999999999999994}, 
+           0.19999999999999987], InsetBox[
+           StyleBox["6",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"Times",
+            FontSize->15,
+            FontColor->GrayLevel[0]], {-0.8660254037844384, -0.4999999999999994},
+           
+           BaseStyle->"Graphics"]}}}],
+      MouseAppearanceTag["NetworkGraphics"]],
+     AllowKernelInitialization->False]],
+   DefaultBaseStyle->{
+    "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+   FormatType->TraditionalForm,
+   FrameTicks->None,
+   ImageSize->{81.05208333333206, Automatic}], 
+  GraphicsBox[
+   NamespaceBox["NetworkGraphics",
+    DynamicModuleBox[{Typeset`graph = HoldComplete[
+      Graph[{1, 2, 3, 4, 5, 6}, {Null, 
+        SparseArray[
+        Automatic, {6, 6}, 0, {
+         1, {{0, 5, 6, 7, 8, 9, 10}, {{2}, {3}, {4}, {5}, {6}, {1}, {1}, {
+           1}, {1}, {1}}}, Pattern}]}, {EdgeStyle -> {
+          Directive[
+           GrayLevel[0], 
+           Thickness[Large]]}, GraphLayout -> "StarEmbedding", VertexLabels -> {
+          Placed["Name", {
+            Rational[1, 2], 
+            Rational[1, 2]}]}, VertexLabelStyle -> {
+          Directive[
+           GrayLevel[0], FontFamily -> "Times", 15]}, 
+        VertexShapeFunction -> {"Circle"}, VertexSize -> {0.4}, VertexStyle -> {
+          Directive[
+           EdgeForm[{
+             Thickness[Large], 
+             GrayLevel[0]}], 
+           RGBColor[0.94, 0.88, 0.94]]}}]]}, 
+     TagBox[GraphicsGroupBox[{
+        {GrayLevel[0], Thickness[Large], Opacity[0.7], 
+         LineBox[{{{0., 0.}, {-0.5877852522924727, -0.8090169943749468}}, {{
+          0., 0.}, {0.5877852522924737, -0.8090169943749481}}, {{0., 0.}, {
+          0.9510565162951533, 0.30901699437494634`}}, {{0., 
+          0.}, {-7.044813998280222*^-16, 1.}}, {{0., 
+          0.}, {-0.9510565162951538, 0.30901699437494945`}}}]}, 
+        {RGBColor[0.94, 0.88, 0.94], EdgeForm[{GrayLevel[0], Opacity[0.7], 
+         Thickness[Large]}], {DiskBox[{0., 0.}, 0.19999999999999984], InsetBox[
+           StyleBox["1",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"Times",
+            FontSize->15,
+            FontColor->GrayLevel[0]], {0., 0.},
+           BaseStyle->"Graphics"]}, {
+          DiskBox[{-0.5877852522924727, -0.8090169943749468}, 
+           0.19999999999999984], InsetBox[
+           StyleBox["2",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"Times",
+            FontSize->15,
+            FontColor->GrayLevel[0]], {-0.5877852522924727, -0.8090169943749468},
+           
+           BaseStyle->"Graphics"]}, {
+          DiskBox[{0.5877852522924737, -0.8090169943749481}, 
+           0.19999999999999984], InsetBox[
+           StyleBox["3",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"Times",
+            FontSize->15,
+            FontColor->GrayLevel[0]], {0.5877852522924737, -0.8090169943749481},
+           
+           BaseStyle->"Graphics"]}, {
+          DiskBox[{0.9510565162951533, 0.30901699437494634}, 
+           0.19999999999999984], InsetBox[
+           StyleBox["4",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"Times",
+            FontSize->15,
+            FontColor->GrayLevel[0]], {0.9510565162951533, 0.30901699437494634},
+           
+           BaseStyle->"Graphics"]}, {
+          DiskBox[{-7.044813998280222*^-16, 1.}, 0.19999999999999984], 
+          InsetBox[
+           StyleBox["5",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"Times",
+            FontSize->15,
+            FontColor->GrayLevel[0]], {-6.938893903907228*^-16, 1.},
+           BaseStyle->"Graphics"]}, {
+          DiskBox[{-0.9510565162951538, 0.30901699437494945}, 
+           0.19999999999999984], InsetBox[
+           StyleBox["6",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"Times",
+            FontSize->15,
+            FontColor->GrayLevel[0]], {-0.9510565162951538, 0.30901699437494945},
+           
+           BaseStyle->"Graphics"]}}}],
+      MouseAppearanceTag["NetworkGraphics"]],
+     AllowKernelInitialization->False]],
+   DefaultBaseStyle->{
+    "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+   FormatType->TraditionalForm,
+   FrameTicks->None], 
+  GraphicsBox[
+   NamespaceBox["NetworkGraphics",
+    DynamicModuleBox[{Typeset`graph = HoldComplete[
+      Graph[{1, 2, 3, 4, 5, 6}, {Null, 
+        SparseArray[
+        Automatic, {6, 6}, 0, {
+         1, {{0, 1, 3, 5, 7, 9, 10}, {{2}, {1}, {3}, {2}, {4}, {3}, {5}, {
+           4}, {6}, {5}}}, Pattern}]}, {EdgeStyle -> {
+          Directive[
+           GrayLevel[0], 
+           Thickness[Large]]}, GraphLayout -> "SpringElectricalEmbedding", 
+        VertexLabels -> {
+          Placed["Name", {
+            Rational[1, 2], 
+            Rational[1, 2]}]}, VertexLabelStyle -> {
+          Directive[
+           GrayLevel[0], FontFamily -> "Times", 15]}, 
+        VertexShapeFunction -> {"Circle"}, VertexSize -> {0.4}, VertexStyle -> {
+          Directive[
+           EdgeForm[{
+             Thickness[Large], 
+             GrayLevel[0]}], 
+           RGBColor[0.94, 0.88, 0.94]]}}]]}, 
+     TagBox[GraphicsGroupBox[{
+        {GrayLevel[0], Thickness[Large], Opacity[0.7], 
+         LineBox[{{{0., 1.91419153862946*^-8}, {0.8985129119725255, 
+          3.6908444409218245`*^-9}}, {{0.8985129119725255, 
+          3.6908444409218245`*^-9}, {1.9466367981021486`, 0.}}, {{
+          1.9466367981021486`, 0.}, {3.0348118837350557`, 
+          1.962694050676403*^-9}}, {{3.0348118837350557`, 
+          1.962694050676403*^-9}, {4.083974140699468, 
+          7.883731397291956*^-9}}, {{4.083974140699468, 
+          7.883731397291956*^-9}, {4.983554269377478, 
+          1.6026255666851648`*^-8}}}]}, 
+        {RGBColor[0.94, 0.88, 0.94], EdgeForm[{GrayLevel[0], Opacity[0.7], 
+         Thickness[
+         Large]}], {DiskBox[{0., 1.91419153862946*^-8}, 0.17970258239450512], 
+          InsetBox[
+           StyleBox["1",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"Times",
+            FontSize->15,
+            FontColor->GrayLevel[0]], {0., 1.914191538610055*^-8},
+           BaseStyle->"Graphics"]}, {
+          DiskBox[{0.8985129119725255, 3.6908444409218245*^-9}, 
+           0.17970258239450512], InsetBox[
+           StyleBox["2",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"Times",
+            FontSize->15,
+            FontColor->GrayLevel[0]], {0.8985129119725255, 3.690844435633167*^-9},
+           
+           BaseStyle->"Graphics"]}, {
+          DiskBox[{1.9466367981021486, 0.}, 0.17970258239450512], InsetBox[
+           StyleBox["3",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"Times",
+            FontSize->15,
+            FontColor->GrayLevel[0]], {1.9466367981021486, 0.},
+           BaseStyle->"Graphics"]}, {
+          DiskBox[{3.0348118837350557, 1.962694050676403*^-9}, 
+           0.17970258239450512], InsetBox[
+           StyleBox["4",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"Times",
+            FontSize->15,
+            FontColor->GrayLevel[0]], {3.0348118837350557, 1.962694062829229*^-9},
+           
+           BaseStyle->"Graphics"]}, {
+          DiskBox[{4.083974140699468, 7.883731397291956*^-9}, 
+           0.17970258239450512], InsetBox[
+           StyleBox["5",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"Times",
+            FontSize->15,
+            FontColor->GrayLevel[0]], {4.083974140699468, 7.883731389934923*^-9},
+           
+           BaseStyle->"Graphics"]}, {
+          DiskBox[{4.983554269377478, 1.6026255666851648*^-8}, 
+           0.17970258239450512], InsetBox[
+           StyleBox["6",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"Times",
+            FontSize->15,
+            FontColor->GrayLevel[0]], {4.983554269377478, 1.6026255655887667*^-8},
+           
+           BaseStyle->"Graphics"]}}}],
+      MouseAppearanceTag["NetworkGraphics"]],
+     AllowKernelInitialization->False]],
+   DefaultBaseStyle->{
+    "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+   FormatType->TraditionalForm,
+   FrameTicks->None,
+   ImageSize->{310.57291666666663`, Automatic}], 
+  GraphicsBox[
+   NamespaceBox["NetworkGraphics",
+    DynamicModuleBox[{Typeset`graph = HoldComplete[
+      Graph[{1, 2, 3, 4, 5, 6}, {
+       Null, {{2, 1}, {2, 4}, {4, 3}, {4, 6}, {6, 5}}}, {EdgeStyle -> {
+          Directive[
+           GrayLevel[0], 
+           Thickness[Large]]}, FormatType -> TraditionalForm, 
+        GraphLayout -> {"Dimension" -> 2}, 
+        ImageSize -> {187.18749999999918`, Automatic}, VertexLabels -> {
+          Placed["Name", {
+            Rational[1, 2], 
+            Rational[1, 2]}]}, VertexLabelStyle -> {
+          Directive[
+           GrayLevel[0], FontFamily -> "YuMincho", 15]}, 
+        VertexShapeFunction -> {"Circle"}, VertexSize -> {0.4}, VertexStyle -> {
+          Directive[
+           EdgeForm[{
+             Thickness[Large], 
+             GrayLevel[0]}], 
+           RGBColor[0.94, 0.88, 0.94]]}}]]}, 
+     TagBox[GraphicsGroupBox[{
+        {GrayLevel[0], Thickness[Large], Opacity[0.7], 
+         LineBox[{{{0., 0.}, {0., 0.8451542547285166}}, {{0., 
+          0.8451542547285166}, {0.8451542547285166, 1.6903085094570331`}}, {{
+          0.8451542547285166, 0.8451542547285166}, {0.8451542547285166, 
+          1.6903085094570331`}}, {{0.8451542547285166, 1.6903085094570331`}, {
+          1.6903085094570331`, 0.8451542547285166}}, {{1.6903085094570331`, 
+          0.}, {1.6903085094570331`, 0.8451542547285166}}}]}, 
+        {RGBColor[0.94, 0.88, 0.94], EdgeForm[{GrayLevel[0], Opacity[0.7], 
+         Thickness[Large]}], {DiskBox[{0., 0.}, 0.16903085094570333], InsetBox[
+           StyleBox["1",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"YuMincho",
+            FontSize->15,
+            FontColor->GrayLevel[0]], {0., 0.},
+           BaseStyle->"Graphics"]}, {
+          DiskBox[{0., 0.8451542547285166}, 0.16903085094570333], InsetBox[
+           StyleBox["2",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"YuMincho",
+            FontSize->15,
+            FontColor->GrayLevel[0]], {0., 0.8451542547285166},
+           BaseStyle->"Graphics"]}, {
+          DiskBox[{0.8451542547285166, 0.8451542547285166}, 
+           0.16903085094570333], InsetBox[
+           StyleBox["3",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"YuMincho",
+            FontSize->15,
+            FontColor->GrayLevel[0]], {0.8451542547285166, 0.8451542547285166},
+           
+           BaseStyle->"Graphics"]}, {
+          DiskBox[{0.8451542547285166, 1.6903085094570331}, 
+           0.16903085094570333], InsetBox[
+           StyleBox["4",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"YuMincho",
+            FontSize->15,
+            FontColor->GrayLevel[0]], {0.8451542547285166, 1.6903085094570331},
+           
+           BaseStyle->"Graphics"]}, {
+          DiskBox[{1.6903085094570331, 0.}, 0.16903085094570333], InsetBox[
+           StyleBox["5",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"YuMincho",
+            FontSize->15,
+            FontColor->GrayLevel[0]], {1.6903085094570331, 0.},
+           BaseStyle->"Graphics"]}, {
+          DiskBox[{1.6903085094570331, 0.8451542547285166}, 
+           0.16903085094570333], InsetBox[
+           StyleBox["6",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"YuMincho",
+            FontSize->15,
+            FontColor->GrayLevel[0]], {1.6903085094570331, 0.8451542547285166},
+           
+           BaseStyle->"Graphics"]}}}],
+      MouseAppearanceTag["NetworkGraphics"]],
+     AllowKernelInitialization->False]],
+   DefaultBaseStyle->{
+    "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+   FormatType->TraditionalForm,
+   FrameTicks->None,
+   ImageSize->{187.18749999999918`, Automatic}]}]], "Input",
+ CellChangeTimes->{{3.828605292585573*^9, 
+  3.828605321735855*^9}},ExpressionUUID->"5b24d159-b930-42dd-80be-\
+a0e4f046fe42"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Some useful functions for exploring graphs", "Subsubsection",
+ CellChangeTimes->{{3.8285864942169943`*^9, 
+  3.828586530758993*^9}},ExpressionUUID->"3fddd416-f7f3-4428-90af-\
+d8d143ee724d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "FindLUequivalent"}]], "Input",
+ CellChangeTimes->{{3.828586465444933*^9, 3.828586485797433*^9}},
+ CellLabel->
+  "In[829]:=",ExpressionUUID->"19cb6f29-f8cb-4752-aa08-8ebe544e8595"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"Find LC-equivalent applied on one \
+vertex.\\nFindLUequivalent[graph,vertex]\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False, False, False, False, 
+                False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Definitions\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Definitions", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{"FindLUequivalent", "[", 
+                    RowBox[{
+                    "GraphStates`Private`graph$_", ",", 
+                    "GraphStates`Private`vertex$_"}], "]"}], ":=", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"GraphStates`Private`subGraph$156923", "=", 
+                    RowBox[{"Subgraph", "[", 
+                    RowBox[{"GraphStates`Private`graph$", ",", 
+                    RowBox[{"AdjacencyList", "[", 
+                    RowBox[{
+                    "GraphStates`Private`graph$", ",", 
+                    "GraphStates`Private`vertex$"}], "]"}]}], "]"}]}], ";", 
+                    RowBox[{"GraphStates`Private`complementGraph$156923", "=", 
+                    RowBox[{
+                    "GraphComplement", "[", 
+                    "GraphStates`Private`subGraph$156923", "]"}]}], ";", 
+                    RowBox[{"GraphStates`Private`diffGraph$156923", "=", 
+                    RowBox[{"GraphDifference", "[", 
+                    RowBox[{
+                    "GraphStates`Private`graph$", ",", 
+                    "GraphStates`Private`subGraph$156923"}], "]"}]}], ";", 
+                    RowBox[{"GraphStates`Private`out$156923", "=", 
+                    RowBox[{"GraphUnion", "[", 
+                    RowBox[{
+                    "GraphStates`Private`diffGraph$156923", ",", 
+                    "GraphStates`Private`complementGraph$156923", ",", 
+                    RowBox[{
+                    "VertexShapeFunction", "\[Rule]", "\<\"Circle\"\>"}], ",", 
+                    RowBox[{"VertexStyle", "\[Rule]", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{
+                    RowBox[{"EdgeForm", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"Thick", ",", "Black"}], "}"}], "]"}], ",", 
+                    "LightPurple"}], "]"}]}], ",", 
+                    RowBox[{"EdgeStyle", "\[Rule]", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{"Black", ",", "Thick"}], "]"}]}], ",", 
+                    RowBox[{"VertexLabels", "\[Rule]", 
+                    RowBox[{"Placed", "[", 
+                    RowBox[{"\<\"Name\"\>", ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["1", "2"], ",", 
+                    FractionBox["1", "2"]}], "}"}]}], "]"}]}], ",", 
+                    RowBox[{"VertexLabelStyle", "\[Rule]", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{"Black", ",", 
+                    RowBox[{"FontFamily", "\[Rule]", "\<\"YuMincho\"\>"}], 
+                    ",", "15"}], "]"}]}], ",", 
+                    RowBox[{"VertexSize", "\[Rule]", "0.4`"}]}], "]"}]}], ";", 
+                    RowBox[{
+                    "Return", "[", "GraphStates`Private`out$156923", "]"}], 
+                    ";"}], ")"}]}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], "\<\"GraphStates`FindLUequivalent\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->6], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"Find LC-equivalent applied on one \
+vertex.\\nFindLUequivalent[graph,vertex]\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{8., {1., 7.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{8., {1., 7.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "Find LC-equivalent applied on one vertex.\n\
+FindLUequivalent[graph,vertex]", "Documentation" -> None, "OwnValues" -> None,
+     "UpValues" -> None, "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, GraphStates`FindLUequivalent, {GraphStates`FindLUequivalent[
+         Pattern[GraphStates`Private`graph$, 
+          Blank[]], 
+         Pattern[GraphStates`Private`vertex$, 
+          Blank[]]] :> (
+        GraphStates`Private`subGraph$156923 = 
+         Subgraph[GraphStates`Private`graph$, 
+           AdjacencyList[
+           GraphStates`Private`graph$, GraphStates`Private`vertex$]]; 
+        GraphStates`Private`complementGraph$156923 = 
+         GraphComplement[GraphStates`Private`subGraph$156923]; 
+        GraphStates`Private`diffGraph$156923 = 
+         GraphDifference[
+          GraphStates`Private`graph$, GraphStates`Private`subGraph$156923]; 
+        GraphStates`Private`out$156923 = 
+         GraphUnion[
+          GraphStates`Private`diffGraph$156923, 
+           GraphStates`Private`complementGraph$156923, VertexShapeFunction -> 
+           "Circle", VertexStyle -> Directive[
+             EdgeForm[{Thick, Black}], LightPurple], EdgeStyle -> 
+           Directive[Black, Thick], VertexLabels -> 
+           Placed["Name", {1/2, 1/2}], VertexLabelStyle -> 
+           Directive[Black, FontFamily -> "YuMincho", 15], VertexSize -> 0.4]; 
+        Return[GraphStates`Private`out$156923]; Null)}], "SubValues" -> None, 
+    "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
+    "Options" -> None, "Attributes" -> {}, "FullName" -> 
+    "GraphStates`FindLUequivalent"], False]]], "Output",
+ CellChangeTimes->{{3.828586469448268*^9, 3.8285864861992702`*^9}},
+ CellLabel->
+  "Out[829]=",ExpressionUUID->"da6d44a3-2a21-4856-bf07-66d9c72d357c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "Zmeasurement"}]], "Input",
+ CellChangeTimes->{{3.828586509633008*^9, 3.828586512508765*^9}},
+ CellLabel->
+  "In[830]:=",ExpressionUUID->"54ed9386-328c-4eea-870f-b02832d0df87"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"Single Z measurement on a graph \
+vertex.\\nZmeasurement[graph,vertex]\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False, False, False, False, 
+                False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Definitions\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Definitions", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{"Zmeasurement", "[", 
+                    RowBox[{
+                    "GraphStates`Private`graph$_", ",", 
+                    "GraphStates`Private`vertex$_"}], "]"}], ":=", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"GraphStates`Private`edgeDelete$156930", "=", 
+                    RowBox[{"Complement", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "EdgeList", "[", "GraphStates`Private`graph$", "]"}], ",", 
+                    RowBox[{"EdgeList", "[", 
+                    RowBox[{"GraphStates`Private`graph$", ",", 
+                    RowBox[{
+                    "GraphStates`Private`vertex$", "\[UndirectedEdge]", 
+                    "_"}]}], "]"}]}], "]"}]}], ";", 
+                    RowBox[{"Return", "[", 
+                    RowBox[{"Graph", "[", 
+                    RowBox[{"GraphStates`Private`edgeDelete$156930", ",", 
+                    RowBox[{
+                    "VertexShapeFunction", "\[Rule]", "\<\"Circle\"\>"}], ",", 
+                    RowBox[{"VertexSize", "\[Rule]", "0.4`"}], ",", 
+                    RowBox[{"VertexStyle", "\[Rule]", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{
+                    RowBox[{"EdgeForm", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"Thick", ",", "Black"}], "}"}], "]"}], ",", 
+                    "LightPurple"}], "]"}]}], ",", 
+                    RowBox[{"EdgeStyle", "\[Rule]", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{"Black", ",", "Thick"}], "]"}]}], ",", 
+                    RowBox[{"VertexLabels", "\[Rule]", 
+                    RowBox[{"Placed", "[", 
+                    RowBox[{"\<\"Name\"\>", ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["1", "2"], ",", 
+                    FractionBox["1", "2"]}], "}"}]}], "]"}]}], ",", 
+                    RowBox[{"VertexLabelStyle", "\[Rule]", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{"Black", ",", 
+                    RowBox[{"FontFamily", "\[Rule]", "\<\"YuMincho\"\>"}], 
+                    ",", "15"}], "]"}]}], ",", 
+                    RowBox[{"VertexSize", "\[Rule]", "0.4`"}]}], "]"}], "]"}],
+                     ";"}], ")"}]}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], "\<\"GraphStates`Zmeasurement\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->6], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"Single Z measurement on a graph \
+vertex.\\nZmeasurement[graph,vertex]\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{8., {1., 7.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{8., {1., 7.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "Single Z measurement on a graph vertex.\nZmeasurement[graph,vertex]", 
+    "Documentation" -> None, "OwnValues" -> None, "UpValues" -> None, 
+    "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, GraphStates`Zmeasurement, {GraphStates`Zmeasurement[
+         Pattern[GraphStates`Private`graph$, 
+          Blank[]], 
+         Pattern[GraphStates`Private`vertex$, 
+          Blank[]]] :> (GraphStates`Private`edgeDelete$156930 = Complement[
+           EdgeList[GraphStates`Private`graph$], 
+           EdgeList[GraphStates`Private`graph$, 
+            UndirectedEdge[GraphStates`Private`vertex$, 
+             Blank[]]]]; Return[
+          Graph[
+          GraphStates`Private`edgeDelete$156930, VertexShapeFunction -> 
+           "Circle", VertexSize -> 0.4, VertexStyle -> Directive[
+             EdgeForm[{Thick, Black}], LightPurple], EdgeStyle -> 
+           Directive[Black, Thick], VertexLabels -> 
+           Placed["Name", {1/2, 1/2}], VertexLabelStyle -> 
+           Directive[Black, FontFamily -> "YuMincho", 15], VertexSize -> 
+           0.4]]; Null)}], "SubValues" -> None, "DefaultValues" -> None, 
+    "NValues" -> None, "FormatValues" -> None, "Options" -> None, 
+    "Attributes" -> {}, "FullName" -> "GraphStates`Zmeasurement"], 
+   False]]], "Output",
+ CellChangeTimes->{3.828586513598257*^9},
+ CellLabel->
+  "Out[830]=",ExpressionUUID->"beb149cc-d644-4635-8f51-09cb533e752d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "Xmeasurement"}]], "Input",
+ CellChangeTimes->{{3.8285865158859587`*^9, 3.828586517289394*^9}},
+ CellLabel->
+  "In[831]:=",ExpressionUUID->"97738e6e-1695-4be0-bf71-aa5c82239033"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"Single X measurement on a graph \
+vertex.\\nXmeasurement[graph,vertex]\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False, False, False, False, 
+                False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Definitions\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Definitions", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{"Xmeasurement", "[", 
+                    RowBox[{
+                    "GraphStates`Private`graph$_", ",", 
+                    "GraphStates`Private`vertex$_"}], "]"}], ":=", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"GraphStates`Private`randomNeighbour$156931", "=", 
+                    RowBox[{"RandomChoice", "[", 
+                    RowBox[{"AdjacencyList", "[", 
+                    RowBox[{
+                    "GraphStates`Private`graph$", ",", 
+                    "GraphStates`Private`vertex$"}], "]"}], "]"}]}], ";", 
+                    RowBox[{"GraphStates`Private`tempGraph$156931", "=", 
+                    RowBox[{"Ymeasurement", "[", 
+                    RowBox[{
+                    RowBox[{"FindLUequivalent", "[", 
+                    RowBox[{
+                    "GraphStates`Private`graph$", ",", 
+                    "GraphStates`Private`randomNeighbour$156931"}], "]"}], 
+                    ",", "GraphStates`Private`vertex$"}], "]"}]}], ";", 
+                    RowBox[{"Return", "[", 
+                    RowBox[{"FindLUequivalent", "[", 
+                    RowBox[{
+                    "GraphStates`Private`tempGraph$156931", ",", 
+                    "GraphStates`Private`randomNeighbour$156931"}], "]"}], 
+                    "]"}]}], ")"}]}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], "\<\"GraphStates`Xmeasurement\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->6], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"Single X measurement on a graph \
+vertex.\\nXmeasurement[graph,vertex]\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{8., {1., 7.}}], True->
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{8., {1., 7.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "Single X measurement on a graph vertex.\nXmeasurement[graph,vertex]", 
+    "Documentation" -> None, "OwnValues" -> None, "UpValues" -> None, 
+    "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, GraphStates`Xmeasurement, {GraphStates`Xmeasurement[
+         Pattern[GraphStates`Private`graph$, 
+          Blank[]], 
+         Pattern[GraphStates`Private`vertex$, 
+          Blank[]]] :> (
+        GraphStates`Private`randomNeighbour$156931 = RandomChoice[
+           AdjacencyList[
+           GraphStates`Private`graph$, GraphStates`Private`vertex$]]; 
+        GraphStates`Private`tempGraph$156931 = GraphStates`Ymeasurement[
+           GraphStates`FindLUequivalent[
+           GraphStates`Private`graph$, 
+            GraphStates`Private`randomNeighbour$156931], 
+           GraphStates`Private`vertex$]; Return[
+          GraphStates`FindLUequivalent[
+          GraphStates`Private`tempGraph$156931, 
+           GraphStates`Private`randomNeighbour$156931]])}], "SubValues" -> 
+    None, "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
+    "Options" -> None, "Attributes" -> {}, "FullName" -> 
+    "GraphStates`Xmeasurement"], False]]], "Output",
+ CellChangeTimes->{3.828586517726494*^9},
+ CellLabel->
+  "Out[831]=",ExpressionUUID->"70e4abe3-a336-4538-a7fa-572df322ba5e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "Ymeasurement"}]], "Input",
+ CellChangeTimes->{{3.828586520073208*^9, 3.8285865210861*^9}},
+ CellLabel->
+  "In[832]:=",ExpressionUUID->"24678e27-0b43-41cb-86fc-de9247c8d892"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"Single Y measurement on a graph \
+vertex.\\nYmeasurement[graph,vertex]\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False, False, False, False, 
+                False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Definitions\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Definitions", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{"Ymeasurement", "[", 
+                    RowBox[{
+                    "GraphStates`Private`graph_", ",", 
+                    "GraphStates`Private`vertex_"}], "]"}], ":=", 
+                    RowBox[{"Return", "[", 
+                    RowBox[{"Zmeasurement", "[", 
+                    RowBox[{
+                    RowBox[{"FindLUequivalent", "[", 
+                    RowBox[{
+                    "GraphStates`Private`graph", ",", 
+                    "GraphStates`Private`vertex"}], "]"}], ",", 
+                    "GraphStates`Private`vertex"}], "]"}], "]"}]}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], "\<\"GraphStates`Ymeasurement\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->6], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"Single Y measurement on a graph \
+vertex.\\nYmeasurement[graph,vertex]\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{8., {1., 7.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{8., {1., 7.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "Single Y measurement on a graph vertex.\nYmeasurement[graph,vertex]", 
+    "Documentation" -> None, "OwnValues" -> None, "UpValues" -> None, 
+    "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, GraphStates`Ymeasurement, {GraphStates`Ymeasurement[
+         Pattern[GraphStates`Private`graph, 
+          Blank[]], 
+         Pattern[GraphStates`Private`vertex, 
+          Blank[]]] :> Return[
+         GraphStates`Zmeasurement[
+          GraphStates`FindLUequivalent[
+          GraphStates`Private`graph, GraphStates`Private`vertex], 
+          GraphStates`Private`vertex]]}], "SubValues" -> None, 
+    "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
+    "Options" -> None, "Attributes" -> {}, "FullName" -> 
+    "GraphStates`Ymeasurement"], False]]], "Output",
+ CellChangeTimes->{3.828586521937389*^9},
+ CellLabel->
+  "Out[832]=",ExpressionUUID->"36db5504-9378-4e87-a04f-efa9736c649b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "LUfamily"}]], "Input",
+ CellChangeTimes->{{3.8286053588833017`*^9, 3.828605363129735*^9}},
+ CellLabel->
+  "In[864]:=",ExpressionUUID->"ae1a3074-6649-4d8e-88a4-edbc14f82606"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"Find a group of states LC-equivalent.\\nNOTE: It \
+might not be all the orbit.\\nLUfamily[graph]\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False, False, False, False, 
+                False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Definitions\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Definitions", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{
+                    "LUfamily", "[", "GraphStates`Private`graph$_", "]"}], ":=", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"GraphStates`Private`perm$172749", "=", 
+                    RowBox[{"Permutations", "[", 
+                    RowBox[{
+                    RowBox[{"Range", "[", 
+                    RowBox[{
+                    "VertexCount", "[", "GraphStates`Private`graph$", "]"}], 
+                    "]"}], ",", 
+                    RowBox[{
+                    "VertexCount", "[", "GraphStates`Private`graph$", "]"}]}],
+                     "]"}]}], ";", 
+                    RowBox[{"GraphStates`Private`prmList$172749", "=", 
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"FoldList", "[", 
+                    RowBox[{
+                    "FindLUequivalent", ",", "GraphStates`Private`graph$", 
+                    ",", "#1"}], "]"}], "&"}], ")"}], "/@", 
+                    "GraphStates`Private`perm$172749"}], "]"}]}], ";", 
+                    RowBox[{"GraphStates`Private`noDuplicates$172749", "=", 
+                    RowBox[{"DeleteDuplicates", "[", 
+                    RowBox[{
+                    "GraphStates`Private`prmList$172749", ",", 
+                    "IsomorphicGraphQ"}], "]"}]}], ";", 
+                    RowBox[{
+                    "Return", "[", "GraphStates`Private`noDuplicates$172749", 
+                    "]"}], ";"}], ")"}]}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], "\<\"GraphStates`LUfamily\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->6], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"Find a group of states LC-equivalent.\\nNOTE: It \
+might not be all the orbit.\\nLUfamily[graph]\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{8., {1., 7.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{8., {1., 7.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "Find a group of states LC-equivalent.\nNOTE: It might not be all the \
+orbit.\nLUfamily[graph]", "Documentation" -> None, "OwnValues" -> None, 
+    "UpValues" -> None, "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, GraphStates`LUfamily, {GraphStates`LUfamily[
+         Pattern[GraphStates`Private`graph$, 
+          Blank[]]] :> (GraphStates`Private`perm$172749 = Permutations[
+           Range[
+            VertexCount[GraphStates`Private`graph$]], 
+           VertexCount[GraphStates`Private`graph$]]; 
+        GraphStates`Private`prmList$172749 = Flatten[
+           Map[
+           FoldList[
+            GraphStates`FindLUequivalent, GraphStates`Private`graph$, #]& , 
+            GraphStates`Private`perm$172749]]; 
+        GraphStates`Private`noDuplicates$172749 = 
+         DeleteDuplicates[
+          GraphStates`Private`prmList$172749, IsomorphicGraphQ]; 
+        Return[GraphStates`Private`noDuplicates$172749]; Null)}], "SubValues" -> 
+    None, "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
+    "Options" -> None, "Attributes" -> {}, "FullName" -> 
+    "GraphStates`LUfamily"], False]]], "Output",
+ CellChangeTimes->{3.8286053643087463`*^9},
+ CellLabel->
+  "Out[864]=",ExpressionUUID->"985e2780-b191-4829-a410-b8d65b7930a1"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["JH test", "Subsection",
+ CellChangeTimes->{{3.8285866102154827`*^9, 3.828586614730805*^9}, {
+  3.828605995399337*^9, 3.8286060078163652`*^9}, {3.840102695000187*^9, 
+  3.840102696208156*^9}},ExpressionUUID->"fdc33981-cbb8-4a47-9079-\
+559b9de78a5d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Graph", "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"1", "\[UndirectedEdge]", "2"}], ",", 
+    RowBox[{"2", "\[UndirectedEdge]", "7"}], ",", 
+    RowBox[{"2", "\[UndirectedEdge]", "6"}], ",", 
+    RowBox[{"2", "\[UndirectedEdge]", "3"}], ",", 
+    RowBox[{"3", "\[UndirectedEdge]", "7"}], ",", 
+    RowBox[{"3", "\[UndirectedEdge]", "6"}], ",", 
+    RowBox[{"3", "\[UndirectedEdge]", "4"}], ",", 
+    RowBox[{"5", "\[UndirectedEdge]", "6"}], ",", 
+    RowBox[{"6", "\[UndirectedEdge]", "7"}], ",", 
+    RowBox[{"7", "\[UndirectedEdge]", "8"}]}], "}"}], "]"}]], "Input",
+ CellChangeTimes->{{3.840102688611643*^9, 3.8401028032830048`*^9}},
+ CellLabel->"In[90]:=",ExpressionUUID->"4e05af67-ec87-4238-a8a4-31ef7ae5b180"],
+
+Cell[BoxData[
+ GraphicsBox[
+  NamespaceBox["NetworkGraphics",
+   DynamicModuleBox[{Typeset`graph = HoldComplete[
+     Graph[{1, 2, 7, 6, 3, 4, 5, 8}, {
+      Null, {{1, 2}, {2, 3}, {2, 4}, {2, 5}, {5, 3}, {5, 4}, {5, 6}, {7, 4}, {
+       4, 3}, {3, 8}}}]]}, 
+    TagBox[
+     GraphicsGroupBox[
+      GraphicsComplexBox[{{2.4076518805658624`, 2.3635814359934613`}, {
+       1.608981832136439, 1.597714563061241}, {1.5934438263965978`, 
+       0.7992227253617872}, {0.796740839131674, 0.8134543613825025}, {
+       0.8104204035928755, 1.6111498226116607`}, {0.04025486521146293, 
+       2.4070177378470823`}, {0., 0.04364756097115707}, {2.3606154441565748`, 
+       0.}}, {
+        {Hue[0.6, 0.7, 0.5], Opacity[0.7], 
+         LineBox[{{1, 2}, {2, 3}, {2, 4}, {2, 5}, {3, 4}, {3, 5}, {3, 8}, {4, 
+          5}, {4, 7}, {5, 6}}]}, 
+        {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[0.7]}], 
+         DiskBox[1, 0.025835409479327526], DiskBox[2, 0.025835409479327526], 
+         DiskBox[3, 0.025835409479327526], DiskBox[4, 0.025835409479327526], 
+         DiskBox[5, 0.025835409479327526], DiskBox[6, 0.025835409479327526], 
+         DiskBox[7, 0.025835409479327526], 
+         DiskBox[8, 0.025835409479327526]}}]],
+     MouseAppearanceTag["NetworkGraphics"]],
+    AllowKernelInitialization->False]],
+  DefaultBaseStyle->{
+   "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+  FormatType->TraditionalForm,
+  FrameTicks->None]], "Output",
+ CellChangeTimes->{3.840102804987894*^9},
+ CellLabel->"Out[90]=",ExpressionUUID->"91a5ffa1-ddaa-4048-b853-62b4132a023c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Graph", "[", 
+  RowBox[{
+   GraphicsBox[
+    NamespaceBox["NetworkGraphics",
+     DynamicModuleBox[{Typeset`graph = HoldComplete[
+       Graph[{1, 2, 7, 6, 3, 4, 5, 8}, {
+        Null, {{1, 2}, {2, 3}, {2, 4}, {2, 5}, {5, 3}, {5, 4}, {5, 6}, {7, 
+         4}, {4, 3}, {3, 8}}}]]}, 
+      TagBox[
+       GraphicsGroupBox[
+        GraphicsComplexBox[{{2.4076518805658624`, 2.3635814359934613`}, {
+         1.608981832136439, 1.597714563061241}, {1.5934438263965978`, 
+         0.7992227253617872}, {0.796740839131674, 0.8134543613825025}, {
+         0.8104204035928755, 1.6111498226116607`}, {0.04025486521146293, 
+         2.4070177378470823`}, {0., 0.04364756097115707}, {
+         2.3606154441565748`, 0.}}, {
+          {Hue[0.6, 0.7, 0.5], Opacity[0.7], 
+           LineBox[{{1, 2}, {2, 3}, {2, 4}, {2, 5}, {3, 4}, {3, 5}, {3, 8}, {
+            4, 5}, {4, 7}, {5, 6}}]}, 
+          {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[0.7]}], 
+           DiskBox[1, 0.025835409479327526], DiskBox[2, 0.025835409479327526],
+            DiskBox[3, 0.025835409479327526], 
+           DiskBox[4, 0.025835409479327526], DiskBox[5, 0.025835409479327526],
+            DiskBox[6, 0.025835409479327526], 
+           DiskBox[7, 0.025835409479327526], 
+           DiskBox[8, 0.025835409479327526]}}]],
+       MouseAppearanceTag["NetworkGraphics"]],
+      AllowKernelInitialization->False]],
+    DefaultBaseStyle->{
+     "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+    
+    FormatType->TraditionalForm,
+    FrameTicks->None], ",", "style"}], "]"}]], "Input",
+ CellChangeTimes->{{3.838635238978311*^9, 3.838635244262445*^9}, {
+   3.838635290000506*^9, 3.838635290928846*^9}, {3.838635340430035*^9, 
+   3.838635342078472*^9}, 3.840102809969818*^9},
+ CellLabel->"In[91]:=",ExpressionUUID->"5a99185d-e3e2-412c-a4d1-ab317ede6aa1"],
+
+Cell[BoxData[
+ GraphicsBox[
+  NamespaceBox["NetworkGraphics",
+   DynamicModuleBox[{Typeset`graph = HoldComplete[
+     Graph[{1, 2, 7, 6, 3, 4, 5, 8}, {
+      Null, {{1, 2}, {2, 3}, {2, 4}, {2, 5}, {5, 3}, {5, 4}, {5, 6}, {7, 4}, {
+       4, 3}, {3, 8}}}, {EdgeStyle -> {
+         Directive[
+          GrayLevel[0], 
+          Thickness[0.01]]}, FormatType -> TraditionalForm, 
+       GraphLayout -> {
+        "Dimension" -> 2, "VertexLayout" -> "CircularEmbedding"}, 
+       VertexLabels -> {
+         Placed["Name", {
+           Rational[1, 2], 
+           Rational[1, 2]}]}, VertexLabelStyle -> {
+         Directive[
+          GrayLevel[0], FontFamily -> "YuMincho", 30]}, 
+       VertexShapeFunction -> {"Circle"}, VertexSize -> {0.4}, VertexStyle -> {
+         Directive[
+          EdgeForm[{
+            Thickness[0.01], 
+            GrayLevel[0]}], 
+          RGBColor[0.94, 0.88, 0.94]]}}]]}, 
+    TagBox[GraphicsGroupBox[{
+       {GrayLevel[0], Thickness[0.01], Opacity[0.7], LineBox[CompressedData["
+1:eJxTTMoPSmVmYGDgAmImKL5oXZ82b8Gz/ZchtD0DGHzY39iddOyIySUbdP4J
+qLqjONRfgopfgZqLLn8SKn4MSqObh64fXZ6Q/trYG2s2Jp7cA7UXwzx0/Tjc
+a88kfrSnM/PKHnT19SVzLa1PH4WHCwCtraCX
+         "]]}, 
+       {RGBColor[0.94, 0.88, 0.94], EdgeForm[{GrayLevel[0], Opacity[0.7], 
+        Thickness[
+        0.01]}], {
+         DiskBox[{-0.707106781186548, 0.7071067811865482}, 
+          0.15307337294603582], InsetBox[
+          StyleBox["1",
+           StripOnInput->False,
+           LineColor->GrayLevel[0],
+           FrontFaceColor->GrayLevel[0],
+           BackFaceColor->GrayLevel[0],
+           GraphicsColor->GrayLevel[0],
+           FontFamily->"YuMincho",
+           FontSize->30,
+           FontColor->GrayLevel[0]], {-0.707106781186548, 0.7071067811865482},
+          
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{-1., 1.0106430996148606*^-15}, 0.15307337294603582], 
+         InsetBox[
+          StyleBox["2",
+           StripOnInput->False,
+           LineColor->GrayLevel[0],
+           FrontFaceColor->GrayLevel[0],
+           BackFaceColor->GrayLevel[0],
+           GraphicsColor->GrayLevel[0],
+           FontFamily->"YuMincho",
+           FontSize->30,
+           FontColor->GrayLevel[0]], {-1., 9.992007221626409*^-16},
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{0.707106781186547, 0.7071067811865467}, 
+          0.15307337294603582], InsetBox[
+          StyleBox["7",
+           StripOnInput->False,
+           LineColor->GrayLevel[0],
+           FrontFaceColor->GrayLevel[0],
+           BackFaceColor->GrayLevel[0],
+           GraphicsColor->GrayLevel[0],
+           FontFamily->"YuMincho",
+           FontSize->30,
+           FontColor->GrayLevel[0]], {0.707106781186547, 0.7071067811865467},
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{0.7071067811865481, -0.7071067811865483}, 
+          0.15307337294603582], InsetBox[
+          StyleBox["6",
+           StripOnInput->False,
+           LineColor->GrayLevel[0],
+           FrontFaceColor->GrayLevel[0],
+           BackFaceColor->GrayLevel[0],
+           GraphicsColor->GrayLevel[0],
+           FontFamily->"YuMincho",
+           FontSize->30,
+           FontColor->GrayLevel[0]], {0.7071067811865481, -0.7071067811865483},
+          
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{-0.7071067811865471, -0.7071067811865468}, 
+          0.15307337294603582], InsetBox[
+          StyleBox["3",
+           StripOnInput->False,
+           LineColor->GrayLevel[0],
+           FrontFaceColor->GrayLevel[0],
+           BackFaceColor->GrayLevel[0],
+           GraphicsColor->GrayLevel[0],
+           FontFamily->"YuMincho",
+           FontSize->30,
+           FontColor->GrayLevel[0]], {-0.7071067811865471, -0.7071067811865468},
+          
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{6.049014748177263*^-16, -1.}, 0.15307337294603582], InsetBox[
+          StyleBox["4",
+           StripOnInput->False,
+           LineColor->GrayLevel[0],
+           FrontFaceColor->GrayLevel[0],
+           BackFaceColor->GrayLevel[0],
+           GraphicsColor->GrayLevel[0],
+           FontFamily->"YuMincho",
+           FontSize->30,
+           FontColor->GrayLevel[0]], {6.106226635438361*^-16, -1.},
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{1., -1.133107779529596*^-15}, 0.15307337294603582], InsetBox[
+          StyleBox["5",
+           StripOnInput->False,
+           LineColor->GrayLevel[0],
+           FrontFaceColor->GrayLevel[0],
+           BackFaceColor->GrayLevel[0],
+           GraphicsColor->GrayLevel[0],
+           FontFamily->"YuMincho",
+           FontSize->30,
+           FontColor->GrayLevel[0]], {1., -1.1379786002407855*^-15},
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{-7.044813998280222*^-16, 1.}, 0.15307337294603582], InsetBox[
+          StyleBox["8",
+           StripOnInput->False,
+           LineColor->GrayLevel[0],
+           FrontFaceColor->GrayLevel[0],
+           BackFaceColor->GrayLevel[0],
+           GraphicsColor->GrayLevel[0],
+           FontFamily->"YuMincho",
+           FontSize->30,
+           FontColor->GrayLevel[0]], {-6.938893903907228*^-16, 1.},
+          BaseStyle->"Graphics"]}}}],
+     MouseAppearanceTag["NetworkGraphics"]],
+    AllowKernelInitialization->False]],
+  DefaultBaseStyle->{
+   "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+  FormatType->TraditionalForm,
+  FrameTicks->None]], "Output",
+ CellChangeTimes->{3.8386353424536133`*^9, 3.8386353727060432`*^9, 
+  3.840102811580518*^9},
+ CellLabel->"Out[91]=",ExpressionUUID->"8d28a793-675d-40d5-81da-b0f03e5f21bc"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"LUfamily", "[", 
+  GraphicsBox[
+   NamespaceBox["NetworkGraphics",
+    DynamicModuleBox[{Typeset`graph = HoldComplete[
+      Graph[{1, 2, 7, 6, 3, 4, 5, 8}, {
+       Null, {{1, 2}, {2, 3}, {2, 4}, {2, 5}, {5, 3}, {5, 4}, {5, 6}, {7, 
+        4}, {4, 3}, {3, 8}}}, {EdgeStyle -> {
+          Directive[
+           GrayLevel[0], 
+           Thickness[0.01]]}, FormatType -> TraditionalForm, 
+        GraphLayout -> {
+         "Dimension" -> 2, "VertexLayout" -> "CircularEmbedding"}, 
+        VertexLabels -> {
+          Placed["Name", {
+            Rational[1, 2], 
+            Rational[1, 2]}]}, VertexLabelStyle -> {
+          Directive[
+           GrayLevel[0], FontFamily -> "YuMincho", 30]}, 
+        VertexShapeFunction -> {"Circle"}, VertexSize -> {0.4}, VertexStyle -> {
+          Directive[
+           EdgeForm[{
+             Thickness[0.01], 
+             GrayLevel[0]}], 
+           RGBColor[0.94, 0.88, 0.94]]}}]]}, 
+     TagBox[GraphicsGroupBox[{
+        {GrayLevel[0], Thickness[0.01], Opacity[0.7], LineBox[CompressedData["
+
+1:eJxTTMoPSmVmYGDgAmImKL5oXZ82b8Gz/ZchtD0DGHzY39iddOyIySUbdP4J
+qLqjONRfgopfgZqLLn8SKn4MSqObh64fXZ6Q/trYG2s2Jp7cA7UXwzx0/Tjc
+a88kfrSnM/PKHnT19SVzLa1PH4WHCwCtraCX
+          "]]}, 
+        {RGBColor[0.94, 0.88, 0.94], EdgeForm[{GrayLevel[0], Opacity[0.7], 
+         Thickness[
+         0.01]}], {
+          DiskBox[{-0.707106781186548, 0.7071067811865482}, 
+           0.15307337294603582], InsetBox[
+           StyleBox["1",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"YuMincho",
+            FontSize->30,
+            FontColor->GrayLevel[0]], {-0.707106781186548, 0.7071067811865482},
+           
+           BaseStyle->"Graphics"]}, {
+          DiskBox[{-1., 1.0106430996148606*^-15}, 0.15307337294603582], 
+          InsetBox[
+           StyleBox["2",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"YuMincho",
+            FontSize->30,
+            FontColor->GrayLevel[0]], {-1., 9.992007221626409*^-16},
+           BaseStyle->"Graphics"]}, {
+          DiskBox[{0.707106781186547, 0.7071067811865467}, 
+           0.15307337294603582], InsetBox[
+           StyleBox["7",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"YuMincho",
+            FontSize->30,
+            FontColor->GrayLevel[0]], {0.707106781186547, 0.7071067811865467},
+           
+           BaseStyle->"Graphics"]}, {
+          DiskBox[{0.7071067811865481, -0.7071067811865483}, 
+           0.15307337294603582], InsetBox[
+           StyleBox["6",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"YuMincho",
+            FontSize->30,
+            FontColor->GrayLevel[0]], {0.7071067811865481, -0.7071067811865483},
+           
+           BaseStyle->"Graphics"]}, {
+          DiskBox[{-0.7071067811865471, -0.7071067811865468}, 
+           0.15307337294603582], InsetBox[
+           StyleBox["3",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"YuMincho",
+            FontSize->30,
+            FontColor->GrayLevel[0]], {-0.7071067811865471, -0.7071067811865468},
+           
+           BaseStyle->"Graphics"]}, {
+          DiskBox[{6.049014748177263*^-16, -1.}, 0.15307337294603582], 
+          InsetBox[
+           StyleBox["4",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"YuMincho",
+            FontSize->30,
+            FontColor->GrayLevel[0]], {6.106226635438361*^-16, -1.},
+           BaseStyle->"Graphics"]}, {
+          DiskBox[{1., -1.133107779529596*^-15}, 0.15307337294603582], 
+          InsetBox[
+           StyleBox["5",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"YuMincho",
+            FontSize->30,
+            FontColor->GrayLevel[0]], {1., -1.1379786002407855*^-15},
+           BaseStyle->"Graphics"]}, {
+          DiskBox[{-7.044813998280222*^-16, 1.}, 0.15307337294603582], 
+          InsetBox[
+           StyleBox["8",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontFamily->"YuMincho",
+            FontSize->30,
+            FontColor->GrayLevel[0]], {-6.938893903907228*^-16, 1.},
+           BaseStyle->"Graphics"]}}}],
+      MouseAppearanceTag["NetworkGraphics"]],
+     AllowKernelInitialization->False]],
+   DefaultBaseStyle->{
+    "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+   FormatType->TraditionalForm,
+   FrameTicks->None], "]"}]], "Input",
+ CellChangeTimes->{{3.8285866172790823`*^9, 3.828586657199789*^9}, {
+  3.8285868967733517`*^9, 3.8285868998926973`*^9}, {3.828587247840218*^9, 
+  3.828587248138928*^9}, {3.8285873244441547`*^9, 3.828587324727306*^9}, {
+  3.840102818799144*^9, 3.840102819632484*^9}},
+ CellLabel->"In[92]:=",ExpressionUUID->"1b16bd26-98d4-4006-99db-e2264001d749"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   GraphicsBox[
+    NamespaceBox["NetworkGraphics",
+     DynamicModuleBox[{Typeset`graph = HoldComplete[
+       Graph[{1, 2, 7, 6, 3, 4, 5, 8}, {
+        Null, {{1, 2}, {2, 3}, {2, 4}, {2, 5}, {5, 3}, {5, 4}, {5, 6}, {7, 
+         4}, {4, 3}, {3, 8}}}, {EdgeStyle -> {
+           Directive[
+            GrayLevel[0], 
+            Thickness[0.01]]}, FormatType -> TraditionalForm, 
+         GraphLayout -> {
+          "Dimension" -> 2, "VertexLayout" -> "CircularEmbedding"}, 
+         VertexLabels -> {
+           Placed["Name", {
+             Rational[1, 2], 
+             Rational[1, 2]}]}, VertexLabelStyle -> {
+           Directive[
+            GrayLevel[0], FontFamily -> "YuMincho", 30]}, 
+         VertexShapeFunction -> {"Circle"}, VertexSize -> {0.4}, VertexStyle -> {
+           Directive[
+            EdgeForm[{
+              Thickness[0.01], 
+              GrayLevel[0]}], 
+            RGBColor[0.94, 0.88, 0.94]]}}]]}, 
+      TagBox[GraphicsGroupBox[{
+         {GrayLevel[0], Thickness[0.01], Opacity[0.7], LineBox[CompressedData["
+1:eJxTTMoPSmVmYGDgAmImKL5oXZ82b8Gz/ZchtD0DGHzY39iddOyIySUbdP4J
+qLqjONRfgopfgZqLLn8SKn4MSqObh64fXZ6Q/trYG2s2Jp7cA7UXwzx0/Tjc
+a88kfrSnM/PKHnT19SVzLa1PH4WHCwCtraCX
+           "]]}, 
+         {RGBColor[0.94, 0.88, 0.94], EdgeForm[{GrayLevel[0], Opacity[0.7], 
+          Thickness[
+          0.01]}], {
+           DiskBox[{-0.707106781186548, 0.7071067811865482}, 
+            0.15307337294603582], InsetBox[
+            StyleBox["1",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->30,
+             FontColor->GrayLevel[0]], {-0.707106781186548, 0.7071067811865482},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{-1., 1.0106430996148606*^-15}, 0.15307337294603582], 
+           InsetBox[
+            StyleBox["2",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->30,
+             FontColor->GrayLevel[0]], {-1., 9.992007221626409*^-16},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.707106781186547, 0.7071067811865467}, 
+            0.15307337294603582], InsetBox[
+            StyleBox["7",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->30,
+             FontColor->GrayLevel[0]], {0.707106781186547, 0.7071067811865467},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.7071067811865481, -0.7071067811865483}, 
+            0.15307337294603582], InsetBox[
+            StyleBox["6",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->30,
+             FontColor->GrayLevel[0]], {0.7071067811865481, -0.7071067811865483},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{-0.7071067811865471, -0.7071067811865468}, 
+            0.15307337294603582], InsetBox[
+            StyleBox["3",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->30,
+             FontColor->GrayLevel[0]], {-0.7071067811865471, -0.7071067811865468},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{6.049014748177263*^-16, -1.}, 0.15307337294603582], 
+           InsetBox[
+            StyleBox["4",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->30,
+             FontColor->GrayLevel[0]], {6.106226635438361*^-16, -1.},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1., -1.133107779529596*^-15}, 0.15307337294603582], 
+           InsetBox[
+            StyleBox["5",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->30,
+             FontColor->GrayLevel[0]], {1., -1.1379786002407855*^-15},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{-7.044813998280222*^-16, 1.}, 0.15307337294603582], 
+           InsetBox[
+            StyleBox["8",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->30,
+             FontColor->GrayLevel[0]], {-6.938893903907228*^-16, 1.},
+            BaseStyle->"Graphics"]}}}],
+       MouseAppearanceTag["NetworkGraphics"]],
+      AllowKernelInitialization->False]],
+    DefaultBaseStyle->{
+     "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+    
+    FormatType->TraditionalForm,
+    FrameTicks->None,
+    ImageSize->{205.9864501953124, Automatic}], ",", 
+   GraphicsBox[
+    NamespaceBox["NetworkGraphics",
+     DynamicModuleBox[{Typeset`graph = HoldComplete[
+       Graph[{1, 2, 3, 4, 5, 6, 7, 8}, {
+        Null, {{1, 2}, {1, 3}, {1, 6}, {1, 7}, {2, 3}, {2, 6}, {2, 7}, {3, 
+         4}, {5, 6}, {7, 8}}}, {EdgeStyle -> {
+           Directive[
+            GrayLevel[0], 
+            Thickness[Large]]}, GraphLayout -> {"Dimension" -> 2}, 
+         VertexLabels -> {
+           Placed["Name", {
+             Rational[1, 2], 
+             Rational[1, 2]}]}, VertexLabelStyle -> {
+           Directive[
+            GrayLevel[0], FontFamily -> "YuMincho", 15]}, 
+         VertexShapeFunction -> {"Circle"}, VertexSize -> {0.4}, VertexStyle -> {
+           Directive[
+            EdgeForm[{
+              Thickness[Large], 
+              GrayLevel[0]}], 
+            RGBColor[0.94, 0.88, 0.94]]}}]]}, 
+      TagBox[GraphicsGroupBox[{
+         {GrayLevel[0], Thickness[Large], Opacity[0.7], 
+          LineBox[CompressedData["
+1:eJxTTMoPSmVmYGDgAmImKNZwrPnuwPrd3mhSfrOA4Vf7oryPfQ6/v9kvmrhq
+NpPvb3t0+SXsoT5PJD/az3ow70v2JmYHdPkFF5xT/9czO5Q05rh8bvmKoX9f
+9e/ePU7P7e1+LTNxdnyJYR+6+ejy6Oajy6Obj25e+r5LP7cXPLMPZyieu/QI
+twN361tVvTfcDqbGrg9X1X3CMB/dPAY0AABu35hb
+           "]]}, 
+         {RGBColor[0.94, 0.88, 0.94], EdgeForm[{GrayLevel[0], Opacity[0.7], 
+          Thickness[
+          Large]}], {
+           DiskBox[{1.438782660236095, 1.3244786390506644}, 
+            0.07636609680277766], InsetBox[
+            StyleBox["1",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {1.438782660236095, 1.3244786390506644},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1.436340864535762, 1.706301315375733}, 
+            0.07636609680277766], InsetBox[
+            StyleBox["2",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {1.436340864535762, 1.706301315375733},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1.0688212377285504, 2.462119971369316}, 
+            0.07636609680277766], InsetBox[
+            StyleBox["3",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {1.0688212377285504, 2.462119971369316},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.701259601531956, 3.471019010612547}, 
+            0.07636609680277766], InsetBox[
+            StyleBox["4",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {0.701259601531956, 3.471019010612547},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{3.4903223956213245, 1.1559246825810991}, 
+            0.07636609680277766], InsetBox[
+            StyleBox["5",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {3.4903223956213245, 1.1559246825810991},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{2.437498847133682, 1.3449585602575924}, 
+            0.07636609680277766], InsetBox[
+            StyleBox["6",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {2.437498847133682, 1.3449585602575924},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.7268965504734906, 0.7892166164745686}, 
+            0.07636609680277766], InsetBox[
+            StyleBox["7",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {0.7268965504734906, 0.7892166164745686},
+            
+            BaseStyle->"Graphics"]}, {DiskBox[{0., 0.}, 0.07636609680277766], 
+           InsetBox[
+            StyleBox["8",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {0., 0.},
+            BaseStyle->"Graphics"]}}}],
+       MouseAppearanceTag["NetworkGraphics"]],
+      AllowKernelInitialization->False]],
+    DefaultBaseStyle->{
+     "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+    
+    FormatType->TraditionalForm,
+    FrameTicks->None,
+    ImageSize->{153.77933756510538`, Automatic}], ",", 
+   GraphicsBox[
+    NamespaceBox["NetworkGraphics",
+     DynamicModuleBox[{Typeset`graph = HoldComplete[
+       Graph[{1, 2, 3, 4, 5, 6, 7, 8}, {
+        Null, {{1, 3}, {1, 4}, {1, 6}, {1, 7}, {2, 3}, {2, 4}, {2, 6}, {2, 
+         7}, {3, 4}, {5, 6}, {7, 8}}}, {EdgeStyle -> {
+           Directive[
+            GrayLevel[0], 
+            Thickness[Large]]}, GraphLayout -> {"Dimension" -> 2}, 
+         VertexLabels -> {
+           Placed["Name", {
+             Rational[1, 2], 
+             Rational[1, 2]}]}, VertexLabelStyle -> {
+           Directive[
+            GrayLevel[0], FontFamily -> "YuMincho", 15]}, 
+         VertexShapeFunction -> {"Circle"}, VertexSize -> {0.4}, VertexStyle -> {
+           Directive[
+            EdgeForm[{
+              Thickness[Large], 
+              GrayLevel[0]}], 
+            RGBColor[0.94, 0.88, 0.94]]}}]]}, 
+      TagBox[GraphicsGroupBox[{
+         {GrayLevel[0], Thickness[Large], Opacity[0.7], 
+          LineBox[CompressedData["
+1:eJxTTMoPSmVmYGDgBmImKA4vy/psceOXvZvKmwXpMa/sdd5cKT7O9NOeAQrQ
+5eVfGcy528nowCBwY0oIV6I9ujzPGp6FvHLv7bd5f5Z/OecbhvwUzlNN7TZs
+Dv5xqdXbFn2z96pK/ck4ncGh/+Ez/bgyTPvR5dHtR5dHtx9dHt1+dPvQzYeJ
+6/ks26m68D+G+ejmGf/XfpLFzOfg5jVPkXvJf3sA7MSV3A==
+           "]]}, 
+         {RGBColor[0.94, 0.88, 0.94], EdgeForm[{GrayLevel[0], Opacity[0.7], 
+          Thickness[
+          Large]}], {
+           DiskBox[{1.6777886875564911, 0.8237798827186757}, 
+            0.07919164616838864], InsetBox[
+            StyleBox["1",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {1.6777886875564911, 0.8237798827186757},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{2.073734234246591, 0.8269492087920741}, 
+            0.07919164616838864], InsetBox[
+            StyleBox["2",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {2.073734234246591, 0.8269492087920741},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1.56317849394578, 0.}, 0.07919164616838864], InsetBox[
+            StyleBox["3",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {1.56317849394578, 0.},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{2.192317219012025, 0.002080121229257159}, 
+            0.07919164616838864], InsetBox[
+            StyleBox["4",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {2.192317219012025, 0.002080121229257159},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0., 1.9768426181733605}, 0.07919164616838864], InsetBox[
+            StyleBox["5",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {0., 1.9768426181733605},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.972418608236127, 1.413308262640141}, 
+            0.07919164616838864], InsetBox[
+            StyleBox["6",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {0.972418608236127, 1.413308262640141},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{2.77955534152097, 1.414724809661397}, 
+            0.07919164616838864], InsetBox[
+            StyleBox["7",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {2.77955534152097, 1.414724809661397},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{3.7516687227179317, 1.9775496781554849}, 
+            0.07919164616838864], InsetBox[
+            StyleBox["8",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {3.7516687227179317, 1.9775496781554849},
+            
+            BaseStyle->"Graphics"]}}}],
+       MouseAppearanceTag["NetworkGraphics"]],
+      AllowKernelInitialization->False]],
+    DefaultBaseStyle->{
+     "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+    
+    FormatType->TraditionalForm,
+    FrameTicks->None], ",", 
+   GraphicsBox[
+    NamespaceBox["NetworkGraphics",
+     DynamicModuleBox[{Typeset`graph = HoldComplete[
+       Graph[{1, 2, 3, 4, 5, 6, 7, 8}, {
+        Null, {{1, 3}, {1, 4}, {1, 6}, {1, 7}, {2, 3}, {2, 4}, {2, 6}, {2, 
+         7}, {3, 6}, {3, 7}, {4, 6}, {4, 7}, {5, 6}, {6, 7}, {7, 8}}}, {
+        EdgeStyle -> {
+           Directive[
+            GrayLevel[0], 
+            Thickness[Large]]}, GraphLayout -> {"Dimension" -> 2}, 
+         VertexLabels -> {
+           Placed["Name", {
+             Rational[1, 2], 
+             Rational[1, 2]}]}, VertexLabelStyle -> {
+           Directive[
+            GrayLevel[0], FontFamily -> "YuMincho", 15]}, 
+         VertexShapeFunction -> {"Circle"}, VertexSize -> {0.4}, VertexStyle -> {
+           Directive[
+            EdgeForm[{
+              Thickness[Large], 
+              GrayLevel[0]}], 
+            RGBColor[0.94, 0.88, 0.94]]}}]]}, 
+      TagBox[GraphicsGroupBox[{
+         {GrayLevel[0], Thickness[Large], Opacity[0.7], 
+          LineBox[CompressedData["
+1:eJxTTMoPSmVmYGDgB2ImKL7EfqV17uTf9gxQIL0y+JVBH5MDg8/pPw8/Odij
+y5+MWZNpMv23/axwI+2uNR8x5AOCuEyXOrE6vDAp3nx6xUMMean8JsdktW/2
+Xgs4c5+tf2hv8mzj3cReJgf5KXl2dps/2qPbjy6Pbj+6PLr96PLo9qPbh64f
+XR5dP7p70PWjy6PrV8jI2RKkLeCgdWzKDMYNDzH0o/PR9aPzYeG8timVsWjj
+Q3sAYOTNNA==
+           "]]}, 
+         {RGBColor[0.94, 0.88, 0.94], EdgeForm[{GrayLevel[0], Opacity[0.7], 
+          Thickness[
+          Large]}], {DiskBox[{1.723538897291736, 0.}, 0.11892427078002127], 
+           InsetBox[
+            StyleBox["1",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {1.723538897291736, 0.},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{2.319034320823244, 1.106260532259746}, 
+            0.11892427078002127], InsetBox[
+            StyleBox["2",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {2.319034320823244, 1.106260532259746},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{2.3194292361050777, 0.0005172351316907742}, 
+            0.11892427078002127], InsetBox[
+            StyleBox["3",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {2.3194292361050777, 0.0005172351316907742},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1.724415219103138, 1.1046239554757222}, 
+            0.11892427078002127], InsetBox[
+            StyleBox["4",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {1.724415219103138, 1.1046239554757222},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{4.042307681194899, 0.5527351360416948}, 
+            0.11892427078002127], InsetBox[
+            StyleBox["5",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {4.042307681194899, 0.5527351360416948},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{2.657541670205582, 0.5518549446948358}, 
+            0.11892427078002127], InsetBox[
+            StyleBox["6",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {2.657541670205582, 0.5518549446948358},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1.384372001549258, 0.5527221803322473}, 
+            0.11892427078002127], InsetBox[
+            StyleBox["7",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {1.384372001549258, 0.5527221803322473},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0., 0.552910807349766}, 0.11892427078002127], InsetBox[
+            StyleBox["8",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {0., 0.552910807349766},
+            BaseStyle->"Graphics"]}}}],
+       MouseAppearanceTag["NetworkGraphics"]],
+      AllowKernelInitialization->False]],
+    DefaultBaseStyle->{
+     "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+    
+    FormatType->TraditionalForm,
+    FrameTicks->None], ",", 
+   GraphicsBox[
+    NamespaceBox["NetworkGraphics",
+     DynamicModuleBox[{Typeset`graph = HoldComplete[
+       Graph[{1, 2, 3, 4, 5, 6, 7, 8}, {
+        Null, {{1, 2}, {1, 3}, {1, 4}, {1, 5}, {1, 6}, {1, 7}, {2, 3}, {2, 
+         4}, {2, 5}, {2, 6}, {2, 7}, {3, 4}, {5, 6}, {7, 8}}}, {
+        EdgeStyle -> {
+           Directive[
+            GrayLevel[0], 
+            Thickness[Large]]}, GraphLayout -> {"Dimension" -> 2}, 
+         VertexLabels -> {
+           Placed["Name", {
+             Rational[1, 2], 
+             Rational[1, 2]}]}, VertexLabelStyle -> {
+           Directive[
+            GrayLevel[0], FontFamily -> "YuMincho", 15]}, 
+         VertexShapeFunction -> {"Circle"}, VertexSize -> {0.4}, VertexStyle -> {
+           Directive[
+            EdgeForm[{
+              Thickness[Large], 
+              GrayLevel[0]}], 
+            RGBColor[0.94, 0.88, 0.94]]}}]]}, 
+      TagBox[GraphicsGroupBox[{
+         {GrayLevel[0], Thickness[Large], Opacity[0.7], 
+          LineBox[CompressedData["
+1:eJxTTMoPSmVmYGDgA2ImKM6++3/RFA9Wh5/RjzukJ7y3P8YQqbrDhclB91HV
+giVT3tujy6t0vfTcV8vpULbUcePB6Rcx5HvnbdLyimFxYIACDPkzJ57djmdx
+0CsST9058T+G/m0TbwTF1HE6ZMutmrxW6zeG/L7Zi2c9ZPhi/3re/Y8zp2C6
+F9196PLo7sOQR3Mfujy6+9Dl0d2H7h50+9HtQzcf3TyYPrtqlTUF097bAwD5
+KNHi
+           "]]}, 
+         {RGBColor[0.94, 0.88, 0.94], EdgeForm[{GrayLevel[0], Opacity[0.7], 
+          Thickness[
+          Large]}], {
+           DiskBox[{2.660439752038362, 0.9863412545772682}, 
+            0.07537716065810364], InsetBox[
+            StyleBox["1",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {2.660439752038362, 0.9863412545772682},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{2.2835543554102484, 0.9868949064612643}, 
+            0.07537716065810364], InsetBox[
+            StyleBox["2",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {2.2835543554102484, 0.9868949064612643},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{3.186398103179515, 0.2748874884624323}, 
+            0.07537716065810364], InsetBox[
+            StyleBox["3",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {3.186398103179515, 0.2748874884624323},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{2.54506333692172, 0.}, 0.07537716065810364], InsetBox[
+            StyleBox["4",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {2.54506333692172, 0.},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{2.546806147578144, 1.9730771969690397}, 
+            0.07537716065810364], InsetBox[
+            StyleBox["5",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {2.546806147578144, 1.9730771969690397},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{3.1866995308248205, 1.6979194419999668}, 
+            0.07537716065810364], InsetBox[
+            StyleBox["6",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {3.1866995308248205, 1.6979194419999668},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1.2502151527967125, 0.9868898128597413}, 
+            0.07537716065810364], InsetBox[
+            StyleBox["7",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {1.2502151527967125, 0.9868898128597413},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0., 0.9871142732771216}, 0.07537716065810364], InsetBox[
+            StyleBox["8",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {0., 0.9871142732771216},
+            BaseStyle->"Graphics"]}}}],
+       MouseAppearanceTag["NetworkGraphics"]],
+      AllowKernelInitialization->False]],
+    DefaultBaseStyle->{
+     "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+    
+    FormatType->TraditionalForm,
+    FrameTicks->None,
+    ImageSize->{400.16943359374983`, Automatic}], ",", 
+   GraphicsBox[
+    NamespaceBox["NetworkGraphics",
+     DynamicModuleBox[{Typeset`graph = HoldComplete[
+       Graph[{1, 2, 3, 4, 5, 6, 7, 8}, {
+        Null, {{1, 3}, {1, 4}, {1, 5}, {1, 6}, {1, 7}, {1, 8}, {2, 3}, {2, 
+         4}, {2, 5}, {2, 6}, {2, 7}, {2, 8}, {3, 4}, {5, 6}, {7, 8}}}, {
+        EdgeStyle -> {
+           Directive[
+            GrayLevel[0], 
+            Thickness[Large]]}, GraphLayout -> {"Dimension" -> 2}, 
+         VertexLabels -> {
+           Placed["Name", {
+             Rational[1, 2], 
+             Rational[1, 2]}]}, VertexLabelStyle -> {
+           Directive[
+            GrayLevel[0], FontFamily -> "YuMincho", 15]}, 
+         VertexShapeFunction -> {"Circle"}, VertexSize -> {0.4}, VertexStyle -> {
+           Directive[
+            EdgeForm[{
+              Thickness[Large], 
+              GrayLevel[0]}], 
+            RGBColor[0.94, 0.88, 0.94]]}}]]}, 
+      TagBox[GraphicsGroupBox[{
+         {GrayLevel[0], Thickness[Large], Opacity[0.7], 
+          LineBox[CompressedData["
+1:eJxTTMoPSmVmYGDgB2ImKP4m/F9K0+qjfQHniwsaTE/sGaBAJUNWVe/iE3t0
+eQNhY98DXVfsFyTayx3dPw9D/uWmdtnoRgYHnRM7vvqdeowhf27DbMFDtb/h
+9qDL7/isvGidxHP7es2KipO7/mDo97siWGbN8d3emOGXtYj8H3u36l4mlh3v
+7S8/TT6588Y7DPejy6O7H10e3f3o8ujuR5dHdz+6PLr70d2L7j5096Dbj24f
+uvkATYvSEA==
+           "]]}, 
+         {RGBColor[0.94, 0.88, 0.94], EdgeForm[{GrayLevel[0], Opacity[0.7], 
+          Thickness[
+          Large]}], {
+           DiskBox[{1.0766993574663934, 0.6252636032298096}, 
+            0.06986281755944532], InsetBox[
+            StyleBox["1",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {1.0766993574663934, 0.6252636032298096},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.9912128496033368, 0.9639557774927944}, 
+            0.06986281755944532], InsetBox[
+            StyleBox["2",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {0.9912128496033368, 0.9639557774927943},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0., 0.6505346989536105}, 0.06986281755944532], InsetBox[
+            StyleBox["3",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {0., 0.6505346989536105},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.32096869982733534, 0.03002841946713064}, 
+            0.06986281755944532], InsetBox[
+            StyleBox["4",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {0.32096869982733534, 0.03002841946713064},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{2.06316206999178, 0.6184458541158668}, 
+            0.06986281755944532], InsetBox[
+            StyleBox["5",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {2.06316206999178, 0.6184458541158668},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1.718202656537915, 0.}, 0.06986281755944532], InsetBox[
+            StyleBox["6",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {1.718202656537915, 0.},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.7217629591756269, 1.795602293571022}, 
+            0.06986281755944532], InsetBox[
+            StyleBox["7",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {0.7217629591756269, 1.795602293571022},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1.4395098316283739, 1.7575876562914459}, 
+            0.06986281755944532], InsetBox[
+            StyleBox["8",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {1.4395098316283739, 1.7575876562914459},
+            
+            BaseStyle->"Graphics"]}}}],
+       MouseAppearanceTag["NetworkGraphics"]],
+      AllowKernelInitialization->False]],
+    DefaultBaseStyle->{
+     "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+    
+    FormatType->TraditionalForm,
+    FrameTicks->None,
+    ImageSize->{400.46362304687415`, Automatic}], ",", 
+   GraphicsBox[
+    NamespaceBox["NetworkGraphics",
+     DynamicModuleBox[{Typeset`graph = HoldComplete[
+       Graph[{1, 2, 3, 4, 5, 6, 7, 8}, {
+        Null, {{1, 3}, {1, 4}, {1, 5}, {1, 6}, {1, 7}, {1, 8}, {2, 3}, {2, 
+         4}, {2, 5}, {2, 6}, {2, 7}, {2, 8}, {3, 5}, {3, 6}, {3, 7}, {3, 8}, {
+         4, 5}, {4, 6}, {4, 7}, {4, 8}, {5, 7}, {5, 8}, {6, 7}, {6, 8}}}, {
+        EdgeStyle -> {
+           Directive[
+            GrayLevel[0], 
+            Thickness[Large]]}, GraphLayout -> {"Dimension" -> 2}, 
+         VertexLabels -> {
+           Placed["Name", {
+             Rational[1, 2], 
+             Rational[1, 2]}]}, VertexLabelStyle -> {
+           Directive[
+            GrayLevel[0], FontFamily -> "YuMincho", 15]}, 
+         VertexShapeFunction -> {"Circle"}, VertexSize -> {0.4}, VertexStyle -> {
+           Directive[
+            EdgeForm[{
+              Thickness[Large], 
+              GrayLevel[0]}], 
+            RGBColor[0.94, 0.88, 0.94]]}}]]}, 
+      TagBox[GraphicsGroupBox[{
+         {GrayLevel[0], Thickness[Large], Opacity[0.7], 
+          LineBox[CompressedData["
+1:eJxTTMoPSmVmYGCQAGImKIaBkgINcbb3T+0FTvRYZEz4bC9f/tGf+cBXe3T5
+rAdO6fzXL9s3JNzd/VC4AEN+820u6c2tL+wv1hedtHn/DkP+2bdDpivqXtjz
+7vbr+Nl3E0PexuEAr1b+Z3sGNACTL94nuOCGxxX7+4wb/YvOfbWfXbPnSEH9
+D/sJHuLVzusw3Y8uj+5+dHl096PLo7sfXR7d/ejy6O5Hdy+6/ejy6Pajy6Pb
+jy6Pbj96eKDbjy6Pbj+6PLr96PLo9qPbh64fXR5dP7p70PWjy6PrBwD3RVcY
+
+           "]]}, 
+         {RGBColor[0.94, 0.88, 0.94], EdgeForm[{GrayLevel[0], Opacity[0.7], 
+          Thickness[
+          Large]}], {DiskBox[{0., 0.6854277088455221}, 0.11347059122151544], 
+           InsetBox[
+            StyleBox["1",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {0., 0.6854277088455221},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1.531113403798179, 0.6775224117393623}, 
+            0.11347059122151544], InsetBox[
+            StyleBox["2",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {1.531113403798179, 0.6775224117393623},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1.2227556427938033, 1.3593781588346656}, 
+            0.11347059122151544], InsetBox[
+            StyleBox["3",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {1.2227556427938033, 1.3593781588346656},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.3100012310419574, 0.003925210736120843}, 
+            0.11347059122151544], InsetBox[
+            StyleBox["4",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {0.3100012310419574, 0.003925210736120843},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.7663207557842412, 0.9667037901417591}, 
+            0.11347059122151544], InsetBox[
+            StyleBox["5",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {0.7663207557842412, 0.966703790141759},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.7654610681563241, 0.39935148535998694}, 
+            0.11347059122151544], InsetBox[
+            StyleBox["6",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {0.7654610681563241, 0.39935148535998694},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1.214639714922682, 0.}, 0.11347059122151544], InsetBox[
+            StyleBox["7",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {1.214639714922682, 0.},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.31694617873924996, 1.3629019844957992}, 
+            0.11347059122151544], InsetBox[
+            StyleBox["8",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {0.31694617873924996, 1.3629019844957992},
+            
+            BaseStyle->"Graphics"]}}}],
+       MouseAppearanceTag["NetworkGraphics"]],
+      AllowKernelInitialization->False]],
+    DefaultBaseStyle->{
+     "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+    
+    FormatType->TraditionalForm,
+    FrameTicks->None]}], "}"}]], "Output",
+ CellChangeTimes->{3.8285869421358767`*^9, 3.828587277407247*^9, 
+  3.828587347987049*^9, 3.8286059891621637`*^9, 3.8386351479949217`*^9, 
+  3.8401047582623377`*^9},
+ CellLabel->"Out[92]=",ExpressionUUID->"b4974575-0413-4071-93b3-fd97d0d9f62f"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Styling arguments", "Chapter",
+ CellChangeTimes->{{3.8386355785440493`*^9, 
+  3.838635582191168*^9}},ExpressionUUID->"4eb4f72b-b3b8-4123-a108-\
+c740854c1518"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"style", "=", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"VertexShapeFunction", "\[Rule]", "\"\<Circle\>\""}], 
+     "\[IndentingNewLine]", ",", 
+     RowBox[{"VertexStyle", "\[Rule]", 
+      RowBox[{"Directive", "[", 
+       RowBox[{
+        RowBox[{"EdgeForm", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Thickness", "[", "0.02", "]"}], ",", "Black", ",", 
+           RowBox[{"Opacity", "[", "1", "]"}]}], "}"}], "]"}], ",", "White"}],
+        "]"}]}], "\[IndentingNewLine]", ",", 
+     RowBox[{"EdgeStyle", "\[Rule]", 
+      RowBox[{"Directive", "[", 
+       RowBox[{"Black", ",", 
+        RowBox[{"Thickness", "[", "0.02", "]"}], ",", 
+        RowBox[{"Opacity", "[", "1", "]"}]}], "]"}]}], "\[IndentingNewLine]", 
+     ",", 
+     RowBox[{"VertexLabels", "\[Rule]", 
+      RowBox[{"(*", 
+       RowBox[{"Placed", "[", 
+        RowBox[{"\"\<Name\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"1", "/", "2"}], ",", 
+           RowBox[{"1", "/", "2"}]}], "}"}]}], "]"}], "*)"}], "None"}], 
+     "\[IndentingNewLine]", ",", 
+     RowBox[{"VertexLabelStyle", "\[Rule]", 
+      RowBox[{"Directive", "[", 
+       RowBox[{"Black", ",", 
+        RowBox[{"FontFamily", "\[Rule]", "\"\<YuMincho\>\""}], ",", "30"}], 
+       "]"}]}], "\[IndentingNewLine]", ",", 
+     RowBox[{"VertexSize", "\[Rule]", "0.4"}], "\[IndentingNewLine]", ",", 
+     RowBox[{"GraphLayout", "\[Rule]", "\"\<CircularEmbedding\>\""}], 
+     "\[IndentingNewLine]", ",", 
+     RowBox[{"ImageSize", "\[Rule]", "350"}]}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.8386351112915373`*^9, 3.838635111437867*^9}, {
+  3.838635262190547*^9, 3.8386353683645*^9}, {3.838635682023909*^9, 
+  3.8386356840971947`*^9}, {3.8387073694410477`*^9, 3.8387075418858843`*^9}, {
+  3.838707572890486*^9, 3.838707581357543*^9}},
+ CellLabel->"In[99]:=",ExpressionUUID->"39f6b3ad-9f8e-46a2-96fc-3397689d30c1"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Graph", "[", 
+  RowBox[{
+   GraphicsBox[
+    NamespaceBox["NetworkGraphics",
+     DynamicModuleBox[{Typeset`graph = HoldComplete[
+       Graph[{1, 2, 3, 4, 5, 6}, {
+        Null, {{2, 1}, {2, 4}, {4, 3}, {4, 6}, {6, 5}}}, {EdgeStyle -> {
+           Directive[
+            GrayLevel[0], 
+            Thickness[Large]]}, FormatType -> TraditionalForm, 
+         GraphLayout -> {"Dimension" -> 2}, 
+         ImageSize -> {187.18749999999918`, Automatic}, VertexLabels -> {
+           Placed["Name", {
+             Rational[1, 2], 
+             Rational[1, 2]}]}, VertexLabelStyle -> {
+           Directive[
+            GrayLevel[0], FontFamily -> "YuMincho", 15]}, 
+         VertexShapeFunction -> {"Circle"}, VertexSize -> {0.4}, VertexStyle -> {
+           Directive[
+            EdgeForm[{
+              Thickness[Large], 
+              GrayLevel[0]}], 
+            RGBColor[0.94, 0.88, 0.94]]}}]]}, 
+      TagBox[GraphicsGroupBox[{
+         {GrayLevel[0], Thickness[Large], Opacity[0.7], 
+          LineBox[{{{0., 0.}, {0., 0.8451542547285166}}, {{0., 
+           0.8451542547285166}, {0.8451542547285166, 1.6903085094570331`}}, {{
+           0.8451542547285166, 0.8451542547285166}, {0.8451542547285166, 
+           1.6903085094570331`}}, {{0.8451542547285166, 
+           1.6903085094570331`}, {1.6903085094570331`, 
+           0.8451542547285166}}, {{1.6903085094570331`, 0.}, {
+           1.6903085094570331`, 0.8451542547285166}}}]}, 
+         {RGBColor[0.94, 0.88, 0.94], EdgeForm[{GrayLevel[0], Opacity[0.7], 
+          Thickness[
+          Large]}], {DiskBox[{0., 0.}, 0.16903085094570333], InsetBox[
+            StyleBox["1",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {0., 0.},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0., 0.8451542547285166}, 0.16903085094570333], InsetBox[
+            StyleBox["2",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {0., 0.8451542547285166},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.8451542547285166, 0.8451542547285166}, 
+            0.16903085094570333], InsetBox[
+            StyleBox["3",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {0.8451542547285166, 0.8451542547285166},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.8451542547285166, 1.6903085094570331}, 
+            0.16903085094570333], InsetBox[
+            StyleBox["4",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {0.8451542547285166, 1.6903085094570331},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1.6903085094570331, 0.}, 0.16903085094570333], InsetBox[
+            StyleBox["5",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {1.6903085094570331, 0.},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1.6903085094570331, 0.8451542547285166}, 
+            0.16903085094570333], InsetBox[
+            StyleBox["6",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"YuMincho",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {1.6903085094570331, 0.8451542547285166},
+            
+            BaseStyle->"Graphics"]}}}],
+       MouseAppearanceTag["NetworkGraphics"]],
+      AllowKernelInitialization->False]],
+    DefaultBaseStyle->{
+     "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+    
+    FormatType->TraditionalForm,
+    FrameTicks->None,
+    ImageSize->{187.18749999999918`, Automatic}], ",", "style"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.838635450724287*^9, 3.838635463913355*^9}, {
+  3.8386355004019337`*^9, 3.8386355335066013`*^9}, {3.838635698916438*^9, 
+  3.8386356996619596`*^9}},
+ CellLabel->
+  "In[100]:=",ExpressionUUID->"f36c952b-91ab-45e6-a85c-e55a95077983"],
+
+Cell[BoxData[
+ GraphicsBox[
+  NamespaceBox["NetworkGraphics",
+   DynamicModuleBox[{Typeset`graph = HoldComplete[
+     Graph[{1, 2, 3, 4, 5, 6}, {
+      Null, {{2, 1}, {2, 4}, {4, 3}, {4, 6}, {6, 5}}}, {EdgeStyle -> {
+         Directive[
+          GrayLevel[0], 
+          Thickness[0.02], 
+          Opacity[1]]}, FormatType -> TraditionalForm, 
+       GraphLayout -> {
+        "Dimension" -> 2, "VertexLayout" -> "CircularEmbedding"}, ImageSize -> 
+       350, VertexLabels -> {None}, VertexLabelStyle -> {
+         Directive[
+          GrayLevel[0], FontFamily -> "YuMincho", 30]}, 
+       VertexShapeFunction -> {"Circle"}, VertexSize -> {0.4}, VertexStyle -> {
+         Directive[
+          EdgeForm[{
+            Thickness[0.02], 
+            GrayLevel[0], 
+            Opacity[1]}], 
+          GrayLevel[1]]}}]]}, 
+    TagBox[
+     GraphicsGroupBox[
+      GraphicsComplexBox[{{0.8660254037844386, 0.4999999999999993}, {
+       0.8660254037844389, -0.5000000000000012}, {1.8369701987210297`*^-16, 
+       1.}, {3.8285686989269494`*^-16, -1.}, {-0.8660254037844389, 
+       0.5000000000000007}, {-0.8660254037844384, -0.4999999999999994}}, {
+        {GrayLevel[0], Thickness[0.02], Opacity[1], 
+         LineBox[{{1, 2}, {2, 4}, {3, 4}, {4, 6}, {5, 6}}]}, 
+        {GrayLevel[1], EdgeForm[{GrayLevel[0], Opacity[1], Thickness[0.02]}], 
+         DiskBox[1, 0.19999999999999987], DiskBox[2, 0.19999999999999987], 
+         DiskBox[3, 0.19999999999999987], DiskBox[4, 0.19999999999999987], 
+         DiskBox[5, 0.19999999999999987], DiskBox[6, 0.19999999999999987]}}]],
+     
+     MouseAppearanceTag["NetworkGraphics"]],
+    AllowKernelInitialization->False]],
+  DefaultBaseStyle->{
+   "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+  FormatType->TraditionalForm,
+  FrameTicks->None,
+  ImageSize->350]], "Output",
+ CellChangeTimes->{{3.838635686706012*^9, 3.8386357001161823`*^9}, {
+  3.838707374343151*^9, 3.838707422450058*^9}, {3.838707494033701*^9, 
+  3.83870758414966*^9}},
+ CellLabel->
+  "Out[100]=",ExpressionUUID->"79fa81b7-6202-4f05-9e02-3e4b0fe48a4d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Graph", "[", 
+  RowBox[{
+   GraphicsBox[
+    NamespaceBox["NetworkGraphics",
+     DynamicModuleBox[{Typeset`graph = HoldComplete[
+       Graph[{1, 2, 3, 4, 5, 6}, {Null, 
+         SparseArray[
+         Automatic, {6, 6}, 0, {
+          1, {{0, 5, 6, 7, 8, 9, 10}, {{2}, {3}, {4}, {5}, {6}, {1}, {1}, {
+            1}, {1}, {1}}}, Pattern}]}, {EdgeStyle -> {
+           Directive[
+            GrayLevel[0], 
+            Thickness[Large]]}, GraphLayout -> "StarEmbedding", VertexLabels -> {
+           Placed["Name", {
+             Rational[1, 2], 
+             Rational[1, 2]}]}, VertexLabelStyle -> {
+           Directive[
+            GrayLevel[0], FontFamily -> "Times", 15]}, 
+         VertexShapeFunction -> {"Circle"}, VertexSize -> {0.4}, VertexStyle -> {
+           Directive[
+            EdgeForm[{
+              Thickness[Large], 
+              GrayLevel[0]}], 
+            RGBColor[0.94, 0.88, 0.94]]}}]]}, 
+      TagBox[GraphicsGroupBox[{
+         {GrayLevel[0], Thickness[Large], Opacity[0.7], 
+          LineBox[{{{0., 0.}, {-0.5877852522924727, -0.8090169943749468}}, {{
+           0., 0.}, {0.5877852522924737, -0.8090169943749481}}, {{0., 0.}, {
+           0.9510565162951533, 0.30901699437494634`}}, {{0., 
+           0.}, {-7.044813998280222*^-16, 1.}}, {{0., 
+           0.}, {-0.9510565162951538, 0.30901699437494945`}}}]}, 
+         {RGBColor[0.94, 0.88, 0.94], EdgeForm[{GrayLevel[0], Opacity[0.7], 
+          Thickness[
+          Large]}], {DiskBox[{0., 0.}, 0.19999999999999984], InsetBox[
+            StyleBox["1",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"Times",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {0., 0.},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{-0.5877852522924727, -0.8090169943749468}, 
+            0.19999999999999984], InsetBox[
+            StyleBox["2",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"Times",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {-0.5877852522924727, -0.8090169943749468},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.5877852522924737, -0.8090169943749481}, 
+            0.19999999999999984], InsetBox[
+            StyleBox["3",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"Times",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {0.5877852522924737, -0.8090169943749481},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.9510565162951533, 0.30901699437494634}, 
+            0.19999999999999984], InsetBox[
+            StyleBox["4",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"Times",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {0.9510565162951533, 0.30901699437494634},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{-7.044813998280222*^-16, 1.}, 0.19999999999999984], 
+           InsetBox[
+            StyleBox["5",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"Times",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {-6.938893903907228*^-16, 1.},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{-0.9510565162951538, 0.30901699437494945}, 
+            0.19999999999999984], InsetBox[
+            StyleBox["6",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"Times",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {-0.9510565162951538, 0.30901699437494945},
+            
+            BaseStyle->"Graphics"]}}}],
+       MouseAppearanceTag["NetworkGraphics"]],
+      AllowKernelInitialization->False]],
+    DefaultBaseStyle->{
+     "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+    
+    FormatType->TraditionalForm,
+    FrameTicks->None], ",", "style"}], "]"}]], "Input",
+ CellChangeTimes->{{3.838635398601169*^9, 3.838635403558751*^9}},
+ CellLabel->
+  "In[101]:=",ExpressionUUID->"61dfb319-cc1b-463b-8831-1e2957be05db"],
+
+Cell[BoxData[
+ GraphicsBox[
+  NamespaceBox["NetworkGraphics",
+   DynamicModuleBox[{Typeset`graph = HoldComplete[
+     Graph[{1, 2, 3, 4, 5, 6}, {Null, 
+       SparseArray[
+       Automatic, {6, 6}, 0, {
+        1, {{0, 5, 6, 7, 8, 9, 10}, {{2}, {3}, {4}, {5}, {6}, {1}, {1}, {1}, {
+          1}, {1}}}, Pattern}]}, {EdgeStyle -> {
+         Directive[
+          GrayLevel[0], 
+          Thickness[0.02], 
+          Opacity[1]]}, FormatType -> TraditionalForm, 
+       GraphLayout -> {
+        "Dimension" -> 2, "VertexLayout" -> "CircularEmbedding"}, ImageSize -> 
+       350, VertexLabels -> {None}, VertexLabelStyle -> {
+         Directive[
+          GrayLevel[0], FontFamily -> "YuMincho", 30]}, 
+       VertexShapeFunction -> {"Circle"}, VertexSize -> {0.4}, VertexStyle -> {
+         Directive[
+          EdgeForm[{
+            Thickness[0.02], 
+            GrayLevel[0], 
+            Opacity[1]}], 
+          GrayLevel[1]]}}]]}, 
+    TagBox[
+     GraphicsGroupBox[
+      GraphicsComplexBox[{{-0.8660254037844389, 0.5000000000000007}, {
+       1.8369701987210297`*^-16, 1.}, {0.8660254037844386, 
+       0.4999999999999993}, {0.8660254037844389, -0.5000000000000012}, {
+       3.8285686989269494`*^-16, -1.}, {-0.8660254037844384, \
+-0.4999999999999994}}, {
+        {GrayLevel[0], Thickness[0.02], Opacity[1], 
+         LineBox[{{1, 2}, {1, 3}, {1, 4}, {1, 5}, {1, 6}}]}, 
+        {GrayLevel[1], EdgeForm[{GrayLevel[0], Opacity[1], Thickness[0.02]}], 
+         DiskBox[1, 0.19999999999999987], DiskBox[2, 0.19999999999999987], 
+         DiskBox[3, 0.19999999999999987], DiskBox[4, 0.19999999999999987], 
+         DiskBox[5, 0.19999999999999987], DiskBox[6, 0.19999999999999987]}}]],
+     
+     MouseAppearanceTag["NetworkGraphics"]],
+    AllowKernelInitialization->False]],
+  DefaultBaseStyle->{
+   "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+  FormatType->TraditionalForm,
+  FrameTicks->None,
+  ImageSize->350]], "Output",
+ CellChangeTimes->{
+  3.838635403936842*^9, 3.838635686809083*^9, 3.8387073899871187`*^9, 
+   3.83870742589888*^9, 3.838707496727997*^9, {3.838707528129915*^9, 
+   3.8387075842040253`*^9}},
+ CellLabel->
+  "Out[101]=",ExpressionUUID->"45325e8d-ef61-4ca4-8ed1-c66e2e294438"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Graph", "[", 
+  RowBox[{
+   GraphicsBox[
+    NamespaceBox["NetworkGraphics",
+     DynamicModuleBox[{Typeset`graph = HoldComplete[
+       Graph[{1, 2, 3, 4, 5, 6}, {Null, 
+         SparseArray[
+         Automatic, {6, 6}, 0, {
+          1, {{0, 2, 4, 6, 8, 10, 12}, {{2}, {6}, {1}, {3}, {2}, {4}, {3}, {
+            5}, {4}, {6}, {1}, {5}}}, Pattern}]}, {EdgeStyle -> {
+           Directive[
+            GrayLevel[0], 
+            Thickness[Large]]}, GraphLayout -> "CircularEmbedding", 
+         VertexLabels -> {
+           Placed["Name", {
+             Rational[1, 2], 
+             Rational[1, 2]}]}, VertexLabelStyle -> {
+           Directive[
+            GrayLevel[0], FontFamily -> "Times", 15]}, 
+         VertexShapeFunction -> {"Circle"}, VertexSize -> {0.4}, VertexStyle -> {
+           Directive[
+            EdgeForm[{
+              Thickness[Large], 
+              GrayLevel[0]}], 
+            RGBColor[0.94, 0.88, 0.94]]}}]]}, 
+      TagBox[GraphicsGroupBox[{
+         {GrayLevel[0], Thickness[Large], Opacity[0.7], 
+          LineBox[{{{-0.8660254037844389, 0.5000000000000007}, {
+           1.8369701987210297`*^-16, 1.}}, {{-0.8660254037844389, 
+           0.5000000000000007}, {-0.8660254037844384, -0.4999999999999994}}, \
+{{1.8369701987210297`*^-16, 1.}, {0.8660254037844386, 0.4999999999999993}}, {{
+           0.8660254037844386, 0.4999999999999993}, {
+           0.8660254037844389, -0.5000000000000012}}, {{
+           0.8660254037844389, -0.5000000000000012}, {
+           3.8285686989269494`*^-16, -1.}}, {{
+           3.8285686989269494`*^-16, -1.}, {-0.8660254037844384, \
+-0.4999999999999994}}}]}, 
+         {RGBColor[0.94, 0.88, 0.94], EdgeForm[{GrayLevel[0], Opacity[0.7], 
+          Thickness[
+          Large]}], {
+           DiskBox[{-0.8660254037844389, 0.5000000000000007}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["1",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"Times",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {-0.8660254037844389, 0.5000000000000007},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1.8369701987210297*^-16, 1.}, 0.19999999999999987], 
+           InsetBox[
+            StyleBox["2",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"Times",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {1.942890293094024*^-16, 1.},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.8660254037844386, 0.4999999999999993}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["3",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"Times",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {0.8660254037844386, 0.4999999999999993},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.8660254037844389, -0.5000000000000012}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["4",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"Times",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {0.8660254037844389, -0.5000000000000012},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{3.8285686989269494*^-16, -1.}, 0.19999999999999987], 
+           InsetBox[
+            StyleBox["5",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"Times",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {3.885780586188048*^-16, -1.},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{-0.8660254037844384, -0.4999999999999994}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["6",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"Times",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {-0.8660254037844384, -0.4999999999999994},
+            
+            BaseStyle->"Graphics"]}}}],
+       MouseAppearanceTag["NetworkGraphics"]],
+      AllowKernelInitialization->False]],
+    DefaultBaseStyle->{
+     "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+    
+    FormatType->TraditionalForm,
+    FrameTicks->None], ",", "style"}], "]"}]], "Input",
+ CellChangeTimes->{{3.838635238978311*^9, 3.838635244262445*^9}, {
+  3.838635290000506*^9, 3.838635290928846*^9}, {3.838635340430035*^9, 
+  3.838635342078472*^9}},
+ CellLabel->
+  "In[102]:=",ExpressionUUID->"b0ca926a-aff3-4c67-8f4d-6444360af7e3"],
+
+Cell[BoxData[
+ GraphicsBox[
+  NamespaceBox["NetworkGraphics",
+   DynamicModuleBox[{Typeset`graph = HoldComplete[
+     Graph[{1, 2, 3, 4, 5, 6}, {Null, 
+       SparseArray[
+       Automatic, {6, 6}, 0, {
+        1, {{0, 2, 4, 6, 8, 10, 12}, {{2}, {6}, {1}, {3}, {2}, {4}, {3}, {
+          5}, {4}, {6}, {1}, {5}}}, Pattern}]}, {EdgeStyle -> {
+         Directive[
+          GrayLevel[0], 
+          Thickness[0.02], 
+          Opacity[1]]}, FormatType -> TraditionalForm, 
+       GraphLayout -> {
+        "Dimension" -> 2, "VertexLayout" -> "CircularEmbedding"}, ImageSize -> 
+       350, VertexLabels -> {None}, VertexLabelStyle -> {
+         Directive[
+          GrayLevel[0], FontFamily -> "YuMincho", 30]}, 
+       VertexShapeFunction -> {"Circle"}, VertexSize -> {0.4}, VertexStyle -> {
+         Directive[
+          EdgeForm[{
+            Thickness[0.02], 
+            GrayLevel[0], 
+            Opacity[1]}], 
+          GrayLevel[1]]}}]]}, 
+    TagBox[
+     GraphicsGroupBox[
+      GraphicsComplexBox[{{-0.8660254037844389, 0.5000000000000007}, {
+       1.8369701987210297`*^-16, 1.}, {0.8660254037844386, 
+       0.4999999999999993}, {0.8660254037844389, -0.5000000000000012}, {
+       3.8285686989269494`*^-16, -1.}, {-0.8660254037844384, \
+-0.4999999999999994}}, {
+        {GrayLevel[0], Thickness[0.02], Opacity[1], 
+         LineBox[{{1, 2}, {1, 6}, {2, 3}, {3, 4}, {4, 5}, {5, 6}}]}, 
+        {GrayLevel[1], EdgeForm[{GrayLevel[0], Opacity[1], Thickness[0.02]}], 
+         DiskBox[1, 0.19999999999999987], DiskBox[2, 0.19999999999999987], 
+         DiskBox[3, 0.19999999999999987], DiskBox[4, 0.19999999999999987], 
+         DiskBox[5, 0.19999999999999987], DiskBox[6, 0.19999999999999987]}}]],
+     
+     MouseAppearanceTag["NetworkGraphics"]],
+    AllowKernelInitialization->False]],
+  DefaultBaseStyle->{
+   "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+  FormatType->TraditionalForm,
+  FrameTicks->None,
+  ImageSize->350]], "Output",
+ CellChangeTimes->{
+  3.8386353424536133`*^9, 3.8386353727060432`*^9, 3.8386356868717937`*^9, 
+   3.838707392006831*^9, 3.8387074277518387`*^9, {3.838707529420802*^9, 
+   3.83870758425239*^9}},
+ CellLabel->
+  "Out[102]=",ExpressionUUID->"32fa26d4-5481-40e1-8076-fc7de03d9bc2"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Graph", "[", 
+  RowBox[{
+   GraphicsBox[
+    NamespaceBox["NetworkGraphics",
+     DynamicModuleBox[{Typeset`graph = HoldComplete[
+       Graph[{1, 2, 3, 4, 5, 6}, {Null, 
+         SparseArray[
+         Automatic, {6, 6}, 0, {
+          1, {{0, 1, 3, 5, 7, 9, 10}, {{2}, {1}, {3}, {2}, {4}, {3}, {5}, {
+            4}, {6}, {5}}}, Pattern}]}, {EdgeStyle -> {
+           Directive[
+            GrayLevel[0], 
+            Thickness[Large]]}, GraphLayout -> "SpringElectricalEmbedding", 
+         VertexLabels -> {
+           Placed["Name", {
+             Rational[1, 2], 
+             Rational[1, 2]}]}, VertexLabelStyle -> {
+           Directive[
+            GrayLevel[0], FontFamily -> "Times", 15]}, 
+         VertexShapeFunction -> {"Circle"}, VertexSize -> {0.4}, VertexStyle -> {
+           Directive[
+            EdgeForm[{
+              Thickness[Large], 
+              GrayLevel[0]}], 
+            RGBColor[0.94, 0.88, 0.94]]}}]]}, 
+      TagBox[GraphicsGroupBox[{
+         {GrayLevel[0], Thickness[Large], Opacity[0.7], 
+          LineBox[{{{0., 1.91419153862946*^-8}, {0.8985129119725255, 
+           3.6908444409218245`*^-9}}, {{0.8985129119725255, 
+           3.6908444409218245`*^-9}, {1.9466367981021486`, 0.}}, {{
+           1.9466367981021486`, 0.}, {3.0348118837350557`, 
+           1.962694050676403*^-9}}, {{3.0348118837350557`, 
+           1.962694050676403*^-9}, {4.083974140699468, 
+           7.883731397291956*^-9}}, {{4.083974140699468, 
+           7.883731397291956*^-9}, {4.983554269377478, 
+           1.6026255666851648`*^-8}}}]}, 
+         {RGBColor[0.94, 0.88, 0.94], EdgeForm[{GrayLevel[0], Opacity[0.7], 
+          Thickness[
+          Large]}], {DiskBox[{0., 1.91419153862946*^-8}, 0.17970258239450512],
+            InsetBox[
+            StyleBox["1",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"Times",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {0., 1.914191538610055*^-8},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.8985129119725255, 3.6908444409218245*^-9}, 
+            0.17970258239450512], InsetBox[
+            StyleBox["2",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"Times",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {0.8985129119725255, 3.690844435633167*^-9},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1.9466367981021486, 0.}, 0.17970258239450512], InsetBox[
+            StyleBox["3",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"Times",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {1.9466367981021486, 0.},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{3.0348118837350557, 1.962694050676403*^-9}, 
+            0.17970258239450512], InsetBox[
+            StyleBox["4",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"Times",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {3.0348118837350557, 1.962694062829229*^-9},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{4.083974140699468, 7.883731397291956*^-9}, 
+            0.17970258239450512], InsetBox[
+            StyleBox["5",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"Times",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {4.083974140699468, 7.883731389934923*^-9},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{4.983554269377478, 1.6026255666851648*^-8}, 
+            0.17970258239450512], InsetBox[
+            StyleBox["6",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontFamily->"Times",
+             FontSize->15,
+             FontColor->GrayLevel[0]], {4.983554269377478, 1.6026255655887667*^-8},
+            
+            BaseStyle->"Graphics"]}}}],
+       MouseAppearanceTag["NetworkGraphics"]],
+      AllowKernelInitialization->False]],
+    DefaultBaseStyle->{
+     "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+    
+    FormatType->TraditionalForm,
+    FrameTicks->None], ",", "style"}], "]"}]], "Input",
+ CellChangeTimes->{{3.838635421147332*^9, 3.838635428575726*^9}},
+ CellLabel->
+  "In[103]:=",ExpressionUUID->"573fb991-d825-4c64-9ba6-515bf101635c"],
+
+Cell[BoxData[
+ GraphicsBox[
+  NamespaceBox["NetworkGraphics",
+   DynamicModuleBox[{Typeset`graph = HoldComplete[
+     Graph[{1, 2, 3, 4, 5, 6}, {Null, 
+       SparseArray[
+       Automatic, {6, 6}, 0, {
+        1, {{0, 1, 3, 5, 7, 9, 10}, {{2}, {1}, {3}, {2}, {4}, {3}, {5}, {4}, {
+          6}, {5}}}, Pattern}]}, {EdgeStyle -> {
+         Directive[
+          GrayLevel[0], 
+          Thickness[0.02], 
+          Opacity[1]]}, FormatType -> TraditionalForm, 
+       GraphLayout -> {
+        "Dimension" -> 2, "VertexLayout" -> "CircularEmbedding"}, ImageSize -> 
+       350, VertexLabels -> {None}, VertexLabelStyle -> {
+         Directive[
+          GrayLevel[0], FontFamily -> "YuMincho", 30]}, 
+       VertexShapeFunction -> {"Circle"}, VertexSize -> {0.4}, VertexStyle -> {
+         Directive[
+          EdgeForm[{
+            Thickness[0.02], 
+            GrayLevel[0], 
+            Opacity[1]}], 
+          GrayLevel[1]]}}]]}, 
+    TagBox[
+     GraphicsGroupBox[
+      GraphicsComplexBox[{{-0.8660254037844389, 
+       0.5000000000000007}, {-0.8660254037844384, -0.4999999999999994}, {
+       3.8285686989269494`*^-16, -1.}, {
+       0.8660254037844389, -0.5000000000000012}, {0.8660254037844386, 
+       0.4999999999999993}, {1.8369701987210297`*^-16, 1.}}, {
+        {GrayLevel[0], Thickness[0.02], Opacity[1], 
+         LineBox[{{1, 2}, {2, 3}, {3, 4}, {4, 5}, {5, 6}}]}, 
+        {GrayLevel[1], EdgeForm[{GrayLevel[0], Opacity[1], Thickness[0.02]}], 
+         DiskBox[1, 0.19999999999999987], DiskBox[2, 0.19999999999999987], 
+         DiskBox[3, 0.19999999999999987], DiskBox[4, 0.19999999999999987], 
+         DiskBox[5, 0.19999999999999987], DiskBox[6, 0.19999999999999987]}}]],
+     
+     MouseAppearanceTag["NetworkGraphics"]],
+    AllowKernelInitialization->False]],
+  DefaultBaseStyle->{
+   "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+  FormatType->TraditionalForm,
+  FrameTicks->None,
+  ImageSize->350]], "Output",
+ CellChangeTimes->{
+  3.838635428961746*^9, 3.838635686947275*^9, 3.8387073937670603`*^9, 
+   3.83870742940578*^9, 3.838707531332055*^9, {3.8387075756791973`*^9, 
+   3.8387075843007793`*^9}},
+ CellLabel->
+  "Out[103]=",ExpressionUUID->"3158c3dd-c551-42bd-ba44-469ab982e45c"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{831, 723},
+WindowMargins->{{168, Automatic}, {Automatic, -970}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 243, 6, 27, "Text",ExpressionUUID->"51e7ba3e-8bd8-49b6-b951-4f5998f909d8"],
+Cell[CellGroupData[{
+Cell[826, 30, 169, 3, 34, "Subsubsection",ExpressionUUID->"b7029c89-d8cb-41cf-ae08-da389a22169c"],
+Cell[998, 35, 351, 7, 25, "Input",ExpressionUUID->"caefb05c-d6b8-481e-b875-f2cce73b2023"],
+Cell[1352, 44, 1419, 35, 105, "Input",ExpressionUUID->"45ad83d5-d2a3-4371-b4dd-9f74d9045cec"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2808, 84, 207, 4, 75, "Title",ExpressionUUID->"55abcf79-0efc-4800-9aa9-c2f74f461939"],
+Cell[CellGroupData[{
+Cell[3040, 92, 232, 4, 34, "Subsubsection",ExpressionUUID->"e4585a4c-dc24-4aeb-a971-7986bc0468ca"],
+Cell[3275, 98, 19297, 463, 152, "Input",ExpressionUUID->"5b24d159-b930-42dd-80be-a0e4f046fe42"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[22609, 566, 195, 3, 29, "Subsubsection",ExpressionUUID->"3fddd416-f7f3-4428-90af-d8d143ee724d"],
+Cell[CellGroupData[{
+Cell[22829, 573, 208, 4, 24, "Input",ExpressionUUID->"19cb6f29-f8cb-4752-aa08-8ebe544e8595"],
+Cell[23040, 579, 13268, 309, 93, "Output",ExpressionUUID->"da6d44a3-2a21-4856-bf07-66d9c72d357c"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[36345, 893, 204, 4, 24, "Input",ExpressionUUID->"54ed9386-328c-4eea-870f-b02832d0df87"],
+Cell[36552, 899, 12324, 293, 93, "Output",ExpressionUUID->"beb149cc-d644-4635-8f51-09cb533e752d"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[48913, 1197, 206, 4, 24, "Input",ExpressionUUID->"97738e6e-1695-4be0-bf71-aa5c82239033"],
+Cell[49122, 1203, 11205, 271, 93, "Output",ExpressionUUID->"70e4abe3-a336-4538-a7fa-572df322ba5e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[60364, 1479, 202, 4, 24, "Input",ExpressionUUID->"24678e27-0b43-41cb-86fc-de9247c8d892"],
+Cell[60569, 1485, 10061, 250, 93, "Output",ExpressionUUID->"36db5504-9378-4e87-a04f-efa9736c649b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[70667, 1740, 202, 4, 24, "Input",ExpressionUUID->"ae1a3074-6649-4d8e-88a4-edbc14f82606"],
+Cell[70872, 1746, 11456, 277, 111, "Output",ExpressionUUID->"985e2780-b191-4829-a410-b8d65b7930a1"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[82377, 2029, 254, 4, 30, "Subsection",ExpressionUUID->"fdc33981-cbb8-4a47-9079-559b9de78a5d"],
+Cell[CellGroupData[{
+Cell[82656, 2037, 742, 15, 24, "Input",ExpressionUUID->"4e05af67-ec87-4238-a8a4-31ef7ae5b180"],
+Cell[83401, 2054, 1591, 31, 283, "Output",ExpressionUUID->"91a5ffa1-ddaa-4048-b853-62b4132a023c"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[85029, 2090, 1869, 37, 79, "Input",ExpressionUUID->"5a99185d-e3e2-412c-a4d1-ab317ede6aa1"],
+Cell[86901, 2129, 5563, 137, 317, "Output",ExpressionUUID->"8d28a793-675d-40d5-81da-b0f03e5f21bc"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[92501, 2271, 5947, 145, 91, "Input",ExpressionUUID->"1b16bd26-98d4-4006-99db-e2264001d749"],
+Cell[98451, 2418, 40804, 994, 679, "Output",ExpressionUUID->"b4974575-0413-4071-93b3-fd97d0d9f62f"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[139304, 3418, 164, 3, 52, "Chapter",ExpressionUUID->"4eb4f72b-b3b8-4123-a108-c740854c1518"],
+Cell[139471, 3423, 1962, 44, 153, "Input",ExpressionUUID->"39f6b3ad-9f8e-46a2-96fc-3397689d30c1"],
+Cell[CellGroupData[{
+Cell[141458, 3471, 5126, 120, 152, "Input",ExpressionUUID->"f36c952b-91ab-45e6-a85c-e55a95077983"],
+Cell[146587, 3593, 2089, 46, 307, "Output",ExpressionUUID->"79fa81b7-6202-4f05-9e02-3e4b0fe48a4d"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[148713, 3644, 4947, 118, 77, "Input",ExpressionUUID->"61dfb319-cc1b-463b-8831-1e2957be05db"],
+Cell[153663, 3764, 2230, 51, 307, "Output",ExpressionUUID->"45325e8d-ef61-4ca4-8ed1-c66e2e294438"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[155930, 3820, 5391, 128, 87, "Input",ExpressionUUID->"b0ca926a-aff3-4c67-8f4d-6444360af7e3"],
+Cell[161324, 3950, 2253, 51, 307, "Output",ExpressionUUID->"32fa26d4-5481-40e1-8076-fc7de03d9bc2"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[163614, 4006, 5200, 123, 27, "Input",ExpressionUUID->"573fb991-d825-4c64-9ba6-515bf101635c"],
+Cell[168817, 4131, 2238, 51, 307, "Output",ExpressionUUID->"3158c3dd-c551-42bd-ba44-469ab982e45c"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
