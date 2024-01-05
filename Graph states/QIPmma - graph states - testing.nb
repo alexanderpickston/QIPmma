@@ -1,0 +1,4091 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    169292,       4083]
+NotebookOptionsPosition[    164112,       3992]
+NotebookOutlinePosition[    164599,       4009]
+CellTagsIndexPosition[    164556,       4006]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"Clear", "[", "\"\<Global`*\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.911311359807808*^9, 3.911311400323553*^9}, {
+  3.91137519238442*^9, 
+  3.9113751935160007`*^9}},ExpressionUUID->"d13bb91d-59c1-4b5e-befb-\
+54cc32d42547"],
+
+Cell["\<\
+QIPmma.m
+gsl.m
+QIPmma.m\
+\>", "Text",
+ CellChangeTimes->{{3.911369989080068*^9, 3.911370038597828*^9}, {
+  3.911375135925272*^9, 3.911375164378929*^9}, {3.9113752033567266`*^9, 
+  3.911375210601955*^9}, {3.911375241071889*^9, 
+  3.9113752490351553`*^9}},ExpressionUUID->"6d0f09ab-4783-4468-ac1f-\
+a0173ac4da88"],
+
+Cell[CellGroupData[{
+
+Cell["Testing QIPmma ", "Chapter",
+ CellChangeTimes->{{3.910454438320592*^9, 
+  3.910454442490157*^9}},ExpressionUUID->"db0435d5-d983-4ee3-988e-\
+92a70827f86c"],
+
+Cell[CellGroupData[{
+
+Cell["Styling", "Subsubsection",
+ CellChangeTimes->{{3.910454461250029*^9, 
+  3.910454463251534*^9}},ExpressionUUID->"fc085d1b-893c-4f62-a1df-\
+0f6485c36f90"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   StyleBox[" ",
+    FontWeight->"Bold"], 
+   StyleBox[
+    RowBox[{"graph", " ", "styling"}],
+    FontWeight->"Bold"], 
+   StyleBox[" ",
+    FontWeight->"Bold"], "*)"}], "\n", 
+  RowBox[{
+   RowBox[{"graphstyle", "=", 
+    RowBox[{"{", "\[IndentingNewLine]", "\t", 
+     RowBox[{
+      RowBox[{"VertexSize", "\[Rule]", 
+       RowBox[{"{", "0.4", "}"}]}], ",", "\[IndentingNewLine]", "\t", 
+      RowBox[{"VertexLabels", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"Placed", "[", 
+         RowBox[{"\"\<Name\>\"", ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"1", "/", "2"}], "*", "1.05"}], ",", 
+            RowBox[{
+             RowBox[{"1", "/", "2"}], "*", "1.05"}]}], "}"}]}], "]"}], 
+        "}"}]}], ",", "\[IndentingNewLine]", "\t", 
+      RowBox[{"ImageSize", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"146.99479166666538", ",", "Automatic"}], "}"}]}], ",", 
+      "\[IndentingNewLine]", "\t", 
+      RowBox[{"VertexStyle", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"Directive", "[", 
+         RowBox[{
+          RowBox[{"EdgeForm", "[", 
+           RowBox[{"{", 
+            RowBox[{"Thick", ",", 
+             RowBox[{"Opacity", "[", "1", "]"}], ",", "Blue"}], "}"}], "]"}], 
+          ",", "Blue"}], "]"}], "}"}]}], ",", "\[IndentingNewLine]", "\t", 
+      RowBox[{"VertexLabelStyle", "\[Rule]", 
+       RowBox[{"Directive", "[", 
+        RowBox[{"White", ",", 
+         RowBox[{"FontFamily", "\[Rule]", "\"\<IBM Plex Mono\>\""}], ",", 
+         "20"}], "]"}]}], ",", "\[IndentingNewLine]", "\t", 
+      RowBox[{"EdgeStyle", "\[Rule]", 
+       RowBox[{"Directive", "[", 
+        RowBox[{"Black", ",", "Thick", ",", 
+         RowBox[{"Opacity", "[", "1", "]"}]}], "]"}]}], ",", 
+      "\[IndentingNewLine]", "\t", 
+      RowBox[{"GraphLayout", "\[Rule]", "\"\<CircularEmbedding\>\""}]}], 
+     "\[IndentingNewLine]", "}"}]}], ";"}]}]], "Input",
+ CellChangeTimes->{{3.910085950441064*^9, 3.910085980931765*^9}, {
+   3.910086015530707*^9, 3.910086116314167*^9}, {3.9113114314973717`*^9, 
+   3.9113114319263287`*^9}, 3.9113114716003227`*^9, {3.911369911028165*^9, 
+   3.911369919277299*^9}},ExpressionUUID->"233889c0-7908-4444-b83a-\
+b22d880682be"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Initial graph definition", "Subsubsection",
+ CellChangeTimes->{{3.910454468447754*^9, 
+  3.910454476868968*^9}},ExpressionUUID->"28b25e0d-ed4c-4d35-913c-\
+05ebbc4c9a07"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"input", ",", "out"}], "}"}], ",", "\[IndentingNewLine]", "\t", 
+    RowBox[{
+     RowBox[{"CustomGraph", "[", "edges_", "]"}], ":=", 
+     RowBox[{"(", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{"edges", " ", "should", " ", "be", " ", "a", " ", "string"}], 
+       "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+        RowBox[{"should", " ", "be", " ", "of", " ", "the", " ", 
+         RowBox[{"form", ":", " ", "edges"}]}], "=", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"1", ",", "2"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"2", ",", "3"}], "}"}]}], "}"}]}], " ", "*)"}], 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"input", "=", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"edges", "\[LeftDoubleBracket]", 
+            RowBox[{"i", ",", "1"}], "\[RightDoubleBracket]"}], 
+           "\[UndirectedEdge]", 
+           RowBox[{"edges", "\[LeftDoubleBracket]", 
+            RowBox[{"i", ",", "2"}], "\[RightDoubleBracket]"}]}], 
+          "\[IndentingNewLine]", ",", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", 
+            RowBox[{"Length", "@", "edges"}]}], "}"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"out", "=", 
+        RowBox[{"Graph", "[", 
+         RowBox[{"input", ",", "graphstyle"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Return", "[", "out", "]"}]}], ")"}]}]}], 
+   "\[IndentingNewLine]", "]"}], ";"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.911364340480147*^9, 3.91136450644163*^9}, {
+  3.9113647416604767`*^9, 3.9113648034659986`*^9}, {3.9113648494695797`*^9, 
+  3.911364855014194*^9}, {3.911364937609438*^9, 3.911364963751196*^9}, {
+  3.9113651064571533`*^9, 3.9113651138700047`*^9}, {3.9114928276191807`*^9, 
+  3.911492849877419*^9}},ExpressionUUID->"ec973499-66d9-4ff4-83d7-\
+5fbf27eab962"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"in", "=", 
+  RowBox[{"CustomGraph", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "4"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "3"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "6"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "5"}], "}"}]}], "}"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.911364819182844*^9, 3.9113648269712257`*^9}, {
+  3.911364868368966*^9, 3.911364886664234*^9}, {3.911364980522298*^9, 
+  3.911365003834395*^9}, {3.9113699557246933`*^9, 3.911369976590749*^9}},
+ CellLabel->
+  "In[857]:=",ExpressionUUID->"cee9de4d-0ec6-4e7a-97e7-212e15f6a647"],
+
+Cell[BoxData[
+ GraphicsBox[
+  NamespaceBox["NetworkGraphics",
+   DynamicModuleBox[{Typeset`graph = HoldComplete[
+     Graph[{1, 2, 4, 3, 6, 5}, {
+      Null, {{1, 2}, {2, 3}, {3, 4}, {3, 5}, {5, 6}}}, {EdgeStyle -> {
+         Directive[
+          GrayLevel[0], 
+          Thickness[Large], 
+          Opacity[1]]}, GraphLayout -> "CircularEmbedding", 
+       ImageSize -> {146.99479166666538`, Automatic}, VertexLabels -> {
+         Placed["Name", {0.525, 0.525}]}, VertexLabelStyle -> {
+         Directive[
+          GrayLevel[1], FontFamily -> "IBM Plex Mono", 20]}, 
+       VertexSize -> {0.4}, VertexStyle -> {
+         Directive[
+          EdgeForm[{
+            Thickness[Large], 
+            Opacity[1], 
+            RGBColor[0, 0, 1]}], 
+          RGBColor[0, 0, 1]]}}]]}, 
+    TagBox[GraphicsGroupBox[{
+       {GrayLevel[0], Thickness[Large], Opacity[1], 
+        LineBox[{{{0.8660254037844386, 0.4999999999999993}, {
+         0.8660254037844389, -0.5000000000000012}}, {{
+         0.8660254037844389, -0.5000000000000012}, {
+         3.8285686989269494`*^-16, -1.}}, {{3.8285686989269494`*^-16, -1.}, {
+         1.8369701987210297`*^-16, 1.}}, {{
+         3.8285686989269494`*^-16, -1.}, {-0.8660254037844384, \
+-0.4999999999999994}}, {{-0.8660254037844384, -0.4999999999999994}, \
+{-0.8660254037844389, 0.5000000000000008}}}]}, 
+       {RGBColor[0, 0, 1], EdgeForm[{RGBColor[0, 0, 1], Opacity[1], Thickness[
+        Large]}], {
+         DiskBox[{0.8660254037844386, 0.4999999999999993}, 
+          0.19999999999999987], InsetBox[
+          StyleBox["1",
+           StripOnInput->False,
+           LineColor->GrayLevel[1],
+           FrontFaceColor->GrayLevel[1],
+           BackFaceColor->GrayLevel[1],
+           GraphicsColor->GrayLevel[1],
+           FontFamily->"IBM Plex Mono",
+           FontSize->20,
+           FontColor->GrayLevel[1]], {0.8760254037844386, 0.5099999999999993},
+          
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{0.8660254037844389, -0.5000000000000012}, 
+          0.19999999999999987], InsetBox[
+          StyleBox["2",
+           StripOnInput->False,
+           LineColor->GrayLevel[1],
+           FrontFaceColor->GrayLevel[1],
+           BackFaceColor->GrayLevel[1],
+           GraphicsColor->GrayLevel[1],
+           FontFamily->"IBM Plex Mono",
+           FontSize->20,
+           FontColor->GrayLevel[1]], {0.8760254037844389, -0.4900000000000012},
+          
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{3.8285686989269494*^-16, -1.}, 0.19999999999999987], 
+         InsetBox[
+          StyleBox["4",
+           StripOnInput->False,
+           LineColor->GrayLevel[1],
+           FrontFaceColor->GrayLevel[1],
+           BackFaceColor->GrayLevel[1],
+           GraphicsColor->GrayLevel[1],
+           FontFamily->"IBM Plex Mono",
+           FontSize->20,
+           FontColor->GrayLevel[1]], {0.010000000000000397, -0.99},
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{1.8369701987210297*^-16, 1.}, 0.19999999999999987], InsetBox[
+          StyleBox["3",
+           StripOnInput->False,
+           LineColor->GrayLevel[1],
+           FrontFaceColor->GrayLevel[1],
+           BackFaceColor->GrayLevel[1],
+           GraphicsColor->GrayLevel[1],
+           FontFamily->"IBM Plex Mono",
+           FontSize->20,
+           FontColor->GrayLevel[1]], {0.010000000000000203, 1.01},
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{-0.8660254037844384, -0.4999999999999994}, 
+          0.19999999999999987], InsetBox[
+          StyleBox["6",
+           StripOnInput->False,
+           LineColor->GrayLevel[1],
+           FrontFaceColor->GrayLevel[1],
+           BackFaceColor->GrayLevel[1],
+           GraphicsColor->GrayLevel[1],
+           FontFamily->"IBM Plex Mono",
+           FontSize->20,
+           FontColor->GrayLevel[1]], {-0.8560254037844384, -0.4899999999999994},
+          
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{-0.8660254037844389, 0.5000000000000008}, 
+          0.19999999999999987], InsetBox[
+          StyleBox["5",
+           StripOnInput->False,
+           LineColor->GrayLevel[1],
+           FrontFaceColor->GrayLevel[1],
+           BackFaceColor->GrayLevel[1],
+           GraphicsColor->GrayLevel[1],
+           FontFamily->"IBM Plex Mono",
+           FontSize->20,
+           FontColor->GrayLevel[1]], {-0.8560254037844389, 0.5100000000000008},
+          
+          BaseStyle->"Graphics"]}}}],
+     MouseAppearanceTag["NetworkGraphics"]],
+    AllowKernelInitialization->False]],
+  DefaultBaseStyle->{
+   "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+  FormatType->TraditionalForm,
+  FrameTicks->None,
+  ImageSize->{146.99479166666538`, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.9113648871035213`*^9, {3.911364968570467*^9, 3.91136500440884*^9}, {
+   3.9113699701583557`*^9, 3.9113699782850027`*^9}},
+ CellLabel->
+  "Out[857]=",ExpressionUUID->"3be35d4a-3fda-4372-8bfd-5540f7edc5ff"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Functions", "Section",
+ CellChangeTimes->{{3.910454481413742*^9, 
+  3.91045448454819*^9}},ExpressionUUID->"de323a80-d146-4592-9c5e-\
+03153abc9fd4"],
+
+Cell[CellGroupData[{
+
+Cell["Dependencies", "Subsection",
+ CellChangeTimes->{{3.910455242723547*^9, 
+  3.910455260804667*^9}},ExpressionUUID->"23c8a6a2-b02a-424f-ad09-\
+0edb2129c6fc"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"folded", " ", "Kronecker", " ", "product"}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"Kron", ":=", 
+   RowBox[{
+    RowBox[{"KroneckerProduct", "[", "##", "]"}], "&"}]}]}]], "Input",
+ CellChangeTimes->{{3.911310224490674*^9, 3.9113102422000628`*^9}},
+ CellLabel->
+  "In[796]:=",ExpressionUUID->"0e337785-dd87-4170-a8da-ae9da4245c0e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"basis", " ", "states"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"h", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", "1", "}"}], ",", 
+       RowBox[{"{", "0", "}"}]}], "}"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"v", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", "0", "}"}], ",", 
+       RowBox[{"{", "1", "}"}]}], "}"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"d", "=", 
+     RowBox[{
+      RowBox[{"1", "/", 
+       RowBox[{"Sqrt", "[", "2", "]"}]}], " ", 
+      RowBox[{"(", 
+       RowBox[{"h", "+", "v"}], ")"}]}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"a", "=", 
+     RowBox[{
+      RowBox[{"1", "/", 
+       RowBox[{"Sqrt", "[", "2", "]"}]}], " ", 
+      RowBox[{"(", 
+       RowBox[{"h", "-", "v"}], ")"}]}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"r", "=", 
+     RowBox[{
+      RowBox[{"1", "/", 
+       RowBox[{"Sqrt", "[", "2", "]"}]}], " ", 
+      RowBox[{"(", 
+       RowBox[{"h", "+", 
+        RowBox[{"I", "*", "v"}]}], ")"}]}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"l", "=", 
+     RowBox[{
+      RowBox[{"1", "/", 
+       RowBox[{"Sqrt", "[", "2", "]"}]}], " ", 
+      RowBox[{"(", 
+       RowBox[{"h", "-", 
+        RowBox[{"I", "*", "v"}]}], ")"}]}]}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.911310267722767*^9, 3.91131027997322*^9}},
+ CellLabel->
+  "In[797]:=",ExpressionUUID->"2d0139ea-ede6-4a7f-aa65-8a270f8cec98"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Partial", " ", "Trace"}], " ", "-", " ", 
+     RowBox[{"adapted", " ", "from", " ", "Mark", " ", 
+      RowBox[{"S", ".", " ", "Tame"}]}]}], ",", " ", 
+    RowBox[{
+     RowBox[{"http", ":"}], "//", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"library", ".", "wolfram", ".", "com"}], "/", "infocenter"}],
+         "/", "MathSource"}], "/", "5571"}], "/"}]}]}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"SwapParts", "[", 
+      RowBox[{"expr_", ",", " ", "pos1_", ",", " ", "pos2_"}], "]"}], " ", ":=",
+      " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"ReplacePart", "[", 
+        RowBox[{"#", ",", "#", ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"pos1", ",", "pos2"}], "}"}], ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"pos2", ",", "pos1"}], "}"}]}], "]"}], "&"}], "[", "expr", 
+      "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"TraceSystem", "[", 
+      RowBox[{"dm_", ",", " ", "sys_"}], "]"}], ":=", 
+     RowBox[{"Block", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "Qubits", ",", "TrkM", ",", "n", ",", "M", ",", "k", ",", "Permut", 
+         ",", "perm", ",", "b", ",", "c", ",", "p"}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"Qubits", "=", 
+         RowBox[{"Reverse", "[", 
+          RowBox[{"Sort", "[", "sys", "]"}], "]"}]}], ";", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "rearrange", " ", "the", " ", "list", " ", "of", " ", "qubits", " ", 
+          "to", " ", "be", " ", "traced", " ", "out"}], " ", "*)"}], 
+        "\[IndentingNewLine]", 
+        RowBox[{"TrkM", "=", "dm"}], ";", "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+          RowBox[{
+          "For", " ", "all", " ", "qubits", " ", "to", " ", "be", " ", 
+           "traced", " ", "out"}], "..."}], " ", "*)"}], 
+        "\[IndentingNewLine]", 
+        RowBox[{"For", "[", 
+         RowBox[{
+          RowBox[{"q", "=", "1"}], ",", 
+          RowBox[{"q", "\[LessEqual]", 
+           RowBox[{
+            RowBox[{"Dimensions", "[", "Qubits", "]"}], "[", 
+            RowBox[{"[", "1", "]"}], "]"}]}], ",", 
+          RowBox[{"q", "++"}], ",", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"n", "=", 
+            RowBox[{"Log", "[", 
+             RowBox[{"2", ",", 
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{"Dimensions", "[", "TrkM", "]"}], "[", 
+                RowBox[{"[", "1", "]"}], "]"}], ")"}]}], "]"}]}], ";", " ", 
+           RowBox[{"(*", " ", 
+            RowBox[{"dimensions", " ", "of", " ", "original", " ", "system"}],
+             " ", "*)"}], "\[IndentingNewLine]", 
+           RowBox[{"M", "=", "TrkM"}], ";", "\[IndentingNewLine]", 
+           RowBox[{"k", "=", 
+            RowBox[{"Qubits", "[", 
+             RowBox[{"[", "q", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+           "\[IndentingNewLine]", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"k", "\[Equal]", "n"}], ",", 
+             RowBox[{"(*", " ", 
+              RowBox[{
+              "if", " ", "tracing", " ", "the", " ", "last", " ", "system"}], 
+              " ", "*)"}], "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"TrkM", "=", 
+               RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+              RowBox[{"For", "[", 
+               RowBox[{
+                RowBox[{"p", "=", "1"}], ",", 
+                RowBox[{"p", "<", 
+                 RowBox[{
+                  SuperscriptBox["2", "n"], "+", "1"}]}], ",", 
+                RowBox[{"p", "=", 
+                 RowBox[{"p", "+", "2"}]}], ",", "\[IndentingNewLine]", 
+                RowBox[{
+                 RowBox[{"TrkM", "=", 
+                  RowBox[{"Append", "[", 
+                   RowBox[{"TrkM", ",", 
+                    RowBox[{
+                    RowBox[{"Take", "[", 
+                    RowBox[{
+                    RowBox[{"M", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"p", ",", "All"}], "]"}], "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", 
+                    SuperscriptBox["2", "n"], ",", "2"}], "}"}]}], "]"}], "+", 
+                    RowBox[{"Take", "[", 
+                    RowBox[{
+                    RowBox[{"M", "[", 
+                    RowBox[{"[", 
+                    RowBox[{
+                    RowBox[{"p", "+", "1"}], ",", "All"}], "]"}], "]"}], ",", 
+                    
+                    RowBox[{"{", 
+                    RowBox[{"2", ",", 
+                    SuperscriptBox["2", "n"], ",", "2"}], "}"}]}], "]"}]}]}], 
+                   "]"}]}], ";"}]}], 
+               RowBox[{"(*", " ", 
+                RowBox[{
+                 RowBox[{"Pick", " ", "row", " ", 
+                  RowBox[{"p", "/", "p"}]}], "+", 
+                 RowBox[{"1", " ", "and", " ", "take", " ", "elements", " ", 
+                  RowBox[{"1", "/", "2"}], " ", "through", " ", 
+                  SuperscriptBox["2", "n"], " ", "in", " ", "steps", " ", 
+                  "of", " ", "2"}], " ", "-", " ", 
+                 RowBox[{
+                 "sum", " ", "thoese", " ", "and", " ", "append", " ", "to", 
+                  " ", "zero", " ", "matrix"}], " ", "-", " ", 
+                 RowBox[{"do", " ", "for", " ", "all", " ", "rows"}]}], " ", 
+                "*)"}], "\[IndentingNewLine]", " ", "]"}]}], ",", 
+             "\[IndentingNewLine]", "\[IndentingNewLine]", 
+             RowBox[{"For", "[", 
+              RowBox[{
+               RowBox[{"j", "=", "0"}], ",", 
+               RowBox[{"j", "<", 
+                RowBox[{"(", 
+                 RowBox[{"n", "-", "k"}], ")"}]}], ",", 
+               RowBox[{"j", "++"}], ",", 
+               RowBox[{"(*", " ", 
+                RowBox[{
+                 RowBox[{"if", " ", "not"}], " ", "-", " ", 
+                 RowBox[{"permute", " ", "accordingly"}]}], " ", "*)"}], 
+               "\[IndentingNewLine]", 
+               RowBox[{
+                RowBox[{"b", "=", 
+                 RowBox[{"{", "0", "}"}]}], ";", "\[IndentingNewLine]", 
+                RowBox[{"For", "[", 
+                 RowBox[{
+                  RowBox[{"i", "=", "1"}], ",", 
+                  RowBox[{"i", "<", 
+                   RowBox[{
+                    SuperscriptBox["2", "n"], "+", "1"}]}], ",", 
+                  RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+                  RowBox[{"If", "[", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"Mod", "[", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"IntegerDigits", "[", 
+                    RowBox[{
+                    RowBox[{"i", "-", "1"}], ",", "2", ",", "n"}], "]"}], "[", 
+                    RowBox[{"[", "n", "]"}], "]"}], "+", 
+                    RowBox[{
+                    RowBox[{"IntegerDigits", "[", 
+                    RowBox[{
+                    RowBox[{"i", "-", "1"}], ",", "2", ",", "n"}], "]"}], "[", 
+                    RowBox[{"[", 
+                    RowBox[{"n", "-", "j", "-", "1"}], "]"}], "]"}]}], ")"}], 
+                    ",", "2"}], "]"}], ")"}], "==", "1"}], " ", "&&", " ", 
+                    RowBox[{
+                    RowBox[{"Count", "[", 
+                    RowBox[{"b", ",", " ", "i"}], "]"}], "  ", "\[Equal]", 
+                    "0"}]}], ",", " ", 
+                    RowBox[{
+                    RowBox[{"Permut", "=", 
+                    RowBox[{"{", 
+                    RowBox[{"i", ",", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"FromDigits", "[", 
+                    RowBox[{
+                    RowBox[{"SwapParts", "[", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"IntegerDigits", "[", 
+                    RowBox[{
+                    RowBox[{"i", "-", "1"}], ",", "2", ",", " ", "n"}], "]"}],
+                     ")"}], ",", 
+                    RowBox[{"{", "n", "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"n", "-", "j", "-", "1"}], "}"}]}], "]"}], ",", 
+                    "2"}], "]"}], "+", "1"}], ")"}]}], "}"}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"b", "=", 
+                    RowBox[{"Append", "[", 
+                    RowBox[{"b", ",", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"FromDigits", "[", 
+                    RowBox[{
+                    RowBox[{"SwapParts", "[", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"IntegerDigits", "[", 
+                    RowBox[{
+                    RowBox[{"i", "-", "1"}], ",", "2", ",", " ", "n"}], "]"}],
+                     ")"}], ",", 
+                    RowBox[{"{", "n", "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"n", "-", "j", "-", "1"}], "}"}]}], "]"}], ",", 
+                    "2"}], "]"}], "+", "1"}], ")"}]}], "]"}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"c", "=", 
+                    RowBox[{"Range", "[", 
+                    SuperscriptBox["2", "n"], "]"}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"perm", "=", 
+                    RowBox[{"SwapParts", "[", 
+                    RowBox[{"c", ",", 
+                    RowBox[{"{", "i", "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"FromDigits", "[", 
+                    RowBox[{
+                    RowBox[{"SwapParts", "[", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"IntegerDigits", "[", 
+                    RowBox[{
+                    RowBox[{"i", "-", "1"}], ",", "2", ",", " ", "n"}], "]"}],
+                     ")"}], ",", 
+                    RowBox[{"{", "n", "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"n", "-", "j", "-", "1"}], "}"}]}], "]"}], ",", 
+                    "2"}], "]"}], "+", "1"}], ")"}], "}"}]}], "]"}]}], ";", 
+                    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                    RowBox[{"M", "=", 
+                    RowBox[{"M", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"perm", ",", "perm"}], "]"}], "]"}]}], ";"}]}], 
+                   "\[IndentingNewLine]", "\[IndentingNewLine]", " ", "]"}]}],
+                  "    ", "\[IndentingNewLine]", "]"}], ";", 
+                "\[IndentingNewLine]", 
+                RowBox[{"(*", " ", 
+                 RowBox[{
+                 "and", " ", "now", " ", "trace", " ", "out", " ", "last", 
+                  " ", "system"}], " ", "*)"}], "\[IndentingNewLine]", 
+                RowBox[{"TrkM", "=", 
+                 RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+                RowBox[{"For", "[", 
+                 RowBox[{
+                  RowBox[{"p", "=", "1"}], ",", 
+                  RowBox[{"p", "<", 
+                   RowBox[{
+                    SuperscriptBox["2", "n"], "+", "1"}]}], ",", 
+                  RowBox[{"p", "=", 
+                   RowBox[{"p", "+", "2"}]}], ",", "\[IndentingNewLine]", 
+                  RowBox[{
+                   RowBox[{"TrkM", "=", 
+                    RowBox[{"Append", "[", 
+                    RowBox[{"TrkM", ",", 
+                    RowBox[{
+                    RowBox[{"Take", "[", 
+                    RowBox[{
+                    RowBox[{"M", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"p", ",", "All"}], "]"}], "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", 
+                    SuperscriptBox["2", "n"], ",", "2"}], "}"}]}], "]"}], "+", 
+                    RowBox[{"Take", "[", 
+                    RowBox[{
+                    RowBox[{"M", "[", 
+                    RowBox[{"[", 
+                    RowBox[{
+                    RowBox[{"p", "+", "1"}], ",", "All"}], "]"}], "]"}], ",", 
+                    
+                    RowBox[{"{", 
+                    RowBox[{"2", ",", 
+                    SuperscriptBox["2", "n"], ",", "2"}], "}"}]}], "]"}]}]}], 
+                    "]"}]}], ";"}]}], "\[IndentingNewLine]", "]"}]}]}], 
+              "\[IndentingNewLine]", "   ", "]"}]}], "\[IndentingNewLine]", 
+            "]"}], ";"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Clear", "[", 
+         RowBox[{
+         "Qubits", ",", "n", ",", "M", ",", "k", ",", "Permut", ",", "perm", 
+          ",", "b", ",", "c"}], "]"}], ";", "\[IndentingNewLine]", "TrkM"}]}],
+       "\[IndentingNewLine]", "]"}]}], ";"}]}]}]], "Input",
+ CellLabel->
+  "In[803]:=",ExpressionUUID->"bb8842e4-2130-4d96-9c1a-18f80da27722"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Defined functions", "Subsection",
+ CellChangeTimes->{{3.910455268476425*^9, 
+  3.910455273498578*^9}},ExpressionUUID->"37a7bcc6-8aba-4197-aad1-\
+1bb5e5ba2220"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "subGraph", ",", "diffGraph", ",", "complementGraph", ",", "out", ",", 
+      "g", ",", "vertexCoordinates"}], "}"}], ",", "\n", "\t", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"LCQubit", "[", 
+       RowBox[{"graph_", ",", "vertex_"}], "]"}], ":=", 
+      RowBox[{"(", "\n", "\n", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "get", " ", "the", " ", "vertex", " ", "coordinates", " ", "of", " ", 
+         "the", " ", "original", " ", "graph"}], " ", "*)"}], 
+       "\[IndentingNewLine]", "\t\t", 
+       RowBox[{
+        RowBox[{"vertexCoordinates", "=", 
+         RowBox[{"GraphEmbedding", "[", "graph", "]"}]}], ";", "\n", "\n", 
+        "\t\t", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "apply", " ", "the", " ", "vertex", " ", "coordinates", " ", "to", 
+          " ", "the", " ", "original", " ", "graph"}], " ", "*)"}], 
+        "\[IndentingNewLine]", "\t\t", 
+        RowBox[{"g", "=", 
+         RowBox[{"Graph", "[", 
+          RowBox[{
+           RowBox[{"VertexList", "[", "graph", "]"}], ",", 
+           RowBox[{"EdgeList", "[", "graph", "]"}], ",", 
+           RowBox[{"VertexCoordinates", "\[Rule]", "vertexCoordinates"}]}], 
+          "]"}]}], ";", "\n", "\n", "\t\t", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "select", " ", "the", " ", "subgraph", " ", "generated", " ", "by", 
+          " ", "the", " ", "vertex", " ", "and", " ", "its", " ", 
+          "neighbours"}], " ", "*)"}], "\n", "\t\t", 
+        RowBox[{"subGraph", "=", 
+         RowBox[{"Subgraph", "[", 
+          RowBox[{"graph", ",", 
+           RowBox[{"AdjacencyList", "[", 
+            RowBox[{"graph", ",", "vertex"}], "]"}]}], "]"}]}], ";", "\n", 
+        "\n", "\t\t", 
+        RowBox[{"(*", " ", 
+         RowBox[{"complement", " ", "the", " ", "sub", " ", "graph"}], " ", 
+         "*)"}], "\n", "\t\t", 
+        RowBox[{"complementGraph", "=", 
+         RowBox[{"GraphComplement", "[", "subGraph", "]"}]}], ";", "\n", "\n",
+         "\t\t", 
+        RowBox[{"(*", " ", 
+         RowBox[{"remove", " ", "the", " ", "starting", " ", "subgraph"}], 
+         " ", "*)"}], "\n", "\t\t", 
+        RowBox[{"diffGraph", "=", 
+         RowBox[{"GraphDifference", "[", 
+          RowBox[{"graph", ",", "subGraph"}], "]"}]}], ";", "\n", "\n", 
+        "\t\t", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "union", " ", "the", " ", "new", " ", "subGraph", " ", "with", " ", 
+          "the", " ", "remaining", " ", "main", " ", "graph"}], " ", "*)"}], 
+        "\n", "\t\t", 
+        RowBox[{"out", "=", 
+         RowBox[{"GraphUnion", "[", 
+          RowBox[{"diffGraph", ",", "complementGraph"}], "]"}]}], ";", "\n", 
+        "\t\t", 
+        RowBox[{"out", "=", 
+         RowBox[{"Graph", "[", 
+          RowBox[{"out", ",", "graphstyle", ",", 
+           RowBox[{"VertexCoordinates", "\[Rule]", "vertexCoordinates"}]}], 
+          "]"}]}], ";", "\n", "\n", "\t", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+          RowBox[{"return", " ", "the", " ", "LC"}], "-", 
+          RowBox[{"equivalent", " ", "graph"}]}], " ", "*)"}], "\n", "\t", 
+        RowBox[{"Return", "[", "out", "]"}], ";"}], ")"}]}], ";"}]}], "\n", 
+   "]"}], ";"}]], "Code",
+ CellChangeTimes->{{3.910085138332411*^9, 3.910085144576455*^9}, {
+   3.910085748906711*^9, 3.910085775685966*^9}, {3.910085875187449*^9, 
+   3.910085894411571*^9}, {3.910086154650239*^9, 3.910086156985446*^9}, {
+   3.9100875239206057`*^9, 3.91008761470365*^9}, {3.910454580401354*^9, 
+   3.910454594939393*^9}, {3.910626332496789*^9, 3.910626352746936*^9}, {
+   3.910626389993032*^9, 3.910626396612027*^9}, 3.9106264377866898`*^9, {
+   3.9106265410108423`*^9, 3.910626543889709*^9}, {3.911286867302742*^9, 
+   3.911286872747425*^9}, {3.911369867116452*^9, 
+   3.911369889956087*^9}},ExpressionUUID->"e6954c07-7b2d-4acf-978e-\
+d7dc47c8fd6a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"LCQubit", "[", 
+  RowBox[{"in", ",", "4"}], "]"}]], "Input",
+ CellChangeTimes->{{3.910085623151366*^9, 3.9100856509423227`*^9}, {
+   3.910085690779934*^9, 3.910085691670459*^9}, {3.9100858613613653`*^9, 
+   3.910085863413321*^9}, 3.910087123374107*^9, {3.910087633203628*^9, 
+   3.9100876527016087`*^9}, {3.910088112873145*^9, 3.910088115952074*^9}, {
+   3.9104553441576138`*^9, 3.9104553534141397`*^9}, 3.910455474716082*^9, {
+   3.911286700456334*^9, 
+   3.911286700529306*^9}},ExpressionUUID->"4ad2c3c8-a8ee-4a9a-82ea-\
+e2585a238f57"],
+
+Cell[BoxData[
+ GraphicsBox[
+  NamespaceBox["NetworkGraphics",
+   DynamicModuleBox[{Typeset`graph = HoldComplete[
+     Graph[{1, 2, 3, 4, 5, 6}, {
+      Null, {{2, 1}, {2, 3}, {2, 4}, {2, 6}, {3, 6}, {4, 3}, {4, 6}, {6, 
+       5}}}, {EdgeStyle -> {
+         Directive[
+          GrayLevel[0], 
+          Thickness[Large], 
+          Opacity[1]]}, 
+       GraphLayout -> {
+        "Dimension" -> 2, "VertexLayout" -> "CircularEmbedding"}, 
+       ImageSize -> {146.99479166666538`, Automatic}, 
+       VertexCoordinates -> {{0.8660254037844386, 0.4999999999999993}, {
+        0.8660254037844389, -0.5000000000000012}, {1.8369701987210297`*^-16, 
+        1.}, {3.8285686989269494`*^-16, -1.}, {-0.8660254037844389, 
+        0.5000000000000008}, {-0.8660254037844384, -0.4999999999999994}}, 
+       VertexLabels -> {
+         Placed["Name", {0.525, 0.525}]}, VertexLabelStyle -> {
+         Directive[
+          GrayLevel[1], FontFamily -> "IBM Plex Mono", 20]}, 
+       VertexSize -> {0.4}, VertexStyle -> {
+         Directive[
+          EdgeForm[{
+            Thickness[Large], 
+            Opacity[1], 
+            RGBColor[0, 0, 1]}], 
+          RGBColor[0, 0, 1]]}}]]}, 
+    TagBox[GraphicsGroupBox[{
+       {GrayLevel[0], Thickness[Large], Opacity[1], 
+        LineBox[{{{0.8660254037844386, 0.4999999999999993}, {
+         0.8660254037844389, -0.5000000000000012}}, {{
+         0.8660254037844389, -0.5000000000000012}, {1.8369701987210297`*^-16, 
+         1.}}, {{0.8660254037844389, -0.5000000000000012}, {
+         3.8285686989269494`*^-16, -1.}}, {{
+         0.8660254037844389, -0.5000000000000012}, {-0.8660254037844384, \
+-0.4999999999999994}}, {{1.8369701987210297`*^-16, 1.}, {
+         3.8285686989269494`*^-16, -1.}}, {{1.8369701987210297`*^-16, 
+         1.}, {-0.8660254037844384, -0.4999999999999994}}, {{
+         3.8285686989269494`*^-16, -1.}, {-0.8660254037844384, \
+-0.4999999999999994}}, {{-0.8660254037844389, 
+         0.5000000000000008}, {-0.8660254037844384, -0.4999999999999994}}}]}, \
+
+       {RGBColor[0, 0, 1], EdgeForm[{RGBColor[0, 0, 1], Opacity[1], Thickness[
+        Large]}], {
+         DiskBox[{0.8660254037844386, 0.4999999999999993}, 
+          0.19999999999999987], InsetBox[
+          StyleBox["1",
+           StripOnInput->False,
+           LineColor->GrayLevel[1],
+           FrontFaceColor->GrayLevel[1],
+           BackFaceColor->GrayLevel[1],
+           GraphicsColor->GrayLevel[1],
+           FontFamily->"IBM Plex Mono",
+           FontSize->20,
+           FontColor->GrayLevel[1]], {0.8760254037844386, 0.5099999999999993},
+          
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{0.8660254037844389, -0.5000000000000012}, 
+          0.19999999999999987], InsetBox[
+          StyleBox["2",
+           StripOnInput->False,
+           LineColor->GrayLevel[1],
+           FrontFaceColor->GrayLevel[1],
+           BackFaceColor->GrayLevel[1],
+           GraphicsColor->GrayLevel[1],
+           FontFamily->"IBM Plex Mono",
+           FontSize->20,
+           FontColor->GrayLevel[1]], {0.8760254037844389, -0.4900000000000012},
+          
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{1.8369701987210297*^-16, 1.}, 0.19999999999999987], InsetBox[
+          StyleBox["3",
+           StripOnInput->False,
+           LineColor->GrayLevel[1],
+           FrontFaceColor->GrayLevel[1],
+           BackFaceColor->GrayLevel[1],
+           GraphicsColor->GrayLevel[1],
+           FontFamily->"IBM Plex Mono",
+           FontSize->20,
+           FontColor->GrayLevel[1]], {0.010000000000000203, 1.01},
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{3.8285686989269494*^-16, -1.}, 0.19999999999999987], 
+         InsetBox[
+          StyleBox["4",
+           StripOnInput->False,
+           LineColor->GrayLevel[1],
+           FrontFaceColor->GrayLevel[1],
+           BackFaceColor->GrayLevel[1],
+           GraphicsColor->GrayLevel[1],
+           FontFamily->"IBM Plex Mono",
+           FontSize->20,
+           FontColor->GrayLevel[1]], {0.010000000000000397, -0.99},
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{-0.8660254037844389, 0.5000000000000008}, 
+          0.19999999999999987], InsetBox[
+          StyleBox["5",
+           StripOnInput->False,
+           LineColor->GrayLevel[1],
+           FrontFaceColor->GrayLevel[1],
+           BackFaceColor->GrayLevel[1],
+           GraphicsColor->GrayLevel[1],
+           FontFamily->"IBM Plex Mono",
+           FontSize->20,
+           FontColor->GrayLevel[1]], {-0.8560254037844389, 0.5100000000000008},
+          
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{-0.8660254037844384, -0.4999999999999994}, 
+          0.19999999999999987], InsetBox[
+          StyleBox["6",
+           StripOnInput->False,
+           LineColor->GrayLevel[1],
+           FrontFaceColor->GrayLevel[1],
+           BackFaceColor->GrayLevel[1],
+           GraphicsColor->GrayLevel[1],
+           FontFamily->"IBM Plex Mono",
+           FontSize->20,
+           FontColor->GrayLevel[1]], {-0.8560254037844384, -0.4899999999999994},
+          
+          BaseStyle->"Graphics"]}}}],
+     MouseAppearanceTag["NetworkGraphics"]],
+    AllowKernelInitialization->False]],
+  DefaultBaseStyle->{
+   "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+  FormatType->TraditionalForm,
+  FrameTicks->None,
+  ImageSize->{146.99479166666538`, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.91008589947863*^9, 3.9100859860218773`*^9, 3.910086020992804*^9, {
+   3.910086054106636*^9, 3.910086120728415*^9}, 3.910087123689022*^9, {
+   3.910087620151814*^9, 3.9100876532217197`*^9}, {3.910088110925119*^9, 
+   3.910088118641098*^9}, {3.910455341602103*^9, 3.910455353749889*^9}, 
+   3.9112748147730207`*^9},
+ CellLabel->
+  "Out[537]=",ExpressionUUID->"845f70d8-63d7-4a49-b850-4043c88c711c"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "perm", ",", "prmList", ",", "noDuplicates", ",", "g", ",", 
+      "vertexCoordinates", ",", "out"}], "}"}], ",", "\n", "\t", 
+    RowBox[{
+     RowBox[{"LCOrbit", "[", "graph_", "]"}], ":=", 
+     RowBox[{"(", "\n", "\n", "\t\t", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "get", " ", "the", " ", "vertex", " ", "coordinates", " ", "of", " ", 
+        "the", " ", "original", " ", "graph"}], " ", "*)"}], 
+      "\[IndentingNewLine]", "\t\t", 
+      RowBox[{
+       RowBox[{"vertexCoordinates", "=", 
+        RowBox[{"GraphEmbedding", "[", "graph", "]"}]}], ";", "\n", 
+       "\[IndentingNewLine]", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "apply", " ", "the", " ", "vertex", " ", "coordinates", " ", "to", 
+         " ", "the", " ", "original", " ", "graph"}], " ", "*)"}], "\n", 
+       "\t\t", 
+       RowBox[{"g", "=", 
+        RowBox[{"Graph", "[", 
+         RowBox[{
+          RowBox[{"VertexList", "[", "graph", "]"}], ",", 
+          RowBox[{"EdgeList", "[", "graph", "]"}], ",", 
+          RowBox[{"VertexCoordinates", "\[Rule]", "vertexCoordinates"}]}], 
+         "]"}]}], ";", "\n", "\n", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{"module", " ", "operations"}], " ", "*)"}], "\n", "\t\t", 
+       RowBox[{"perm", "=", 
+        RowBox[{"Permutations", "[", 
+         RowBox[{
+          RowBox[{"Range", "[", 
+           RowBox[{"VertexCount", "[", "graph", "]"}], "]"}], ",", 
+          RowBox[{"VertexCount", "[", "graph", "]"}]}], "]"}]}], ";", "\n", 
+       "\t\t", 
+       RowBox[{"prmList", "=", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"FoldList", "[", 
+            RowBox[{"LCQubit", ",", "graph", ",", "#"}], "]"}], "&"}], "/@", 
+          "perm"}], "//", "Flatten"}]}], ";", "\n", "\t\t", 
+       RowBox[{"noDuplicates", "=", 
+        RowBox[{"DeleteDuplicates", "[", 
+         RowBox[{"prmList", ",", "IsomorphicGraphQ"}], "]"}]}], ";", "\n", 
+       "\n", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{"ensure", " ", "styling", " ", "is", " ", "correct"}], " ", 
+        "*)"}], "\n", "\t\t", 
+       RowBox[{"out", "=", 
+        RowBox[{"Graph", "[", 
+         RowBox[{"noDuplicates", ",", "graphstyle", ",", 
+          RowBox[{"VertexCoordinates", "\[Rule]", "vertexCoordinates"}]}], 
+         "]"}]}], ";", "\n", "\n", "\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+         RowBox[{"return", " ", "the", " ", "LC"}], "-", 
+         RowBox[{"equivalent", " ", "graph", " ", "orbit"}]}], " ", "*)"}], 
+       "\n", "\t", 
+       RowBox[{"Return", "[", "noDuplicates", "]"}], ";"}], ")"}]}]}], "\n", 
+   "]"}], ";"}]], "Code",
+ CellChangeTimes->{{3.9104545730261393`*^9, 3.910454591806362*^9}, 
+   3.91045547594827*^9, {3.910455562441684*^9, 3.910455610887344*^9}, {
+   3.9106260897374897`*^9, 3.910626099312894*^9}, {3.9106261543258677`*^9, 
+   3.910626197775188*^9}, {3.9106262973238373`*^9, 3.9106263046426897`*^9}, {
+   3.91062641555702*^9, 3.910626432481289*^9}, 3.9106265520662193`*^9, {
+   3.910627336158828*^9, 3.9106273611062813`*^9}, {3.911286722100432*^9, 
+   3.911286726759534*^9}, {3.911364019844674*^9, 3.911364022726165*^9}, {
+   3.911369844215382*^9, 
+   3.9113698644714622`*^9}},ExpressionUUID->"50df3f6e-fa7b-4055-b45c-\
+df5e104b53e7"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"LCOrbit", "[", "in", "]"}]], "Input",
+ CellChangeTimes->{{3.9104554930919323`*^9, 3.910455501156879*^9}, {
+  3.9112867061594543`*^9, 3.911286706247306*^9}},
+ CellLabel->
+  "In[659]:=",ExpressionUUID->"09e6c204-a09d-4f5e-bc7c-f3d75cf0110f"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   GraphicsBox[
+    NamespaceBox["NetworkGraphics",
+     DynamicModuleBox[{Typeset`graph = HoldComplete[
+       Graph[{1, 2, 3, 4, 5, 6}, {
+        Null, {{2, 1}, {2, 4}, {4, 3}, {4, 6}, {6, 5}}}, {EdgeStyle -> {
+           Directive[
+            GrayLevel[0], 
+            Thickness[Large], 
+            Opacity[1]]}, FormatType -> TraditionalForm, 
+         GraphLayout -> {
+          "Dimension" -> 2, "VertexLayout" -> "CircularEmbedding"}, 
+         ImageSize -> {146.99479166666538`, Automatic}, VertexLabels -> {
+           Placed["Name", {
+             Rational[1, 2], 
+             Rational[1, 2]}]}, VertexLabelStyle -> {
+           Directive[
+            GrayLevel[1], FontFamily -> "IBM Plex Mono", 20]}, 
+         VertexShapeFunction -> {"Circle"}, VertexSize -> {0.4}, VertexStyle -> {
+           Directive[
+            EdgeForm[{
+              Thickness[Large], 
+              Opacity[1], 
+              RGBColor[0, 0, 1]}], 
+            RGBColor[0, 0, 1]]}}]]}, 
+      TagBox[GraphicsGroupBox[{
+         {GrayLevel[0], Thickness[Large], Opacity[1], 
+          LineBox[{{{0.8660254037844386, 0.4999999999999993}, {
+           0.8660254037844389, -0.5000000000000012}}, {{
+           0.8660254037844389, -0.5000000000000012}, {
+           3.8285686989269494`*^-16, -1.}}, {{1.8369701987210297`*^-16, 1.}, {
+           3.8285686989269494`*^-16, -1.}}, {{
+           3.8285686989269494`*^-16, -1.}, {-0.8660254037844384, \
+-0.4999999999999994}}, {{-0.8660254037844389, 
+           0.5000000000000008}, {-0.8660254037844384, \
+-0.4999999999999994}}}]}, 
+         {RGBColor[0, 0, 1], EdgeForm[{RGBColor[0, 0, 1], Opacity[1], 
+          Thickness[
+          Large]}], {
+           DiskBox[{0.8660254037844386, 0.4999999999999993}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["1",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.8660254037844386, 0.4999999999999993},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.8660254037844389, -0.5000000000000012}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["2",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.8660254037844389, -0.5000000000000012},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1.8369701987210297*^-16, 1.}, 0.19999999999999987], 
+           InsetBox[
+            StyleBox["3",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {1.942890293094024*^-16, 1.},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{3.8285686989269494*^-16, -1.}, 0.19999999999999987], 
+           InsetBox[
+            StyleBox["4",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {3.885780586188048*^-16, -1.},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{-0.8660254037844389, 0.5000000000000008}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["5",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {-0.8660254037844389, 0.5000000000000008},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{-0.8660254037844384, -0.4999999999999994}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["6",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {-0.8660254037844384, -0.4999999999999994},
+            
+            BaseStyle->"Graphics"]}}}],
+       MouseAppearanceTag["NetworkGraphics"]],
+      AllowKernelInitialization->False]],
+    DefaultBaseStyle->{
+     "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+    
+    FormatType->TraditionalForm,
+    FrameTicks->None,
+    ImageSize->{146.99479166666538`, Automatic}], ",", 
+   GraphicsBox[
+    NamespaceBox["NetworkGraphics",
+     DynamicModuleBox[{Typeset`graph = HoldComplete[
+       Graph[{1, 2, 3, 4, 5, 6}, {
+        Null, {{1, 4}, {2, 1}, {2, 4}, {4, 3}, {4, 6}, {6, 5}}}, {EdgeStyle -> {
+           Directive[
+            GrayLevel[0], 
+            Thickness[Large], 
+            Opacity[1]]}, 
+         GraphLayout -> {
+          "Dimension" -> 2, "VertexLayout" -> "CircularEmbedding"}, 
+         ImageSize -> {146.99479166666538`, Automatic}, 
+         VertexCoordinates -> {{0.8660254037844386, 0.4999999999999993}, {
+          0.8660254037844389, -0.5000000000000012}, {1.8369701987210297`*^-16,
+           1.}, {3.8285686989269494`*^-16, -1.}, {-0.8660254037844389, 
+          0.5000000000000008}, {-0.8660254037844384, -0.4999999999999994}}, 
+         VertexLabels -> {
+           Placed["Name", {0.525, 0.525}]}, VertexLabelStyle -> {
+           Directive[
+            GrayLevel[1], FontFamily -> "IBM Plex Mono", 20]}, 
+         VertexSize -> {0.4}, VertexStyle -> {
+           Directive[
+            EdgeForm[{
+              Thickness[Large], 
+              Opacity[1], 
+              RGBColor[0, 0, 1]}], 
+            RGBColor[0, 0, 1]]}}]]}, 
+      TagBox[GraphicsGroupBox[{
+         {GrayLevel[0], Thickness[Large], Opacity[1], 
+          LineBox[{{{0.8660254037844386, 0.4999999999999993}, {
+           0.8660254037844389, -0.5000000000000012}}, {{0.8660254037844386, 
+           0.4999999999999993}, {3.8285686989269494`*^-16, -1.}}, {{
+           0.8660254037844389, -0.5000000000000012}, {
+           3.8285686989269494`*^-16, -1.}}, {{1.8369701987210297`*^-16, 1.}, {
+           3.8285686989269494`*^-16, -1.}}, {{
+           3.8285686989269494`*^-16, -1.}, {-0.8660254037844384, \
+-0.4999999999999994}}, {{-0.8660254037844389, 
+           0.5000000000000008}, {-0.8660254037844384, \
+-0.4999999999999994}}}]}, 
+         {RGBColor[0, 0, 1], EdgeForm[{RGBColor[0, 0, 1], Opacity[1], 
+          Thickness[
+          Large]}], {
+           DiskBox[{0.8660254037844386, 0.4999999999999993}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["1",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.8760254037844386, 0.5099999999999993},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.8660254037844389, -0.5000000000000012}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["2",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.8760254037844389, -0.4900000000000012},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1.8369701987210297*^-16, 1.}, 0.19999999999999987], 
+           InsetBox[
+            StyleBox["3",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.010000000000000203, 1.01},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{3.8285686989269494*^-16, -1.}, 0.19999999999999987], 
+           InsetBox[
+            StyleBox["4",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.010000000000000397, -0.99},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{-0.8660254037844389, 0.5000000000000008}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["5",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {-0.8560254037844389, 0.5100000000000008},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{-0.8660254037844384, -0.4999999999999994}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["6",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {-0.8560254037844384, -0.4899999999999994},
+            
+            BaseStyle->"Graphics"]}}}],
+       MouseAppearanceTag["NetworkGraphics"]],
+      AllowKernelInitialization->False]],
+    DefaultBaseStyle->{
+     "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+    
+    FormatType->TraditionalForm,
+    FrameTicks->None,
+    ImageSize->{146.99479166666538`, Automatic}], ",", 
+   GraphicsBox[
+    NamespaceBox["NetworkGraphics",
+     DynamicModuleBox[{Typeset`graph = HoldComplete[
+       Graph[{1, 2, 3, 4, 5, 6}, {
+        Null, {{2, 1}, {2, 3}, {2, 4}, {2, 6}, {3, 6}, {4, 3}, {4, 6}, {6, 
+         5}}}, {EdgeStyle -> {
+           Directive[
+            GrayLevel[0], 
+            Thickness[Large], 
+            Opacity[1]]}, 
+         GraphLayout -> {
+          "Dimension" -> 2, "VertexLayout" -> "CircularEmbedding"}, 
+         ImageSize -> {146.99479166666538`, Automatic}, 
+         VertexCoordinates -> {{0.8660254037844386, 0.4999999999999993}, {
+          0.8660254037844389, -0.5000000000000012}, {1.8369701987210297`*^-16,
+           1.}, {3.8285686989269494`*^-16, -1.}, {-0.8660254037844389, 
+          0.5000000000000008}, {-0.8660254037844384, -0.4999999999999994}}, 
+         VertexLabels -> {
+           Placed["Name", {0.525, 0.525}]}, VertexLabelStyle -> {
+           Directive[
+            GrayLevel[1], FontFamily -> "IBM Plex Mono", 20]}, 
+         VertexSize -> {0.4}, VertexStyle -> {
+           Directive[
+            EdgeForm[{
+              Thickness[Large], 
+              Opacity[1], 
+              RGBColor[0, 0, 1]}], 
+            RGBColor[0, 0, 1]]}}]]}, 
+      TagBox[GraphicsGroupBox[{
+         {GrayLevel[0], Thickness[Large], Opacity[1], 
+          LineBox[{{{0.8660254037844386, 0.4999999999999993}, {
+           0.8660254037844389, -0.5000000000000012}}, {{
+           0.8660254037844389, -0.5000000000000012}, {
+           1.8369701987210297`*^-16, 1.}}, {{
+           0.8660254037844389, -0.5000000000000012}, {
+           3.8285686989269494`*^-16, -1.}}, {{
+           
+           0.8660254037844389, -0.5000000000000012}, {-0.8660254037844384, \
+-0.4999999999999994}}, {{1.8369701987210297`*^-16, 1.}, {
+           3.8285686989269494`*^-16, -1.}}, {{1.8369701987210297`*^-16, 
+           1.}, {-0.8660254037844384, -0.4999999999999994}}, {{
+           3.8285686989269494`*^-16, -1.}, {-0.8660254037844384, \
+-0.4999999999999994}}, {{-0.8660254037844389, 
+           0.5000000000000008}, {-0.8660254037844384, \
+-0.4999999999999994}}}]}, 
+         {RGBColor[0, 0, 1], EdgeForm[{RGBColor[0, 0, 1], Opacity[1], 
+          Thickness[
+          Large]}], {
+           DiskBox[{0.8660254037844386, 0.4999999999999993}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["1",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.8760254037844386, 0.5099999999999993},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.8660254037844389, -0.5000000000000012}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["2",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.8760254037844389, -0.4900000000000012},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1.8369701987210297*^-16, 1.}, 0.19999999999999987], 
+           InsetBox[
+            StyleBox["3",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.010000000000000203, 1.01},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{3.8285686989269494*^-16, -1.}, 0.19999999999999987], 
+           InsetBox[
+            StyleBox["4",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.010000000000000397, -0.99},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{-0.8660254037844389, 0.5000000000000008}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["5",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {-0.8560254037844389, 0.5100000000000008},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{-0.8660254037844384, -0.4999999999999994}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["6",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {-0.8560254037844384, -0.4899999999999994},
+            
+            BaseStyle->"Graphics"]}}}],
+       MouseAppearanceTag["NetworkGraphics"]],
+      AllowKernelInitialization->False]],
+    DefaultBaseStyle->{
+     "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+    
+    FormatType->TraditionalForm,
+    FrameTicks->None,
+    ImageSize->{146.99479166666538`, Automatic}], ",", 
+   GraphicsBox[
+    NamespaceBox["NetworkGraphics",
+     DynamicModuleBox[{Typeset`graph = HoldComplete[
+       Graph[{1, 2, 3, 4, 5, 6}, {
+        Null, {{1, 3}, {1, 4}, {1, 6}, {2, 3}, {2, 4}, {2, 6}, {3, 6}, {4, 
+         3}, {4, 6}, {6, 5}}}, {EdgeStyle -> {
+           Directive[
+            GrayLevel[0], 
+            Thickness[Large], 
+            Opacity[1]]}, 
+         GraphLayout -> {
+          "Dimension" -> 2, "VertexLayout" -> "CircularEmbedding"}, 
+         ImageSize -> {146.99479166666538`, Automatic}, 
+         VertexCoordinates -> {{0.8660254037844386, 0.4999999999999993}, {
+          0.8660254037844389, -0.5000000000000012}, {1.8369701987210297`*^-16,
+           1.}, {3.8285686989269494`*^-16, -1.}, {-0.8660254037844389, 
+          0.5000000000000008}, {-0.8660254037844384, -0.4999999999999994}}, 
+         VertexLabels -> {
+           Placed["Name", {0.525, 0.525}]}, VertexLabelStyle -> {
+           Directive[
+            GrayLevel[1], FontFamily -> "IBM Plex Mono", 20]}, 
+         VertexSize -> {0.4}, VertexStyle -> {
+           Directive[
+            EdgeForm[{
+              Thickness[Large], 
+              Opacity[1], 
+              RGBColor[0, 0, 1]}], 
+            RGBColor[0, 0, 1]]}}]]}, 
+      TagBox[GraphicsGroupBox[{
+         {GrayLevel[0], Thickness[Large], Opacity[1], LineBox[CompressedData["
+
+1:eJxTTMoPSmVmYGDgAmImKF7lE/Giattr+8//QeC+PVfXPB/LylU2DGDwwR5d
+/t8Lq+Kyabth8vvR5VdA+Pu/Qvj710LlucHqH+xHNx9dHt18dHl089HNQ9eP
+Lo+uH109DvfvZ4fYj6EfAA0XprM=
+           "]]}, 
+         {RGBColor[0, 0, 1], EdgeForm[{RGBColor[0, 0, 1], Opacity[1], 
+          Thickness[
+          Large]}], {
+           DiskBox[{0.8660254037844386, 0.4999999999999993}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["1",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.8760254037844386, 0.5099999999999993},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.8660254037844389, -0.5000000000000012}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["2",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.8760254037844389, -0.4900000000000012},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1.8369701987210297*^-16, 1.}, 0.19999999999999987], 
+           InsetBox[
+            StyleBox["3",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.010000000000000203, 1.01},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{3.8285686989269494*^-16, -1.}, 0.19999999999999987], 
+           InsetBox[
+            StyleBox["4",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.010000000000000397, -0.99},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{-0.8660254037844389, 0.5000000000000008}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["5",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {-0.8560254037844389, 0.5100000000000008},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{-0.8660254037844384, -0.4999999999999994}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["6",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {-0.8560254037844384, -0.4899999999999994},
+            
+            BaseStyle->"Graphics"]}}}],
+       MouseAppearanceTag["NetworkGraphics"]],
+      AllowKernelInitialization->False]],
+    DefaultBaseStyle->{
+     "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+    
+    FormatType->TraditionalForm,
+    FrameTicks->None,
+    ImageSize->{146.99479166666538`, Automatic}], ",", 
+   GraphicsBox[
+    NamespaceBox["NetworkGraphics",
+     DynamicModuleBox[{Typeset`graph = HoldComplete[
+       Graph[{1, 2, 3, 4, 5, 6}, {
+        Null, {{1, 4}, {2, 1}, {2, 4}, {4, 3}, {4, 5}, {4, 6}, {6, 5}}}, {
+        EdgeStyle -> {
+           Directive[
+            GrayLevel[0], 
+            Thickness[Large], 
+            Opacity[1]]}, 
+         GraphLayout -> {
+          "Dimension" -> 2, "VertexLayout" -> "CircularEmbedding"}, 
+         ImageSize -> {146.99479166666538`, Automatic}, 
+         VertexCoordinates -> {{0.8660254037844386, 0.4999999999999993}, {
+          0.8660254037844389, -0.5000000000000012}, {1.8369701987210297`*^-16,
+           1.}, {3.8285686989269494`*^-16, -1.}, {-0.8660254037844389, 
+          0.5000000000000008}, {-0.8660254037844384, -0.4999999999999994}}, 
+         VertexLabels -> {
+           Placed["Name", {0.525, 0.525}]}, VertexLabelStyle -> {
+           Directive[
+            GrayLevel[1], FontFamily -> "IBM Plex Mono", 20]}, 
+         VertexSize -> {0.4}, VertexStyle -> {
+           Directive[
+            EdgeForm[{
+              Thickness[Large], 
+              Opacity[1], 
+              RGBColor[0, 0, 1]}], 
+            RGBColor[0, 0, 1]]}}]]}, 
+      TagBox[GraphicsGroupBox[{
+         {GrayLevel[0], Thickness[Large], Opacity[1], 
+          LineBox[{{{0.8660254037844386, 0.4999999999999993}, {
+           0.8660254037844389, -0.5000000000000012}}, {{0.8660254037844386, 
+           0.4999999999999993}, {3.8285686989269494`*^-16, -1.}}, {{
+           0.8660254037844389, -0.5000000000000012}, {
+           3.8285686989269494`*^-16, -1.}}, {{1.8369701987210297`*^-16, 1.}, {
+           3.8285686989269494`*^-16, -1.}}, {{
+           3.8285686989269494`*^-16, -1.}, {-0.8660254037844389, 
+           0.5000000000000008}}, {{
+           3.8285686989269494`*^-16, -1.}, {-0.8660254037844384, \
+-0.4999999999999994}}, {{-0.8660254037844389, 
+           0.5000000000000008}, {-0.8660254037844384, \
+-0.4999999999999994}}}]}, 
+         {RGBColor[0, 0, 1], EdgeForm[{RGBColor[0, 0, 1], Opacity[1], 
+          Thickness[
+          Large]}], {
+           DiskBox[{0.8660254037844386, 0.4999999999999993}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["1",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.8760254037844386, 0.5099999999999993},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.8660254037844389, -0.5000000000000012}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["2",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.8760254037844389, -0.4900000000000012},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1.8369701987210297*^-16, 1.}, 0.19999999999999987], 
+           InsetBox[
+            StyleBox["3",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.010000000000000203, 1.01},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{3.8285686989269494*^-16, -1.}, 0.19999999999999987], 
+           InsetBox[
+            StyleBox["4",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.010000000000000397, -0.99},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{-0.8660254037844389, 0.5000000000000008}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["5",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {-0.8560254037844389, 0.5100000000000008},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{-0.8660254037844384, -0.4999999999999994}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["6",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {-0.8560254037844384, -0.4899999999999994},
+            
+            BaseStyle->"Graphics"]}}}],
+       MouseAppearanceTag["NetworkGraphics"]],
+      AllowKernelInitialization->False]],
+    DefaultBaseStyle->{
+     "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+    
+    FormatType->TraditionalForm,
+    FrameTicks->None,
+    ImageSize->{146.99479166666538`, Automatic}], ",", 
+   GraphicsBox[
+    NamespaceBox["NetworkGraphics",
+     DynamicModuleBox[{Typeset`graph = HoldComplete[
+       Graph[{1, 2, 3, 4, 5, 6}, {
+        Null, {{1, 3}, {1, 4}, {1, 6}, {2, 1}, {2, 3}, {2, 4}, {2, 6}, {6, 
+         5}}}, {EdgeStyle -> {
+           Directive[
+            GrayLevel[0], 
+            Thickness[Large], 
+            Opacity[1]]}, 
+         GraphLayout -> {
+          "Dimension" -> 2, "VertexLayout" -> "CircularEmbedding"}, 
+         ImageSize -> {146.99479166666538`, Automatic}, 
+         VertexCoordinates -> {{0.8660254037844386, 0.4999999999999993}, {
+          0.8660254037844389, -0.5000000000000012}, {1.8369701987210297`*^-16,
+           1.}, {3.8285686989269494`*^-16, -1.}, {-0.8660254037844389, 
+          0.5000000000000008}, {-0.8660254037844384, -0.4999999999999994}}, 
+         VertexLabels -> {
+           Placed["Name", {0.525, 0.525}]}, VertexLabelStyle -> {
+           Directive[
+            GrayLevel[1], FontFamily -> "IBM Plex Mono", 20]}, 
+         VertexSize -> {0.4}, VertexStyle -> {
+           Directive[
+            EdgeForm[{
+              Thickness[Large], 
+              Opacity[1], 
+              RGBColor[0, 0, 1]}], 
+            RGBColor[0, 0, 1]]}}]]}, 
+      TagBox[GraphicsGroupBox[{
+         {GrayLevel[0], Thickness[Large], Opacity[1], 
+          LineBox[{{{0.8660254037844386, 0.4999999999999993}, {
+           0.8660254037844389, -0.5000000000000012}}, {{0.8660254037844386, 
+           0.4999999999999993}, {1.8369701987210297`*^-16, 1.}}, {{
+           0.8660254037844386, 0.4999999999999993}, {
+           3.8285686989269494`*^-16, -1.}}, {{0.8660254037844386, 
+           
+           0.4999999999999993}, {-0.8660254037844384, -0.4999999999999994}}, \
+{{0.8660254037844389, -0.5000000000000012}, {1.8369701987210297`*^-16, 
+           1.}}, {{0.8660254037844389, -0.5000000000000012}, {
+           3.8285686989269494`*^-16, -1.}}, {{
+           0.8660254037844389, -0.5000000000000012}, {-0.8660254037844384, \
+-0.4999999999999994}}, {{-0.8660254037844389, 
+           0.5000000000000008}, {-0.8660254037844384, \
+-0.4999999999999994}}}]}, 
+         {RGBColor[0, 0, 1], EdgeForm[{RGBColor[0, 0, 1], Opacity[1], 
+          Thickness[
+          Large]}], {
+           DiskBox[{0.8660254037844386, 0.4999999999999993}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["1",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.8760254037844386, 0.5099999999999993},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.8660254037844389, -0.5000000000000012}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["2",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.8760254037844389, -0.4900000000000012},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1.8369701987210297*^-16, 1.}, 0.19999999999999987], 
+           InsetBox[
+            StyleBox["3",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.010000000000000203, 1.01},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{3.8285686989269494*^-16, -1.}, 0.19999999999999987], 
+           InsetBox[
+            StyleBox["4",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.010000000000000397, -0.99},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{-0.8660254037844389, 0.5000000000000008}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["5",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {-0.8560254037844389, 0.5100000000000008},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{-0.8660254037844384, -0.4999999999999994}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["6",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {-0.8560254037844384, -0.4899999999999994},
+            
+            BaseStyle->"Graphics"]}}}],
+       MouseAppearanceTag["NetworkGraphics"]],
+      AllowKernelInitialization->False]],
+    DefaultBaseStyle->{
+     "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+    
+    FormatType->TraditionalForm,
+    FrameTicks->None,
+    ImageSize->{146.99479166666538`, Automatic}], ",", 
+   GraphicsBox[
+    NamespaceBox["NetworkGraphics",
+     DynamicModuleBox[{Typeset`graph = HoldComplete[
+       Graph[{1, 2, 3, 4, 5, 6}, {
+        Null, {{1, 3}, {1, 4}, {1, 6}, {2, 3}, {2, 4}, {2, 6}, {6, 5}}}, {
+        EdgeStyle -> {
+           Directive[
+            GrayLevel[0], 
+            Thickness[Large], 
+            Opacity[1]]}, 
+         GraphLayout -> {
+          "Dimension" -> 2, "VertexLayout" -> "CircularEmbedding"}, 
+         ImageSize -> {146.99479166666538`, Automatic}, 
+         VertexCoordinates -> {{0.8660254037844386, 0.4999999999999993}, {
+          0.8660254037844389, -0.5000000000000012}, {1.8369701987210297`*^-16,
+           1.}, {3.8285686989269494`*^-16, -1.}, {-0.8660254037844389, 
+          0.5000000000000008}, {-0.8660254037844384, -0.4999999999999994}}, 
+         VertexLabels -> {
+           Placed["Name", {0.525, 0.525}]}, VertexLabelStyle -> {
+           Directive[
+            GrayLevel[1], FontFamily -> "IBM Plex Mono", 20]}, 
+         VertexSize -> {0.4}, VertexStyle -> {
+           Directive[
+            EdgeForm[{
+              Thickness[Large], 
+              Opacity[1], 
+              RGBColor[0, 0, 1]}], 
+            RGBColor[0, 0, 1]]}}]]}, 
+      TagBox[GraphicsGroupBox[{
+         {GrayLevel[0], Thickness[Large], Opacity[1], 
+          LineBox[{{{0.8660254037844386, 0.4999999999999993}, {
+           1.8369701987210297`*^-16, 1.}}, {{0.8660254037844386, 
+           0.4999999999999993}, {3.8285686989269494`*^-16, -1.}}, {{
+           0.8660254037844386, 
+           0.4999999999999993}, {-0.8660254037844384, -0.4999999999999994}}, \
+{{0.8660254037844389, -0.5000000000000012}, {1.8369701987210297`*^-16, 
+           1.}}, {{0.8660254037844389, -0.5000000000000012}, {
+           3.8285686989269494`*^-16, -1.}}, {{
+           0.8660254037844389, -0.5000000000000012}, {-0.8660254037844384, \
+-0.4999999999999994}}, {{-0.8660254037844389, 
+           0.5000000000000008}, {-0.8660254037844384, \
+-0.4999999999999994}}}]}, 
+         {RGBColor[0, 0, 1], EdgeForm[{RGBColor[0, 0, 1], Opacity[1], 
+          Thickness[
+          Large]}], {
+           DiskBox[{0.8660254037844386, 0.4999999999999993}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["1",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.8760254037844386, 0.5099999999999993},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.8660254037844389, -0.5000000000000012}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["2",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.8760254037844389, -0.4900000000000012},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1.8369701987210297*^-16, 1.}, 0.19999999999999987], 
+           InsetBox[
+            StyleBox["3",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.010000000000000203, 1.01},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{3.8285686989269494*^-16, -1.}, 0.19999999999999987], 
+           InsetBox[
+            StyleBox["4",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.010000000000000397, -0.99},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{-0.8660254037844389, 0.5000000000000008}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["5",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {-0.8560254037844389, 0.5100000000000008},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{-0.8660254037844384, -0.4999999999999994}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["6",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {-0.8560254037844384, -0.4899999999999994},
+            
+            BaseStyle->"Graphics"]}}}],
+       MouseAppearanceTag["NetworkGraphics"]],
+      AllowKernelInitialization->False]],
+    DefaultBaseStyle->{
+     "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+    
+    FormatType->TraditionalForm,
+    FrameTicks->None,
+    ImageSize->{146.99479166666538`, Automatic}], ",", 
+   GraphicsBox[
+    NamespaceBox["NetworkGraphics",
+     DynamicModuleBox[{Typeset`graph = HoldComplete[
+       Graph[{1, 2, 3, 4, 5, 6}, {
+        Null, {{1, 2}, {1, 5}, {1, 6}, {2, 5}, {2, 6}, {3, 5}, {3, 6}, {4, 
+         5}, {4, 6}, {6, 5}}}, {EdgeStyle -> {
+           Directive[
+            GrayLevel[0], 
+            Thickness[Large], 
+            Opacity[1]]}, 
+         GraphLayout -> {
+          "Dimension" -> 2, "VertexLayout" -> "CircularEmbedding"}, 
+         ImageSize -> {146.99479166666538`, Automatic}, 
+         VertexCoordinates -> {{0.8660254037844386, 0.4999999999999993}, {
+          0.8660254037844389, -0.5000000000000012}, {1.8369701987210297`*^-16,
+           1.}, {3.8285686989269494`*^-16, -1.}, {-0.8660254037844389, 
+          0.5000000000000008}, {-0.8660254037844384, -0.4999999999999994}}, 
+         VertexLabels -> {
+           Placed["Name", {0.525, 0.525}]}, VertexLabelStyle -> {
+           Directive[
+            GrayLevel[1], FontFamily -> "IBM Plex Mono", 20]}, 
+         VertexSize -> {0.4}, VertexStyle -> {
+           Directive[
+            EdgeForm[{
+              Thickness[Large], 
+              Opacity[1], 
+              RGBColor[0, 0, 1]}], 
+            RGBColor[0, 0, 1]]}}]]}, 
+      TagBox[GraphicsGroupBox[{
+         {GrayLevel[0], Thickness[Large], Opacity[1], LineBox[CompressedData["
+
+1:eJxTTMoPSmVmYGDgAmImKF7lE/Giattr+8//QeC+/Voon5sBBB7sxyG/nx0i
+b48uvwIq/xXC349uHrp+dHl0/Vxd83wsK1fZgKUZPmDYjy6Prv/fC6vismm7
+YfIY9qPL43A/XD26PADxt6qD
+           "]]}, 
+         {RGBColor[0, 0, 1], EdgeForm[{RGBColor[0, 0, 1], Opacity[1], 
+          Thickness[
+          Large]}], {
+           DiskBox[{0.8660254037844386, 0.4999999999999993}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["1",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.8760254037844386, 0.5099999999999993},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.8660254037844389, -0.5000000000000012}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["2",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.8760254037844389, -0.4900000000000012},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1.8369701987210297*^-16, 1.}, 0.19999999999999987], 
+           InsetBox[
+            StyleBox["3",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.010000000000000203, 1.01},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{3.8285686989269494*^-16, -1.}, 0.19999999999999987], 
+           InsetBox[
+            StyleBox["4",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.010000000000000397, -0.99},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{-0.8660254037844389, 0.5000000000000008}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["5",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {-0.8560254037844389, 0.5100000000000008},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{-0.8660254037844384, -0.4999999999999994}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["6",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {-0.8560254037844384, -0.4899999999999994},
+            
+            BaseStyle->"Graphics"]}}}],
+       MouseAppearanceTag["NetworkGraphics"]],
+      AllowKernelInitialization->False]],
+    DefaultBaseStyle->{
+     "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+    
+    FormatType->TraditionalForm,
+    FrameTicks->None,
+    ImageSize->{146.99479166666538`, Automatic}], ",", 
+   GraphicsBox[
+    NamespaceBox["NetworkGraphics",
+     DynamicModuleBox[{Typeset`graph = HoldComplete[
+       Graph[{1, 2, 3, 4, 5, 6}, {
+        Null, {{1, 3}, {1, 4}, {1, 5}, {1, 6}, {2, 3}, {2, 4}, {2, 5}, {2, 
+         6}, {3, 5}, {3, 6}, {4, 3}, {4, 5}, {4, 6}}}, {EdgeStyle -> {
+           Directive[
+            GrayLevel[0], 
+            Thickness[Large], 
+            Opacity[1]]}, 
+         GraphLayout -> {
+          "Dimension" -> 2, "VertexLayout" -> "CircularEmbedding"}, 
+         ImageSize -> {146.99479166666538`, Automatic}, 
+         VertexCoordinates -> {{0.8660254037844386, 0.4999999999999993}, {
+          0.8660254037844389, -0.5000000000000012}, {1.8369701987210297`*^-16,
+           1.}, {3.8285686989269494`*^-16, -1.}, {-0.8660254037844389, 
+          0.5000000000000008}, {-0.8660254037844384, -0.4999999999999994}}, 
+         VertexLabels -> {
+           Placed["Name", {0.525, 0.525}]}, VertexLabelStyle -> {
+           Directive[
+            GrayLevel[1], FontFamily -> "IBM Plex Mono", 20]}, 
+         VertexSize -> {0.4}, VertexStyle -> {
+           Directive[
+            EdgeForm[{
+              Thickness[Large], 
+              Opacity[1], 
+              RGBColor[0, 0, 1]}], 
+            RGBColor[0, 0, 1]]}}]]}, 
+      TagBox[GraphicsGroupBox[{
+         {GrayLevel[0], Thickness[Large], Opacity[1], LineBox[CompressedData["
+
+1:eJxTTMoPSmVmYGDgBWImKF7lE/Giattr+8//QeC+PVfXPB/LylU2DGDwwR5d
+/t8Lq+Kyabth8vvR5ddC+PvZwfIPMPSvgMp/hfD3Q9Xbc0PU70e3H10e3X50
+eXT70eXR7Ue3D918HO6Bm48uj24+DvfC9aPLo+sHAGQjySg=
+           "]]}, 
+         {RGBColor[0, 0, 1], EdgeForm[{RGBColor[0, 0, 1], Opacity[1], 
+          Thickness[
+          Large]}], {
+           DiskBox[{0.8660254037844386, 0.4999999999999993}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["1",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.8760254037844386, 0.5099999999999993},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.8660254037844389, -0.5000000000000012}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["2",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.8760254037844389, -0.4900000000000012},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1.8369701987210297*^-16, 1.}, 0.19999999999999987], 
+           InsetBox[
+            StyleBox["3",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.010000000000000203, 1.01},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{3.8285686989269494*^-16, -1.}, 0.19999999999999987], 
+           InsetBox[
+            StyleBox["4",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.010000000000000397, -0.99},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{-0.8660254037844389, 0.5000000000000008}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["5",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {-0.8560254037844389, 0.5100000000000008},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{-0.8660254037844384, -0.4999999999999994}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["6",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {-0.8560254037844384, -0.4899999999999994},
+            
+            BaseStyle->"Graphics"]}}}],
+       MouseAppearanceTag["NetworkGraphics"]],
+      AllowKernelInitialization->False]],
+    DefaultBaseStyle->{
+     "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+    
+    FormatType->TraditionalForm,
+    FrameTicks->None,
+    ImageSize->{146.99479166666538`, Automatic}], ",", 
+   GraphicsBox[
+    NamespaceBox["NetworkGraphics",
+     DynamicModuleBox[{Typeset`graph = HoldComplete[
+       Graph[{1, 2, 3, 4, 5, 6}, {
+        Null, {{1, 3}, {1, 4}, {1, 5}, {1, 6}, {2, 3}, {2, 4}, {2, 5}, {2, 
+         6}, {6, 5}}}, {EdgeStyle -> {
+           Directive[
+            GrayLevel[0], 
+            Thickness[Large], 
+            Opacity[1]]}, 
+         GraphLayout -> {
+          "Dimension" -> 2, "VertexLayout" -> "CircularEmbedding"}, 
+         ImageSize -> {146.99479166666538`, Automatic}, 
+         VertexCoordinates -> {{0.8660254037844386, 0.4999999999999993}, {
+          0.8660254037844389, -0.5000000000000012}, {1.8369701987210297`*^-16,
+           1.}, {3.8285686989269494`*^-16, -1.}, {-0.8660254037844389, 
+          0.5000000000000008}, {-0.8660254037844384, -0.4999999999999994}}, 
+         VertexLabels -> {
+           Placed["Name", {0.525, 0.525}]}, VertexLabelStyle -> {
+           Directive[
+            GrayLevel[1], FontFamily -> "IBM Plex Mono", 20]}, 
+         VertexSize -> {0.4}, VertexStyle -> {
+           Directive[
+            EdgeForm[{
+              Thickness[Large], 
+              Opacity[1], 
+              RGBColor[0, 0, 1]}], 
+            RGBColor[0, 0, 1]]}}]]}, 
+      TagBox[GraphicsGroupBox[{
+         {GrayLevel[0], Thickness[Large], Opacity[1], 
+          LineBox[{{{0.8660254037844386, 0.4999999999999993}, {
+           1.8369701987210297`*^-16, 1.}}, {{0.8660254037844386, 
+           0.4999999999999993}, {3.8285686989269494`*^-16, -1.}}, {{
+           0.8660254037844386, 0.4999999999999993}, {-0.8660254037844389, 
+           0.5000000000000008}}, {{0.8660254037844386, 
+           0.4999999999999993}, {-0.8660254037844384, -0.4999999999999994}}, \
+{{0.8660254037844389, -0.5000000000000012}, {1.8369701987210297`*^-16, 
+           1.}}, {{0.8660254037844389, -0.5000000000000012}, {
+           3.8285686989269494`*^-16, -1.}}, {{
+           0.8660254037844389, -0.5000000000000012}, {-0.8660254037844389, 
+           0.5000000000000008}}, {{
+           0.8660254037844389, -0.5000000000000012}, {-0.8660254037844384, \
+-0.4999999999999994}}, {{-0.8660254037844389, 
+           0.5000000000000008}, {-0.8660254037844384, \
+-0.4999999999999994}}}]}, 
+         {RGBColor[0, 0, 1], EdgeForm[{RGBColor[0, 0, 1], Opacity[1], 
+          Thickness[
+          Large]}], {
+           DiskBox[{0.8660254037844386, 0.4999999999999993}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["1",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.8760254037844386, 0.5099999999999993},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.8660254037844389, -0.5000000000000012}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["2",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.8760254037844389, -0.4900000000000012},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1.8369701987210297*^-16, 1.}, 0.19999999999999987], 
+           InsetBox[
+            StyleBox["3",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.010000000000000203, 1.01},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{3.8285686989269494*^-16, -1.}, 0.19999999999999987], 
+           InsetBox[
+            StyleBox["4",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.010000000000000397, -0.99},
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{-0.8660254037844389, 0.5000000000000008}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["5",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {-0.8560254037844389, 0.5100000000000008},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{-0.8660254037844384, -0.4999999999999994}, 
+            0.19999999999999987], InsetBox[
+            StyleBox["6",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {-0.8560254037844384, -0.4899999999999994},
+            
+            BaseStyle->"Graphics"]}}}],
+       MouseAppearanceTag["NetworkGraphics"]],
+      AllowKernelInitialization->False]],
+    DefaultBaseStyle->{
+     "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+    
+    FormatType->TraditionalForm,
+    FrameTicks->None,
+    ImageSize->{146.99479166666538`, Automatic}]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.910455460326241*^9, {3.9104554951045017`*^9, 3.910455502639324*^9}, 
+   3.910455571523308*^9, 3.910455616264512*^9, {3.910626074410286*^9, 
+   3.910626102652678*^9}, 3.910626135776387*^9, 3.9112748214659348`*^9, 
+   3.911286883480809*^9},
+ CellLabel->
+  "Out[659]=",ExpressionUUID->"fea8658c-ce73-4217-bc3b-352ba0cd3d87"]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{
+  3.91062664741789*^9},ExpressionUUID->"b84dfe55-d89c-43f0-bf87-074c849a8eef"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "vertexCoordinates", ",", "g", ",", "perm", ",", "prmList", ",", 
+      "noDuplicates", ",", "out"}], "}"}], ",", "\n", "\t", 
+    RowBox[{
+     RowBox[{"LCOrbitIsomorphic", "[", "graph_", "]"}], ":=", 
+     RowBox[{"(", "\n", "\n", "\t\t", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "get", " ", "the", " ", "vertex", " ", "coordinates", " ", "of", " ", 
+        "the", " ", "original", " ", "graph"}], " ", "*)"}], 
+      "\[IndentingNewLine]", "\t\t", 
+      RowBox[{
+       RowBox[{"vertexCoordinates", "=", 
+        RowBox[{"GraphEmbedding", "[", "graph", "]"}]}], ";", "\n", 
+       "\[IndentingNewLine]", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "apply", " ", "the", " ", "vertex", " ", "coordinates", " ", "to", 
+         " ", "the", " ", "original", " ", "graph"}], " ", "*)"}], "\n", 
+       "\t\t", 
+       RowBox[{"g", "=", 
+        RowBox[{"Graph", "[", 
+         RowBox[{
+          RowBox[{"VertexList", "[", "graph", "]"}], ",", 
+          RowBox[{"EdgeList", "[", "graph", "]"}], ",", 
+          RowBox[{"VertexCoordinates", "\[Rule]", "vertexCoordinates"}]}], 
+         "]"}]}], ";", "\n", "\n", "\t\t", 
+       RowBox[{"(*", " ", 
+        StyleBox[
+         RowBox[{"module", " ", "operations"}],
+         FontWeight->"Bold"], " ", "*)"}], "\n", "\t\t", 
+       RowBox[{"perm", "=", 
+        RowBox[{"Permutations", "[", 
+         RowBox[{
+          RowBox[{"Range", "[", 
+           RowBox[{"VertexCount", "[", "graph", "]"}], "]"}], ",", 
+          RowBox[{"VertexCount", "[", "graph", "]"}]}], "]"}]}], ";", "\n", 
+       "\t\t", 
+       RowBox[{"prmList", "=", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"FoldList", "[", 
+            RowBox[{"LCQubit", ",", "graph", ",", "#"}], "]"}], "&"}], "/@", 
+          "perm"}], "//", "Flatten"}]}], ";", "\n", "\t\t", 
+       RowBox[{"noDuplicates", "=", 
+        RowBox[{"Select", "[", 
+         RowBox[{"prmList", ",", 
+          RowBox[{
+           RowBox[{"IsomorphicGraphQ", "[", 
+            RowBox[{"#", ",", "graph"}], "]"}], "&"}]}], "]"}]}], ";", "\n", 
+       "\n", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{"ensure", " ", "styling", " ", "is", " ", "correct"}], " ", 
+        "*)"}], "\n", "\t\t", 
+       RowBox[{"out", "=", 
+        RowBox[{"Graph", "[", 
+         RowBox[{"noDuplicates", ",", "graphstyle", ",", 
+          RowBox[{"VertexCoordinates", "\[Rule]", "vertexCoordinates"}]}], 
+         "]"}]}], ";", "\n", "\n", "\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+         RowBox[{"return", " ", "the", " ", "LC"}], "-", 
+         RowBox[{"equivalent", " ", "graph", " ", "orbit"}]}], " ", "*)"}], 
+       "\n", "\t", 
+       RowBox[{"Return", "[", "out", "]"}], ";"}], ")"}]}]}], "\n", "]"}], 
+  ";"}]], "Code",
+ CellChangeTimes->{{3.9104545730261393`*^9, 3.910454591806362*^9}, 
+   3.91045547594827*^9, {3.910455562441684*^9, 3.910455610887344*^9}, {
+   3.9106260897374897`*^9, 3.910626099312894*^9}, {3.9106261543258677`*^9, 
+   3.910626197775188*^9}, {3.9106262973238373`*^9, 3.9106263046426897`*^9}, {
+   3.91062641555702*^9, 3.910626432481289*^9}, 3.9106265520662193`*^9, {
+   3.9106266589352922`*^9, 3.910626663627956*^9}, {3.910626718772077*^9, 
+   3.910626740680963*^9}, 3.910627293280715*^9, {3.910627327627956*^9, 
+   3.910627328353973*^9}, 3.910627382420875*^9, {3.91127230109109*^9, 
+   3.911272308848391*^9}, {3.911272916163877*^9, 3.911272927798161*^9}, {
+   3.911273615444873*^9, 3.91127364329163*^9}, {3.911273729091454*^9, 
+   3.911273730651596*^9}, {3.9113698150136967`*^9, 
+   3.9113698360260763`*^9}},ExpressionUUID->"1a518a95-f53a-45f4-969b-\
+c5dfab435e5d"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "above", " ", "function", " ", "needs", " ", "to", " ", "be", " ", 
+    "fixed"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"LCOrbitIsomorphic", "[", "g", "]"}], " ", "*)"}]}]], "Input",
+ CellChangeTimes->{{3.911273646296694*^9, 3.9112736506661053`*^9}, {
+  3.911273733394705*^9, 
+  3.911273750276251*^9}},ExpressionUUID->"db4ae060-8d35-4999-9d09-\
+b91dd52e61fa"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "vertexCoordinates", ",", "g", ",", "edgeDelete", ",", "edgeDeleteGraph",
+       ",", "vertexList", ",", "vertexDeleted", ",", "ordering", ",", "out"}],
+      "}"}], ",", "\n", "\t", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Zmeasurement", "[", 
+       RowBox[{"graph_", ",", "vertex_"}], "]"}], ":=", 
+      RowBox[{"(", "\n", "\n", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "get", " ", "the", " ", "vertex", " ", "coordinates", " ", "of", " ", 
+         "the", " ", "original", " ", "graph"}], " ", "*)"}], 
+       "\[IndentingNewLine]", "\t\t", 
+       RowBox[{
+        RowBox[{"vertexCoordinates", "=", 
+         RowBox[{"GraphEmbedding", "[", "graph", "]"}]}], ";", 
+        "\[IndentingNewLine]", "\n", "\t\t", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "apply", " ", "the", " ", "vertex", " ", "coordinates", " ", "to", 
+          " ", "the", " ", "original", " ", "graph"}], " ", "*)"}], "\n", 
+        "\t\t", 
+        RowBox[{"g", "=", 
+         RowBox[{"Graph", "[", 
+          RowBox[{
+           RowBox[{"VertexList", "[", "graph", "]"}], ",", 
+           RowBox[{"EdgeList", "[", "graph", "]"}], ",", "graphstyle", ",", 
+           RowBox[{"VertexCoordinates", "\[Rule]", "vertexCoordinates"}]}], 
+          "]"}]}], ";", "\[IndentingNewLine]", "\n", "\t\t", 
+        RowBox[{"(*", " ", 
+         StyleBox[
+          RowBox[{"module", " ", "operation"}],
+          FontWeight->"Bold"], " ", "*)"}], "\n", "\t\t", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "finding", " ", "the", " ", "complement", " ", "between", " ", "all",
+           " ", "edges", " ", "and", " ", "those", " ", "edges", " ", "which",
+           " ", "join", " ", "to", " ", "the", " ", "vertex", " ", 
+          "specified", " ", "in", " ", "the", " ", "function"}], " ", "*)"}], 
+        "\n", "\t\t", 
+        RowBox[{"edgeDelete", "=", 
+         RowBox[{"Complement", "[", 
+          RowBox[{
+           RowBox[{"EdgeList", "[", "g", "]"}], ",", 
+           RowBox[{"EdgeList", "[", 
+            RowBox[{"g", ",", 
+             RowBox[{"vertex", "\[UndirectedEdge]", "_"}]}], "]"}]}], "]"}]}],
+         ";", "\n", "\t\t", 
+        RowBox[{"edgeDeleteGraph", "=", 
+         RowBox[{"Graph", "[", "edgeDelete", "]"}]}], ";", "\n", "\t\t", 
+        RowBox[{"vertexList", "=", 
+         RowBox[{"VertexList", "[", "edgeDeleteGraph", "]"}]}], ";", "\n", 
+        "\n", "\t\t", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "need", " ", "to", " ", "work", " ", "out", " ", "what", " ", 
+          "edges", " ", "have", " ", "been", " ", "deleted", " ", "as", " ", 
+          "some", " ", "vertices", " ", "will", " ", "also", " ", "be", " ", 
+          "removed"}], " ", "*)"}], "\n", "\t\t", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "only", " ", "showing", " ", "vertices", " ", "that", " ", "still", 
+          " ", "posses", " ", "an", " ", "edge"}], " ", "*)"}], 
+        "\[IndentingNewLine]", "\t\t", 
+        RowBox[{"vertexDeleted", "=", 
+         RowBox[{"Complement", "[", 
+          RowBox[{
+           RowBox[{"Range", "@", 
+            RowBox[{"Length", "@", "vertexCoordinates"}]}], ",", 
+           "vertexList"}], "]"}]}], ";", "\n", "\t\t", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+          RowBox[{"correct", " ", "re"}], "-", 
+          RowBox[{
+          "formatting", " ", "of", " ", "variable", " ", "to", " ", "parse", 
+           " ", "into", " ", "the", " ", 
+           RowBox[{"Delete", "[", "]"}], " ", "function"}]}], " ", "*)"}], 
+        "\[IndentingNewLine]", "\t\t", 
+        RowBox[{"vertexDeleted", "=", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"{", "#", "}"}], "&"}], "/@", "vertexDeleted"}]}], ";", 
+        "\n", "\t\t", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+          RowBox[{"new", " ", "vertex", " ", "co"}], "-", 
+          RowBox[{
+          "ordinates", " ", "with", " ", "deleted", " ", "vertices", " ", 
+           "removed"}]}], " ", "*)"}], " ", "\n", "\t\t", 
+        RowBox[{"vertexCoordinates", "=", 
+         RowBox[{"Delete", "[", 
+          RowBox[{"vertexCoordinates", ",", "vertexDeleted"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", "\n", "\t\t", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "need", " ", "to", " ", "get", " ", "the", " ", "order", " ", 
+          "correct"}], " ", "*)"}], "\n", "\t\t", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "rearrange", " ", "the", " ", "remaining", " ", "vertexCoordinates", 
+          " ", "with", " ", "the", " ", 
+          RowBox[{"VertexList", "[", "]"}], " ", "for", " ", "the", " ", 
+          "current", " ", "graph"}], " ", "*)"}], "\[IndentingNewLine]", 
+        "\t\t", 
+        RowBox[{"ordering", "=", 
+         RowBox[{"Ordering", "@", 
+          RowBox[{"VertexList", "[", "edgeDelete", "]"}]}]}], ";", 
+        "\[IndentingNewLine]", "\t\t", 
+        RowBox[{"vertexCoordinates", "=", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+           "vertexCoordinates", "\[LeftDoubleBracket]", "#", 
+            "\[RightDoubleBracket]"}], "&"}], "/@", "ordering"}]}], ";", "\n",
+         "\n", "\t\t", 
+        RowBox[{"(*", " ", 
+         RowBox[{"ensure", " ", "styling", " ", "is", " ", "correct"}], " ", 
+         "*)"}], "\n", "\t\t", 
+        RowBox[{"out", "=", 
+         RowBox[{"Graph", "[", 
+          RowBox[{"edgeDelete", ",", "graphstyle", ",", 
+           RowBox[{"VertexCoordinates", "\[Rule]", "vertexCoordinates"}]}], 
+          "]"}]}], ";", "\n", "\n", "\t", 
+        RowBox[{"Return", "[", "out", "]"}], ";"}], ")"}]}], ";"}]}], "\n", 
+   "]"}], ";"}]], "Code",
+ CellChangeTimes->{{3.91127298346113*^9, 3.911273210697348*^9}, {
+  3.911273360411769*^9, 3.911273369490378*^9}, {3.911285210410696*^9, 
+  3.91128529694351*^9}, {3.9112853336245413`*^9, 3.9112854048260117`*^9}, {
+  3.911285490442494*^9, 3.911285547519438*^9}, {3.911286393226156*^9, 
+  3.911286431859638*^9}, {3.9113697596000137`*^9, 
+  3.9113698111677847`*^9}},ExpressionUUID->"8d9592b5-cb52-4923-a824-\
+3578acd3034d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Zmeasurement", "[", 
+  RowBox[{"in", ",", "4"}], "]"}]], "Input",
+ CellChangeTimes->{{3.911285423173661*^9, 3.911285459050927*^9}, {
+  3.91128551758185*^9, 3.911285521821836*^9}, {3.9112855631444197`*^9, 
+  3.9112855881740217`*^9}, {3.9112864446834393`*^9, 3.911286471347341*^9}, {
+  3.9112868961614227`*^9, 
+  3.911286896245843*^9}},ExpressionUUID->"aa425700-161c-4be3-830f-\
+04999f8cd56d"],
+
+Cell[BoxData[
+ GraphicsBox[
+  NamespaceBox["NetworkGraphics",
+   DynamicModuleBox[{Typeset`graph = HoldComplete[
+     Graph[{2, 1, 6, 5}, {Null, {{1, 2}, {3, 4}}}, {EdgeStyle -> {
+         Directive[
+          GrayLevel[0], 
+          Thickness[Large], 
+          Opacity[1]]}, GraphLayout -> "CircularEmbedding", 
+       ImageSize -> {146.99479166666538`, Automatic}, 
+       VertexCoordinates -> {{0.8660254037844389, -0.5000000000000012}, {
+        0.8660254037844386, 
+        0.4999999999999993}, {-0.8660254037844384, -0.4999999999999994}, \
+{-0.8660254037844389, 0.5000000000000008}}, VertexLabels -> {
+         Placed["Name", {0.525, 0.525}]}, VertexLabelStyle -> {
+         Directive[
+          GrayLevel[1], FontFamily -> "IBM Plex Mono", 20]}, 
+       VertexSize -> {0.4}, VertexStyle -> {
+         Directive[
+          EdgeForm[{
+            Thickness[Large], 
+            Opacity[1], 
+            RGBColor[0, 0, 1]}], 
+          RGBColor[0, 0, 1]]}}]]}, 
+    TagBox[GraphicsGroupBox[{
+       {GrayLevel[0], Thickness[Large], Opacity[1], 
+        LineBox[{{{0.8660254037844389, -0.5000000000000012}, {
+         0.8660254037844386, 
+         0.4999999999999993}}, {{-0.8660254037844384, -0.4999999999999994}, \
+{-0.8660254037844389, 0.5000000000000008}}}]}, 
+       {RGBColor[0, 0, 1], EdgeForm[{RGBColor[0, 0, 1], Opacity[1], Thickness[
+        Large]}], {
+         DiskBox[{0.8660254037844389, -0.5000000000000012}, 
+          0.20000000000000007], InsetBox[
+          StyleBox["2",
+           StripOnInput->False,
+           LineColor->GrayLevel[1],
+           FrontFaceColor->GrayLevel[1],
+           BackFaceColor->GrayLevel[1],
+           GraphicsColor->GrayLevel[1],
+           FontFamily->"IBM Plex Mono",
+           FontSize->20,
+           FontColor->GrayLevel[1]], {0.8760254037844389, -0.4900000000000012},
+          
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{0.8660254037844386, 0.4999999999999993}, 
+          0.20000000000000007], InsetBox[
+          StyleBox["1",
+           StripOnInput->False,
+           LineColor->GrayLevel[1],
+           FrontFaceColor->GrayLevel[1],
+           BackFaceColor->GrayLevel[1],
+           GraphicsColor->GrayLevel[1],
+           FontFamily->"IBM Plex Mono",
+           FontSize->20,
+           FontColor->GrayLevel[1]], {0.8760254037844386, 0.5099999999999992},
+          
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{-0.8660254037844384, -0.4999999999999994}, 
+          0.20000000000000007], InsetBox[
+          StyleBox["6",
+           StripOnInput->False,
+           LineColor->GrayLevel[1],
+           FrontFaceColor->GrayLevel[1],
+           BackFaceColor->GrayLevel[1],
+           GraphicsColor->GrayLevel[1],
+           FontFamily->"IBM Plex Mono",
+           FontSize->20,
+           FontColor->GrayLevel[1]], {-0.8560254037844384, -0.48999999999999944},
+          
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{-0.8660254037844389, 0.5000000000000008}, 
+          0.20000000000000007], InsetBox[
+          StyleBox["5",
+           StripOnInput->False,
+           LineColor->GrayLevel[1],
+           FrontFaceColor->GrayLevel[1],
+           BackFaceColor->GrayLevel[1],
+           GraphicsColor->GrayLevel[1],
+           FontFamily->"IBM Plex Mono",
+           FontSize->20,
+           FontColor->GrayLevel[1]], {-0.8560254037844389, 0.5100000000000008},
+          
+          BaseStyle->"Graphics"]}}}],
+     MouseAppearanceTag["NetworkGraphics"]],
+    AllowKernelInitialization->False]],
+  DefaultBaseStyle->{
+   "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+  FormatType->TraditionalForm,
+  FrameTicks->None,
+  ImageSize->{146.99479166666538`, Automatic}]], "Output",
+ CellChangeTimes->{{3.911285435246855*^9, 3.9112854595171423`*^9}, {
+   3.911285511772266*^9, 3.911285522141556*^9}, {3.91128555866295*^9, 
+   3.911285588719426*^9}, 3.911285683031748*^9, 3.911285870958*^9, {
+   3.911286421933215*^9, 3.911286471708637*^9}},
+ CellLabel->
+  "Out[654]=",ExpressionUUID->"2937c601-96da-41ce-bfc5-67cfd16c0ad0"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", "}"}], ",", "\n", "\t", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Ymeasurement", "[", 
+       RowBox[{"graph_", ",", "vertex_"}], "]"}], ":=", 
+      RowBox[{"(", "\n", "\n", "\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{"simply", " ", "return", " ", "the", " ", 
+         RowBox[{"Zmeasurement", "[", "]"}], " ", "function", " ", "applied", 
+         " ", "to", " ", "the", " ", "LC", " ", "rotated", " ", "graph"}], 
+        " ", "*)"}], "\n", "\t", 
+       RowBox[{"Return", "[", 
+        RowBox[{"Zmeasurement", "[", 
+         RowBox[{
+          RowBox[{"LCQubit", "[", 
+           RowBox[{"graph", ",", "vertex"}], "]"}], ",", "vertex"}], "]"}], 
+        "]"}], ")"}]}], ";"}]}], "\n", "]"}], ";"}]], "Code",
+ CellChangeTimes->{{3.911286623053837*^9, 3.9112866370448227`*^9}, {
+  3.9112869745490103`*^9, 3.911287049645464*^9}, {3.911369752611271*^9, 
+  3.9113697571348543`*^9}},ExpressionUUID->"0aa79419-8cac-4711-a6fb-\
+7c0621f76e50"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Ymeasurement", "[", 
+  RowBox[{"in", ",", "2"}], "]"}]], "Input",
+ CellChangeTimes->{{3.911286666997951*^9, 3.911286674308139*^9}, {
+  3.911286891470029*^9, 3.911286904902636*^9}},
+ CellLabel->
+  "In[676]:=",ExpressionUUID->"2a361230-19ed-4ded-bc81-2bfdc87922fa"],
+
+Cell[BoxData[
+ GraphicsBox[
+  NamespaceBox["NetworkGraphics",
+   DynamicModuleBox[{Typeset`graph = HoldComplete[
+     Graph[{1, 4, 3, 6, 5}, {Null, {{1, 2}, {2, 3}, {2, 4}, {4, 5}}}, {
+      EdgeStyle -> {
+         Directive[
+          GrayLevel[0], 
+          Thickness[Large], 
+          Opacity[1]]}, GraphLayout -> "CircularEmbedding", 
+       ImageSize -> {146.99479166666538`, Automatic}, 
+       VertexCoordinates -> {{0.8660254037844386, 0.4999999999999993}, {
+        3.8285686989269494`*^-16, -1.}, {1.8369701987210297`*^-16, 
+        1.}, {-0.8660254037844384, -0.4999999999999994}, {-0.8660254037844389,
+         0.5000000000000008}}, VertexLabels -> {
+         Placed["Name", {0.525, 0.525}]}, VertexLabelStyle -> {
+         Directive[
+          GrayLevel[1], FontFamily -> "IBM Plex Mono", 20]}, 
+       VertexSize -> {0.4}, VertexStyle -> {
+         Directive[
+          EdgeForm[{
+            Thickness[Large], 
+            Opacity[1], 
+            RGBColor[0, 0, 1]}], 
+          RGBColor[0, 0, 1]]}}]]}, 
+    TagBox[GraphicsGroupBox[{
+       {GrayLevel[0], Thickness[Large], Opacity[1], 
+        LineBox[{{{0.8660254037844386, 0.4999999999999993}, {
+         3.8285686989269494`*^-16, -1.}}, {{3.8285686989269494`*^-16, -1.}, {
+         1.8369701987210297`*^-16, 1.}}, {{
+         3.8285686989269494`*^-16, -1.}, {-0.8660254037844384, \
+-0.4999999999999994}}, {{-0.8660254037844384, -0.4999999999999994}, \
+{-0.8660254037844389, 0.5000000000000008}}}]}, 
+       {RGBColor[0, 0, 1], EdgeForm[{RGBColor[0, 0, 1], Opacity[1], Thickness[
+        Large]}], {DiskBox[{0.8660254037844386, 0.4999999999999993}, 0.2], 
+         InsetBox[
+          StyleBox["1",
+           StripOnInput->False,
+           LineColor->GrayLevel[1],
+           FrontFaceColor->GrayLevel[1],
+           BackFaceColor->GrayLevel[1],
+           GraphicsColor->GrayLevel[1],
+           FontFamily->"IBM Plex Mono",
+           FontSize->20,
+           FontColor->GrayLevel[1]], {0.8760254037844386, 0.5099999999999993},
+          
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{3.8285686989269494*^-16, -1.}, 0.2], InsetBox[
+          StyleBox["4",
+           StripOnInput->False,
+           LineColor->GrayLevel[1],
+           FrontFaceColor->GrayLevel[1],
+           BackFaceColor->GrayLevel[1],
+           GraphicsColor->GrayLevel[1],
+           FontFamily->"IBM Plex Mono",
+           FontSize->20,
+           FontColor->GrayLevel[1]], {0.010000000000000397, -0.99},
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{1.8369701987210297*^-16, 1.}, 0.2], InsetBox[
+          StyleBox["3",
+           StripOnInput->False,
+           LineColor->GrayLevel[1],
+           FrontFaceColor->GrayLevel[1],
+           BackFaceColor->GrayLevel[1],
+           GraphicsColor->GrayLevel[1],
+           FontFamily->"IBM Plex Mono",
+           FontSize->20,
+           FontColor->GrayLevel[1]], {0.010000000000000203, 1.01},
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{-0.8660254037844384, -0.4999999999999994}, 0.2], InsetBox[
+          StyleBox["6",
+           StripOnInput->False,
+           LineColor->GrayLevel[1],
+           FrontFaceColor->GrayLevel[1],
+           BackFaceColor->GrayLevel[1],
+           GraphicsColor->GrayLevel[1],
+           FontFamily->"IBM Plex Mono",
+           FontSize->20,
+           FontColor->GrayLevel[1]], {-0.8560254037844384, -0.4899999999999994},
+          
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{-0.8660254037844389, 0.5000000000000008}, 0.2], InsetBox[
+          StyleBox["5",
+           StripOnInput->False,
+           LineColor->GrayLevel[1],
+           FrontFaceColor->GrayLevel[1],
+           BackFaceColor->GrayLevel[1],
+           GraphicsColor->GrayLevel[1],
+           FontFamily->"IBM Plex Mono",
+           FontSize->20,
+           FontColor->GrayLevel[1]], {-0.8560254037844389, 0.5100000000000008},
+          
+          BaseStyle->"Graphics"]}}}],
+     MouseAppearanceTag["NetworkGraphics"]],
+    AllowKernelInitialization->False]],
+  DefaultBaseStyle->{
+   "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+  FormatType->TraditionalForm,
+  FrameTicks->None,
+  ImageSize->{146.99479166666538`, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.911286674946147*^9, {3.911286892249251*^9, 3.911286910418952*^9}, 
+   3.9112870536839542`*^9},
+ CellLabel->
+  "Out[676]=",ExpressionUUID->"3cfcdb5d-8c4a-489d-9acc-b877c3cac81d"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"randomNeighbour", ",", "tempGraph", ",", "out"}], "}"}], ",", 
+    "\n", "\t", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Xmeasurement", "[", 
+       RowBox[{"graph_", ",", "vertex_"}], "]"}], ":=", 
+      RowBox[{"(", "\n", "\n", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "randomly", " ", "choose", " ", "neighbouring", " ", "vertex", " ", 
+         RowBox[{"(", 
+          RowBox[{"where", " ", "applicable"}], ")"}]}], " ", "*)"}], "\n", 
+       "\t\t", 
+       RowBox[{
+        RowBox[{"randomNeighbour", "=", 
+         RowBox[{"RandomChoice", "@", 
+          RowBox[{"AdjacencyList", "[", 
+           RowBox[{"graph", ",", "vertex"}], "]"}]}]}], ";", "\n", "\n", 
+        "\t\t", 
+        RowBox[{"(*", " ", 
+         RowBox[{"perform", " ", 
+          RowBox[{"Ymeasurement", "[", "]"}], " ", "function", " ", "to", " ",
+           "said", " ", "randomly", " ", "chosen", " ", "neighbour"}], " ", 
+         "*)"}], "\n", "\t\t", 
+        RowBox[{"tempGraph", "=", 
+         RowBox[{"Ymeasurement", "[", 
+          RowBox[{
+           RowBox[{"LCQubit", "[", 
+            RowBox[{"graph", ",", "randomNeighbour"}], "]"}], ",", "vertex"}],
+           "]"}]}], ";", "\n", "\n", "\t\t", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "correct", " ", "styling", " ", "is", " ", "already", " ", "applied",
+           " ", "withing", " ", "the", " ", 
+          RowBox[{"Ymeasurement", "[", "]"}], " ", "function"}], " ", "*)"}], 
+        "\n", "\t\t", 
+        RowBox[{"out", "=", 
+         RowBox[{"LCQubit", "[", 
+          RowBox[{"tempGraph", ",", "randomNeighbour"}], "]"}]}], ";", "\n", 
+        "\n", "\t", 
+        RowBox[{"Return", "[", "out", "]"}]}], ")"}]}], ";"}]}], "]"}], 
+  ";"}]], "Code",
+ CellChangeTimes->{{3.911286520486052*^9, 3.911286595029119*^9}, {
+  3.911286916216729*^9, 3.911286937827734*^9}, {3.911287061403139*^9, 
+  3.911287144370945*^9}, {3.9113104881396027`*^9, 3.911310522933189*^9}, {
+  3.911369735873757*^9, 
+  3.911369746565721*^9}},ExpressionUUID->"95904597-d97a-4f22-a5db-\
+7a198a721438"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Xmeasurement", "[", 
+  RowBox[{"in", ",", "2"}], "]"}]], "Input",
+ CellChangeTimes->{{3.9112869337932663`*^9, 3.911286956529581*^9}},
+ CellLabel->
+  "In[674]:=",ExpressionUUID->"e5ea3cb6-d3af-47c2-b176-8969d6b50b5f"],
+
+Cell[BoxData[
+ GraphicsBox[
+  NamespaceBox["NetworkGraphics",
+   DynamicModuleBox[{Typeset`graph = HoldComplete[
+     Graph[{1, 3, 4, 5, 6}, {Null, {{1, 3}, {3, 2}, {3, 5}, {5, 4}}}, {
+      EdgeStyle -> {
+         Directive[
+          GrayLevel[0], 
+          Thickness[Large], 
+          Opacity[1]]}, 
+       GraphLayout -> {
+        "Dimension" -> 2, "VertexLayout" -> "CircularEmbedding"}, 
+       ImageSize -> {146.99479166666538`, Automatic}, 
+       VertexCoordinates -> {{0.8660254037844386, 0.4999999999999993}, {
+        3.8285686989269494`*^-16, -1.}, {1.8369701987210297`*^-16, 
+        1.}, {-0.8660254037844384, -0.4999999999999994}, {-0.8660254037844389,
+         0.5000000000000008}}, VertexLabels -> {
+         Placed["Name", {0.525, 0.525}]}, VertexLabelStyle -> {
+         Directive[
+          GrayLevel[1], FontFamily -> "IBM Plex Mono", 20]}, 
+       VertexSize -> {0.4}, VertexStyle -> {
+         Directive[
+          EdgeForm[{
+            Thickness[Large], 
+            Opacity[1], 
+            RGBColor[0, 0, 1]}], 
+          RGBColor[0, 0, 1]]}}]]}, 
+    TagBox[GraphicsGroupBox[{
+       {GrayLevel[0], Thickness[Large], Opacity[1], 
+        LineBox[{{{0.8660254037844386, 0.4999999999999993}, {
+         1.8369701987210297`*^-16, 1.}}, {{3.8285686989269494`*^-16, -1.}, {
+         1.8369701987210297`*^-16, 1.}}, {{1.8369701987210297`*^-16, 
+         1.}, {-0.8660254037844389, 
+         0.5000000000000008}}, {{-0.8660254037844384, -0.4999999999999994}, \
+{-0.8660254037844389, 0.5000000000000008}}}]}, 
+       {RGBColor[0, 0, 1], EdgeForm[{RGBColor[0, 0, 1], Opacity[1], Thickness[
+        Large]}], {DiskBox[{0.8660254037844386, 0.4999999999999993}, 0.2], 
+         InsetBox[
+          StyleBox["1",
+           StripOnInput->False,
+           LineColor->GrayLevel[1],
+           FrontFaceColor->GrayLevel[1],
+           BackFaceColor->GrayLevel[1],
+           GraphicsColor->GrayLevel[1],
+           FontFamily->"IBM Plex Mono",
+           FontSize->20,
+           FontColor->GrayLevel[1]], {0.8760254037844386, 0.5099999999999993},
+          
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{3.8285686989269494*^-16, -1.}, 0.2], InsetBox[
+          StyleBox["3",
+           StripOnInput->False,
+           LineColor->GrayLevel[1],
+           FrontFaceColor->GrayLevel[1],
+           BackFaceColor->GrayLevel[1],
+           GraphicsColor->GrayLevel[1],
+           FontFamily->"IBM Plex Mono",
+           FontSize->20,
+           FontColor->GrayLevel[1]], {0.010000000000000397, -0.99},
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{1.8369701987210297*^-16, 1.}, 0.2], InsetBox[
+          StyleBox["4",
+           StripOnInput->False,
+           LineColor->GrayLevel[1],
+           FrontFaceColor->GrayLevel[1],
+           BackFaceColor->GrayLevel[1],
+           GraphicsColor->GrayLevel[1],
+           FontFamily->"IBM Plex Mono",
+           FontSize->20,
+           FontColor->GrayLevel[1]], {0.010000000000000203, 1.01},
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{-0.8660254037844384, -0.4999999999999994}, 0.2], InsetBox[
+          StyleBox["5",
+           StripOnInput->False,
+           LineColor->GrayLevel[1],
+           FrontFaceColor->GrayLevel[1],
+           BackFaceColor->GrayLevel[1],
+           GraphicsColor->GrayLevel[1],
+           FontFamily->"IBM Plex Mono",
+           FontSize->20,
+           FontColor->GrayLevel[1]], {-0.8560254037844384, -0.4899999999999994},
+          
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{-0.8660254037844389, 0.5000000000000008}, 0.2], InsetBox[
+          StyleBox["6",
+           StripOnInput->False,
+           LineColor->GrayLevel[1],
+           FrontFaceColor->GrayLevel[1],
+           BackFaceColor->GrayLevel[1],
+           GraphicsColor->GrayLevel[1],
+           FontFamily->"IBM Plex Mono",
+           FontSize->20,
+           FontColor->GrayLevel[1]], {-0.8560254037844389, 0.5100000000000008},
+          
+          BaseStyle->"Graphics"]}}}],
+     MouseAppearanceTag["NetworkGraphics"]],
+    AllowKernelInitialization->False]],
+  DefaultBaseStyle->{
+   "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+  FormatType->TraditionalForm,
+  FrameTicks->None,
+  ImageSize->{146.99479166666538`, Automatic}]], "Output",
+ CellChangeTimes->{{3.9112869521281443`*^9, 3.911286966691946*^9}},
+ CellLabel->
+  "Out[674]=",ExpressionUUID->"9a8db069-af7e-4b8c-90c3-438fe38d36f0"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "dim", ",", "ops", ",", "opsList", ",", "coding", ",", "codingState", 
+      ",", "allStates", ",", "pos", ",", "out", ",", "transformations"}], 
+     "}"}], ",", "\n", "\t", 
+    RowBox[{
+     RowBox[{"FindStabilzers", "[", "state_", "]"}], " ", ":=", " ", 
+     RowBox[{"(", "\n", "\t", "\n", "\t\t", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "calculate", " ", "the", " ", "dimension", " ", "of", " ", "the", " ", 
+        "quantum", " ", "state"}], " ", "*)"}], "\n", "\t\t", 
+      RowBox[{
+       RowBox[{"dim", "=", 
+        RowBox[{"1", "/", 
+         RowBox[{"Log", "[", 
+          RowBox[{
+           RowBox[{"Length", "[", "state", "]"}], ",", "2"}], "]"}]}]}], ";", 
+       "\n", "\n", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "define", " ", "a", " ", "set", " ", "of", " ", "Pauli", " ", 
+         "operators"}], " ", "*)"}], "\n", "\t\t", 
+       RowBox[{"ops", "=", 
+        RowBox[{"Tuples", "[", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"\[DoubleStruckCapitalI]", "[", "i", "]"}], ",", 
+             RowBox[{"\[DoubleStruckCapitalX]", "[", "i", "]"}], ",", 
+             RowBox[{"\[DoubleStruckCapitalZ]", "[", "i", "]"}], ",", 
+             RowBox[{"-", 
+              RowBox[{"\[DoubleStruckCapitalZ]", "[", "i", "]"}]}]}], "}"}], 
+           ",", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", "1", ",", "dim"}], "}"}]}], "]"}], "]"}]}], ";",
+        "\n", "\n", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "List", " ", "of", " ", "rules", " ", "for", " ", "the", " ", 
+         "application", " ", "of", " ", "the", " ", "Pauli", " ", "matrices", 
+         " ", "to", " ", "basis", " ", "vectors"}], " ", "*)"}], "\n", "\t\t", 
+       RowBox[{"transformations", "=", 
+        RowBox[{"{", "\n", "\t\t", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"\[DoubleStruckCapitalI]", "[", "qubit_", "]"}], "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"H", "[", "qubit", "]"}], "\[Rule]", 
+               RowBox[{"H", "[", "qubit", "]"}]}], ",", 
+              RowBox[{
+               RowBox[{"V", "[", "qubit", "]"}], "\[Rule]", 
+               RowBox[{"V", "[", "qubit", "]"}]}]}], "}"}], "}"}]}], ",", 
+          "\n", "\t\t", 
+          RowBox[{
+           RowBox[{"\[DoubleStruckCapitalX]", "[", "qubit_", "]"}], "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"H", "[", "qubit", "]"}], "\[Rule]", 
+               RowBox[{"V", "[", "qubit", "]"}]}], ",", 
+              RowBox[{
+               RowBox[{"V", "[", "qubit", "]"}], "\[Rule]", 
+               RowBox[{"H", "[", "qubit", "]"}]}]}], "}"}], "}"}]}], ",", 
+          "\n", "\t\t", 
+          RowBox[{
+           RowBox[{"-", 
+            RowBox[{"\[DoubleStruckCapitalX]", "[", "qubit_", "]"}]}], 
+           "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"H", "[", "qubit", "]"}], "\[Rule]", 
+               RowBox[{"-", 
+                RowBox[{"V", "[", "qubit", "]"}]}]}], ",", 
+              RowBox[{
+               RowBox[{"V", "[", "qubit", "]"}], "\[Rule]", 
+               RowBox[{"-", 
+                RowBox[{"H", "[", "qubit", "]"}]}]}]}], "}"}], "}"}]}], ",", 
+          "\n", "\t\t", 
+          RowBox[{
+           RowBox[{"\[DoubleStruckCapitalI]", "*", 
+            RowBox[{"\[DoubleStruckCapitalX]", "[", "qubit_", "]"}]}], 
+           "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"H", "[", "qubit", "]"}], "\[Rule]", 
+               RowBox[{"\[DoubleStruckCapitalI]", "*", 
+                RowBox[{"V", "[", "qubit", "]"}]}]}], ",", 
+              RowBox[{
+               RowBox[{"V", "[", "qubit", "]"}], "\[Rule]", 
+               RowBox[{"\[DoubleStruckCapitalI]", "*", 
+                RowBox[{"H", "[", "qubit", "]"}]}]}]}], "}"}], "}"}]}], ",", 
+          "\n", "\t\t", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"-", "\[DoubleStruckCapitalI]"}], "*", 
+            RowBox[{"\[DoubleStruckCapitalX]", "[", "qubit_", "]"}]}], 
+           "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"H", "[", "qubit", "]"}], "\[Rule]", 
+               RowBox[{
+                RowBox[{"-", "\[DoubleStruckCapitalI]"}], "*", 
+                RowBox[{"V", "[", "qubit", "]"}]}]}], ",", 
+              RowBox[{
+               RowBox[{"V", "[", "qubit", "]"}], "\[Rule]", 
+               RowBox[{
+                RowBox[{"-", "\[DoubleStruckCapitalI]"}], "*", 
+                RowBox[{"H", "[", "qubit", "]"}]}]}]}], "}"}], "}"}]}], ",", 
+          "\n", "\t\t", 
+          RowBox[{
+           RowBox[{"\[DoubleStruckCapitalZ]", "[", "qubit_", "]"}], "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"H", "[", "qubit", "]"}], "\[Rule]", 
+               RowBox[{"H", "[", "qubit", "]"}]}], ",", 
+              RowBox[{
+               RowBox[{"V", "[", "qubit", "]"}], "\[Rule]", 
+               RowBox[{"-", 
+                RowBox[{"V", "[", "qubit", "]"}]}]}]}], "}"}], "}"}]}], ",", 
+          "\n", "\t\t", 
+          RowBox[{
+           RowBox[{"-", 
+            RowBox[{"\[DoubleStruckCapitalZ]", "[", "qubit_", "]"}]}], 
+           "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"H", "[", "qubit", "]"}], "\[Rule]", 
+               RowBox[{"-", 
+                RowBox[{"H", "[", "qubit", "]"}]}]}], ",", 
+              RowBox[{
+               RowBox[{"V", "[", "qubit", "]"}], "\[Rule]", 
+               RowBox[{"V", "[", "qubit", "]"}]}]}], "}"}], "}"}]}], ",", 
+          "\n", "\t\t", 
+          RowBox[{
+           RowBox[{"\[DoubleStruckCapitalI]", "*", 
+            RowBox[{"\[DoubleStruckCapitalZ]", "[", "qubit_", "]"}]}], 
+           "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"H", "[", "qubit", "]"}], "\[Rule]", 
+               RowBox[{"\[DoubleStruckCapitalI]", "*", 
+                RowBox[{"H", "[", "qubit", "]"}]}]}], ",", 
+              RowBox[{
+               RowBox[{"V", "[", "qubit", "]"}], "\[Rule]", 
+               RowBox[{
+                RowBox[{"-", "\[DoubleStruckCapitalI]"}], "*", 
+                RowBox[{"V", "[", "qubit", "]"}]}]}]}], "}"}], "}"}]}], ",", 
+          "\n", "\t\t", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"-", "\[DoubleStruckCapitalI]"}], "*", 
+            RowBox[{"\[DoubleStruckCapitalZ]", "[", "qubit_", "]"}]}], 
+           "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"H", "[", "qubit", "]"}], "\[Rule]", 
+               RowBox[{"\[DoubleStruckCapitalI]", "*", 
+                RowBox[{"H", "[", "qubit", "]"}]}]}], ",", 
+              RowBox[{
+               RowBox[{"V", "[", "qubit", "]"}], "\[Rule]", 
+               RowBox[{
+                RowBox[{"-", "\[DoubleStruckCapitalI]"}], "*", 
+                RowBox[{"V", "[", "qubit", "]"}]}]}]}], "}"}], "}"}]}], ",", 
+          "\n", "\t\t", 
+          RowBox[{
+           RowBox[{"\[DoubleStruckCapitalY]", "[", "qubit_", "]"}], "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"H", "[", "qubit", "]"}], "\[Rule]", 
+               RowBox[{"\[DoubleStruckCapitalI]", "*", 
+                RowBox[{"V", "[", "qubit", "]"}]}]}], ",", 
+              RowBox[{
+               RowBox[{"V", "[", "qubit", "]"}], "\[Rule]", 
+               RowBox[{
+                RowBox[{"-", "\[DoubleStruckCapitalI]"}], "*", 
+                RowBox[{"H", "[", "qubit", "]"}]}]}]}], "}"}], "}"}]}], ",", 
+          "\n", "\t\t", 
+          RowBox[{
+           RowBox[{"-", 
+            RowBox[{"\[DoubleStruckCapitalY]", "[", "qubit_", "]"}]}], 
+           "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"H", "[", "qubit", "]"}], "\[Rule]", 
+               RowBox[{
+                RowBox[{"-", "\[DoubleStruckCapitalI]"}], "*", 
+                RowBox[{"V", "[", "qubit", "]"}]}]}], ",", 
+              RowBox[{
+               RowBox[{"V", "[", "qubit", "]"}], "\[Rule]", 
+               RowBox[{"\[DoubleStruckCapitalI]", "*", 
+                RowBox[{"H", "[", "qubit", "]"}]}]}]}], "}"}], "}"}]}], ",", 
+          "\n", "\t\t", 
+          RowBox[{
+           RowBox[{"\[DoubleStruckCapitalI]", "*", 
+            RowBox[{"\[DoubleStruckCapitalY]", "[", "qubit_", "]"}]}], 
+           "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"H", "[", "qubit", "]"}], "\[Rule]", 
+               RowBox[{"-", 
+                RowBox[{"V", "[", "qubit", "]"}]}]}], ",", 
+              RowBox[{
+               RowBox[{"V", "[", "qubit", "]"}], "\[Rule]", 
+               RowBox[{"H", "[", "qubit", "]"}]}]}], "}"}], "}"}]}], ",", 
+          "\n", "\t\t", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"-", "\[DoubleStruckCapitalI]"}], "*", 
+            RowBox[{"\[DoubleStruckCapitalY]", "[", "qubit_", "]"}]}], 
+           "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"H", "[", "qubit", "]"}], "\[Rule]", 
+               RowBox[{"V", "[", "qubit", "]"}]}], ",", 
+              RowBox[{
+               RowBox[{"V", "[", "qubit", "]"}], "\[Rule]", 
+               RowBox[{"-", 
+                RowBox[{"H", "[", "qubit", "]"}]}]}]}], "}"}], "}"}]}]}], 
+         "}"}]}], ";", "\n", "\n", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "flatten", " ", "the", " ", "list", " ", "of", " ", "Pauli", " ", 
+         "operators"}], " ", "*)"}], "\n", "\t\t", 
+       RowBox[{"opsList", "=", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Flatten", "[", 
+           RowBox[{"#", "/.", "transformations"}], "]"}], "&"}], "/@", 
+         "ops"}]}], ";", "\n", "\n", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "define", " ", "a", " ", "symbolic", " ", "coding", " ", "for", " ", 
+         "the", " ", "state", " ", "using", " ", "Kronecker", " ", 
+         "product"}], " ", "*)"}], "\n", "\t\t", 
+       RowBox[{"coding", "=", 
+        RowBox[{
+         RowBox[{"Kron", "@@", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"H", "[", "i", "]"}], ",", 
+              RowBox[{"V", "[", "i", "]"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"i", ",", "1", ",", "dim"}], "}"}]}], "]"}]}], "//", 
+         "Flatten"}]}], ";", "\n", "\n", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "calculate", " ", "the", " ", "symbolic", " ", "representation", " ", 
+         "of", " ", "the", " ", "state"}], " ", "*)"}], "\n", "\t\t", 
+       RowBox[{"codingState", "=", 
+        RowBox[{"Total", "[", 
+         RowBox[{"state", "*", "coding"}], "]"}]}], ";", "\n", "\n", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "calculate", " ", "the", " ", "symbolic", " ", "representations", " ",
+          "of", " ", "all", " ", "possible", " ", "states"}], " ", "*)"}], 
+       "\n", "\t\t", 
+       RowBox[{"allStates", "=", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"codingState", "/.", "#"}], "&"}], "/@", "opsList"}]}], ";",
+        "\n", "\n", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "find", " ", "the", " ", "positions", " ", "where", " ", "the", " ", 
+         "state", " ", "matches", " ", "each", " ", "possible", " ", 
+         "state"}], " ", "*)"}], "\n", "\t\t", 
+       RowBox[{"pos", "=", 
+        RowBox[{
+         RowBox[{"Position", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"#", "==", 
+              RowBox[{"(", "codingState", ")"}]}], "&"}], "/@", "allStates"}],
+            ",", "True"}], "]"}], "//", "Flatten"}]}], ";", "\n", "\n", 
+       "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "return", " ", "the", " ", "symbolic", " ", "representations", " ", 
+         "of", " ", "the", " ", "corresponding", " ", "Pauli", " ", 
+         "operators"}], " ", "*)"}], "\n", "\t\t", 
+       RowBox[{"out", "=", 
+        RowBox[{
+        "ops", "\[LeftDoubleBracket]", "pos", "\[RightDoubleBracket]"}]}], 
+       ";", "\n", "\t", 
+       RowBox[{"Return", "[", "out", "]"}], ";"}], ")"}]}]}], "\n", "]"}], 
+  ";"}]], "Code",
+ CellChangeTimes->{{3.911310254338086*^9, 3.911310254748506*^9}, {
+  3.911310285801713*^9, 3.911310329786166*^9}, {3.9113104547841*^9, 
+  3.911310483558367*^9}, {3.9113105265327377`*^9, 3.911310573258863*^9}, {
+  3.911310859670803*^9, 3.911310865463793*^9}, {3.9113110199117193`*^9, 
+  3.911311022820105*^9}, {3.911311565539669*^9, 3.911311591991078*^9}, {
+  3.911311681070387*^9, 3.911311681594953*^9}, {3.9113126822609177`*^9, 
+  3.9113127307507563`*^9}, {3.911313308715864*^9, 3.911313313612138*^9}, {
+  3.91131380579067*^9, 3.9113138085718927`*^9}, {3.911317645036179*^9, 
+  3.911317667759839*^9}, {3.911363801441386*^9, 3.911363855245566*^9}, {
+  3.911365124929695*^9, 
+  3.911365195479911*^9}},ExpressionUUID->"97ae4a1a-e8e0-40c2-a710-\
+3e0b9e6a0a61"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"state", "=", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"1", "/", 
+     RowBox[{"Sqrt", "[", "2", "]"}]}], ")"}], "*", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"Kron", "[", 
+      RowBox[{"h", ",", "h", ",", "h"}], "]"}], "+", 
+     RowBox[{"Kron", "[", 
+      RowBox[{"v", ",", "v", ",", "v"}], "]"}]}], ")"}]}]}]], "Input",
+ CellChangeTimes->{{3.91131087906958*^9, 3.9113109226386642`*^9}, {
+  3.9113115445261393`*^9, 3.911311554768115*^9}, {3.911311664530707*^9, 
+  3.911311671095222*^9}, {3.9113124344824133`*^9, 3.9113124350799837`*^9}, {
+  3.911313383957287*^9, 3.911313387415312*^9}, {3.911317613501886*^9, 
+  3.911317615992449*^9}, {3.911318301970901*^9, 3.911318305901822*^9}},
+ CellLabel->
+  "In[858]:=",ExpressionUUID->"71d908c7-419f-4857-b694-2ba7d27ea367"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    FractionBox["1", 
+     SqrtBox["2"]], "}"}], ",", 
+   RowBox[{"{", "0", "}"}], ",", 
+   RowBox[{"{", "0", "}"}], ",", 
+   RowBox[{"{", "0", "}"}], ",", 
+   RowBox[{"{", "0", "}"}], ",", 
+   RowBox[{"{", "0", "}"}], ",", 
+   RowBox[{"{", "0", "}"}], ",", 
+   RowBox[{"{", 
+    FractionBox["1", 
+     SqrtBox["2"]], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.911310894667861*^9, 3.911310929929463*^9}, 
+   3.9113113089388857`*^9, 3.911311556107202*^9, 3.9113115966248283`*^9, 
+   3.9113116719976788`*^9, 3.9113124367094517`*^9, 3.911312467562744*^9, 
+   3.911312737338629*^9, 3.911313387949362*^9, {3.911317605275817*^9, 
+   3.911317616524475*^9}, 3.911318306292447*^9, 3.911318937716713*^9, 
+   3.9113640722263727`*^9, 3.911375071200644*^9},
+ CellLabel->
+  "Out[858]=",ExpressionUUID->"fb4b5719-c4b4-4a50-94f4-58f854daf385"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FindStabilzers", "[", "state", "]"}]], "Input",
+ CellChangeTimes->{{3.911313317104151*^9, 3.91131332131459*^9}},
+ CellLabel->
+  "In[859]:=",ExpressionUUID->"b2d7c3aa-df36-4700-8688-03a4c671ffbb"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\[DoubleStruckCapitalI]", "[", "1", "]"}], ",", 
+     RowBox[{"\[DoubleStruckCapitalI]", "[", "2", "]"}], ",", 
+     RowBox[{"\[DoubleStruckCapitalI]", "[", "3", "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\[DoubleStruckCapitalI]", "[", "1", "]"}], ",", 
+     RowBox[{"\[DoubleStruckCapitalZ]", "[", "2", "]"}], ",", 
+     RowBox[{"\[DoubleStruckCapitalZ]", "[", "3", "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\[DoubleStruckCapitalI]", "[", "1", "]"}], ",", 
+     RowBox[{"-", 
+      RowBox[{"\[DoubleStruckCapitalZ]", "[", "2", "]"}]}], ",", 
+     RowBox[{"-", 
+      RowBox[{"\[DoubleStruckCapitalZ]", "[", "3", "]"}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\[DoubleStruckCapitalX]", "[", "1", "]"}], ",", 
+     RowBox[{"\[DoubleStruckCapitalX]", "[", "2", "]"}], ",", 
+     RowBox[{"\[DoubleStruckCapitalX]", "[", "3", "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\[DoubleStruckCapitalZ]", "[", "1", "]"}], ",", 
+     RowBox[{"\[DoubleStruckCapitalI]", "[", "2", "]"}], ",", 
+     RowBox[{"\[DoubleStruckCapitalZ]", "[", "3", "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\[DoubleStruckCapitalZ]", "[", "1", "]"}], ",", 
+     RowBox[{"\[DoubleStruckCapitalZ]", "[", "2", "]"}], ",", 
+     RowBox[{"\[DoubleStruckCapitalI]", "[", "3", "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", 
+      RowBox[{"\[DoubleStruckCapitalZ]", "[", "1", "]"}]}], ",", 
+     RowBox[{"\[DoubleStruckCapitalI]", "[", "2", "]"}], ",", 
+     RowBox[{"-", 
+      RowBox[{"\[DoubleStruckCapitalZ]", "[", "3", "]"}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", 
+      RowBox[{"\[DoubleStruckCapitalZ]", "[", "1", "]"}]}], ",", 
+     RowBox[{"-", 
+      RowBox[{"\[DoubleStruckCapitalZ]", "[", "2", "]"}]}], ",", 
+     RowBox[{"\[DoubleStruckCapitalI]", "[", "3", "]"}]}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{
+  3.9113133217577133`*^9, 3.9113133896049023`*^9, {3.911317606725193*^9, 
+   3.9113176192626247`*^9}, 3.9113183076987123`*^9, 3.911318939281536*^9, {
+   3.911364072301094*^9, 3.911364082744607*^9}, 3.9113750737034473`*^9},
+ CellLabel->
+  "Out[859]=",ExpressionUUID->"ab167d28-2fae-4329-8b29-ff10e7783360"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "dim", ",", "listStab", ",", "comb", ",", "cliffOp", ",", "combCliff", 
+      ",", "stabComb", ",", "graphGen", ",", "noSameNodeList", ",", "posStab",
+       ",", "graphList"}], "}"}], ",", "\n", "\t", 
+    RowBox[{
+     RowBox[{"FindGraph", "[", "state_", "]"}], ":=", 
+     RowBox[{"(", "\n", "\n", "\t\t", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "compute", " ", "dimension", " ", "of", " ", "the", " ", "input", " ", 
+        "state"}], " ", "*)"}], "\n", "\t\t", 
+      RowBox[{
+       RowBox[{"dim", "=", 
+        RowBox[{"1", "/", 
+         RowBox[{"Log", "[", 
+          RowBox[{
+           RowBox[{"Length", "[", "state", "]"}], ",", "2"}], "]"}]}]}], ";", 
+       "\n", "\n", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+         RowBox[{
+         "call", " ", "function", " ", "FindSGroupXZSymbolic", " ", "to", " ",
+           "get", " ", "a", " ", "list", " ", "of", " ", "stabilizers", " ", 
+          "from", " ", "all", " ", "comb", " ", "of", " ", "I"}], ",", "X", 
+         ",", 
+         RowBox[{
+          RowBox[{"Z", " ", "and"}], " ", "-", "Z"}]}], "*)"}], "\n", "\t\t", 
+       
+       RowBox[{"(*", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"As", " ", "the", " ", "phase"}], " ", "-", 
+          RowBox[{
+          "Z", " ", "does", " ", "not", " ", "matter", " ", "for", " ", 
+           "finding", " ", "the", " ", "graph", " ", "state"}]}], ",", " ", 
+         RowBox[{"remove", " ", "it"}]}], " ", "*)"}], "\n", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+         RowBox[{"e", ".", "g", ".", " ", 
+          RowBox[{"-", "Z"}]}], ",", 
+         RowBox[{"I", " ", "and", " ", "Z"}], ",", 
+         RowBox[{
+         "I", " ", "stabilize", " ", "two", " ", "different", " ", "states", 
+          " ", "but", " ", "the", " ", "same", " ", "graph", " ", "state"}]}],
+         " ", "*)"}], "\n", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+         RowBox[{
+         "note", " ", "that", " ", "the", " ", "ideal", " ", "routine", " ", 
+          "would", " ", "be", " ", "to", " ", "find", " ", "only", " ", "the",
+           " ", "stabilizer", " ", "generators"}], ",", " ", 
+         RowBox[{"still", " ", "open", " ", "problem"}]}], " ", "*)"}], "\n", 
+       "\t\t", 
+       RowBox[{"listStab", "=", 
+        RowBox[{"Union", "[", 
+         RowBox[{
+          RowBox[{"FindStabilzers", "[", "state", "]"}], "/.", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", 
+             RowBox[{"\[DoubleStruckCapitalZ]", "[", "qubit_", "]"}]}], 
+            "\[Rule]", 
+            RowBox[{"\[DoubleStruckCapitalZ]", "[", "qubit", "]"}]}], "}"}]}],
+          "]"}]}], ";", "\n", "\n", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "consider", " ", "all", " ", "combinations", " ", "of", " ", 
+         "Hadamard", " ", "and", " ", "Identity"}], " ", "*)"}], "\n", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+         RowBox[{"should", " ", "be", " ", "enough"}], ",", " ", 
+         RowBox[{
+         "but", " ", "might", " ", "need", " ", "to", " ", "consider", " ", 
+          "phase", " ", "gate"}]}], " ", "*)"}], "\n", "\t\t", 
+       RowBox[{"comb", "=", 
+        RowBox[{"Tuples", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Table", "[", 
+             RowBox[{
+              RowBox[{"\[DoubleStruckCapitalH]", "[", "i", "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"i", ",", "dim"}], "}"}]}], "]"}], ",", 
+            RowBox[{"Table", "[", 
+             RowBox[{
+              RowBox[{"\[DoubleStruckCapitalI]", "[", "i", "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"i", ",", "dim"}], "}"}]}], "]"}]}], "}"}], 
+          "\[Transpose]"}], "]"}]}], ";", "\n", "\n", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{"set", " ", "the", " ", "replacement", " ", "rules"}], " ", 
+        "*)"}], "\n", "\t\t", 
+       RowBox[{"cliffOp", "=", 
+        RowBox[{"{", "\n", "\t\t", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"\[DoubleStruckCapitalH]", "[", "qubit_", "]"}], "->", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"\[DoubleStruckCapitalI]", "[", "qubit", "]"}], 
+              "\[Rule]", 
+              RowBox[{"\[DoubleStruckCapitalI]", "[", "qubit", "]"}]}], ",", 
+             RowBox[{
+              RowBox[{"\[DoubleStruckCapitalX]", "[", "qubit", "]"}], 
+              "\[Rule]", 
+              RowBox[{"\[DoubleStruckCapitalZ]", "[", "qubit", "]"}]}], ",", 
+             RowBox[{
+              RowBox[{"\[DoubleStruckCapitalY]", "[", "qubit", "]"}], 
+              "\[Rule]", 
+              RowBox[{"\[DoubleStruckCapitalY]", "[", "qubit", "]"}]}], ",", 
+             RowBox[{
+              RowBox[{"\[DoubleStruckCapitalZ]", "[", "qubit", "]"}], 
+              "\[Rule]", 
+              RowBox[{"\[DoubleStruckCapitalX]", "[", "qubit", "]"}]}]}], 
+            "}"}]}], ",", "\n", "\t\t", 
+          RowBox[{
+           RowBox[{"\[DoubleStruckCapitalI]", "[", "qubit_", "]"}], "->", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"\[DoubleStruckCapitalI]", "[", "qubit", "]"}], "->", 
+              RowBox[{"\[DoubleStruckCapitalI]", "[", "qubit", "]"}]}], ",", 
+             RowBox[{
+              RowBox[{"\[DoubleStruckCapitalX]", "[", "qubit", "]"}], 
+              "\[Rule]", 
+              RowBox[{"\[DoubleStruckCapitalX]", "[", "qubit", "]"}]}], ",", 
+             RowBox[{
+              RowBox[{"\[DoubleStruckCapitalY]", "[", "qubit", "]"}], 
+              "\[Rule]", 
+              RowBox[{"\[DoubleStruckCapitalY]", "[", "qubit", "]"}]}], ",", 
+             RowBox[{
+              RowBox[{"\[DoubleStruckCapitalZ]", "[", "qubit", "]"}], 
+              "\[Rule]", 
+              RowBox[{"\[DoubleStruckCapitalZ]", "[", "qubit", "]"}]}]}], 
+            "}"}]}]}], "}"}]}], ";", "\n", "\n", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+         RowBox[{
+         "take", " ", "the", " ", "first", " ", "half", " ", "of", " ", "all",
+           " ", "the", " ", "comb"}], " ", ";;", 
+         RowBox[{
+          RowBox[{"2", "^", 
+           RowBox[{"(", 
+            RowBox[{"dim", "-", "1"}], ")"}]}], " ", "and", " ", "replace", 
+          " ", "comb", " ", "with", " ", "a", " ", "list", " ", "of", " ", 
+          "rules"}]}], " ", "*)"}], "\n", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "the", " ", "second", " ", "half", " ", "is", " ", "symmetric", " ", 
+         "and", " ", "will", " ", "give", " ", "the", " ", "same", " ", 
+         "results"}], " ", "*)"}], "\n", "\t\t", 
+       RowBox[{"combCliff", "=", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Flatten", "[", "#", "]"}], "&"}], "/@", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"comb", "[", 
+            RowBox[{"[", 
+             RowBox[{";;", 
+              RowBox[{"(", 
+               RowBox[{"2", "^", 
+                RowBox[{"(", 
+                 RowBox[{"dim", "-", "1"}], ")"}]}], ")"}]}], "]"}], "]"}], "/.",
+            "cliffOp"}], ")"}]}]}], ";", "\n", "\n", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "apply", " ", "the", " ", "rules", " ", "on", " ", "the", " ", 
+         "stabilizers"}], " ", "*)"}], "\n", "\t\t", 
+       RowBox[{"stabComb", "=", 
+        RowBox[{"listStab", "/.", "combCliff"}]}], ";", "\n", "\n", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "select", " ", "only", " ", "those", " ", "with", " ", "one", " ", 
+         "X", " ", "per", " ", "group", " ", "of", " ", "stabilizers"}], " ", 
+        "*)"}], "\n", "\t\t", 
+       RowBox[{"graphGen", "=", 
+        RowBox[{"Select", "[", "\n", "\t\t", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"Select", "[", 
+             RowBox[{"#", ",", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Count", "[", 
+                 RowBox[{"#", ",", 
+                  RowBox[{"\[DoubleStruckCapitalX]", "[", "_", "]"}]}], "]"}],
+                 "==", "1"}], "&"}]}], "]"}], "&"}], "/@", "stabComb"}], ",", 
+          "\n", "\t\t", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Length", "@", "#"}], ">=", "dim"}], "&"}]}], "]"}]}], 
+       ";", "\n", "\n", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "select", " ", "only", " ", "those", " ", "with", " ", "an", " ", "X",
+          " ", "per", " ", "node"}], " ", "*)"}], "\n", "\t\t", 
+       RowBox[{"noSameNodeList", "=", 
+        RowBox[{"Table", "[", "\n", "\t\t", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"Count", "[", 
+             RowBox[{
+              RowBox[{"graphGen", "[", 
+               RowBox[{"[", "el", "]"}], "]"}], ",", "#"}], "]"}], "&"}], "/@", 
+           RowBox[{"Table", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"___", ",", 
+               RowBox[{"\[DoubleStruckCapitalX]", "[", "i", "]"}], ",", 
+               "___"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"i", ",", "1", ",", "dim"}], "}"}]}], "]"}]}], ",", 
+          "\n", "\t\t", 
+          RowBox[{"{", 
+           RowBox[{"el", ",", 
+            RowBox[{"Length", "@", "graphGen"}]}], "}"}]}], "]"}]}], ";", 
+       "\n", "\n", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{"find", " ", "their", " ", "positions"}], " ", "*)"}], "\n", 
+       "\t\t", 
+       RowBox[{"posStab", "=", 
+        RowBox[{"Position", "[", 
+         RowBox[{"noSameNodeList", ",", 
+          RowBox[{"Table", "[", 
+           RowBox[{"1", ",", "dim"}], "]"}]}], "]"}]}], ";", "\n", "\n", 
+       "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{"return", " ", "the", " ", "list"}], " ", "*)"}], "\n", 
+       "\t\t", 
+       RowBox[{"graphList", "=", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"graphGen", "[", 
+           RowBox[{"[", "#", "]"}], "]"}], "&"}], "/@", "posStab"}]}], ";", 
+       "\n", "\t", 
+       RowBox[{"Return", "[", 
+        RowBox[{"Flatten", "[", 
+         RowBox[{"graphList", ",", "1"}], "]"}], "]"}]}], ")"}]}]}], "\n", 
+   "]"}], ";"}]], "Code",
+ CellChangeTimes->{{3.9113633716208363`*^9, 3.9113635219639587`*^9}, {
+   3.911363561505475*^9, 3.911363665599925*^9}, 3.911363822540663*^9, {
+   3.911363896109386*^9, 3.91136393019461*^9}, 3.911364060123695*^9, {
+   3.9113650534456244`*^9, 
+   3.9113651111018057`*^9}},ExpressionUUID->"d328f71d-bfaf-4c8d-b1e9-\
+80b3861e43dc"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FindGraph", "[", "state", "]"}]], "Input",
+ CellChangeTimes->{{3.911363972714086*^9, 3.911363979411787*^9}},
+ CellLabel->
+  "In[860]:=",ExpressionUUID->"47130ab0-3633-49eb-b058-5afd00b6b96f"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\[DoubleStruckCapitalI]", "[", "1", "]"}], ",", 
+       RowBox[{"\[DoubleStruckCapitalX]", "[", "2", "]"}], ",", 
+       RowBox[{"\[DoubleStruckCapitalZ]", "[", "3", "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\[DoubleStruckCapitalZ]", "[", "1", "]"}], ",", 
+       RowBox[{"\[DoubleStruckCapitalZ]", "[", "2", "]"}], ",", 
+       RowBox[{"\[DoubleStruckCapitalX]", "[", "3", "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\[DoubleStruckCapitalX]", "[", "1", "]"}], ",", 
+       RowBox[{"\[DoubleStruckCapitalI]", "[", "2", "]"}], ",", 
+       RowBox[{"\[DoubleStruckCapitalZ]", "[", "3", "]"}]}], "}"}]}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\[DoubleStruckCapitalI]", "[", "1", "]"}], ",", 
+       RowBox[{"\[DoubleStruckCapitalZ]", "[", "2", "]"}], ",", 
+       RowBox[{"\[DoubleStruckCapitalX]", "[", "3", "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\[DoubleStruckCapitalZ]", "[", "1", "]"}], ",", 
+       RowBox[{"\[DoubleStruckCapitalX]", "[", "2", "]"}], ",", 
+       RowBox[{"\[DoubleStruckCapitalZ]", "[", "3", "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\[DoubleStruckCapitalX]", "[", "1", "]"}], ",", 
+       RowBox[{"\[DoubleStruckCapitalZ]", "[", "2", "]"}], ",", 
+       RowBox[{"\[DoubleStruckCapitalI]", "[", "3", "]"}]}], "}"}]}], "}"}]}],
+   "}"}]], "Output",
+ CellChangeTimes->{3.911363980032827*^9, 3.911364087343495*^9, 
+  3.9113750785003853`*^9},
+ CellLabel->
+  "Out[860]=",ExpressionUUID->"a0c34213-94f3-49f7-91d9-70f105a01a26"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "linkList", ",", "nodeList", ",", "toGraph", ",", "noDoubleLinks", ",", 
+      "out"}], "}"}], ",", "\n", "\t", 
+    RowBox[{
+     RowBox[{"DrawGraph", "[", "stabList_", "]"}], ":=", 
+     RowBox[{"(", "\n", "\n", "\t\t", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "construct", " ", "list", " ", "of", " ", "vertices", " ", "and", " ", 
+        "edges"}], " ", "*)"}], "\n", "\t\t", 
+      RowBox[{
+       RowBox[{"linkList", "=", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Flatten", "[", "#", "]"}], "&"}], "/@", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Position", "[", 
+             RowBox[{"#", ",", 
+              RowBox[{"\[DoubleStruckCapitalZ]", "[", "_", "]"}]}], "]"}], 
+            "&"}], "/@", "stabList"}], ")"}]}]}], ";", "\n", "\t\t", 
+       RowBox[{"nodeList", "=", 
+        RowBox[{"Flatten", "[", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Position", "[", 
+             RowBox[{"#", ",", 
+              RowBox[{"\[DoubleStruckCapitalX]", "[", "_", "]"}]}], "]"}], 
+            "&"}], "/@", "stabList"}], ")"}], "]"}]}], ";", "\n", "\n", 
+       "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "pass", " ", "the", " ", "above", " ", "list", " ", "through", " ", 
+         RowBox[{"Table", "[", "]"}], " ", "to", " ", "construct", " ", 
+         "graph", " ", "based", " ", "on", " ", "mma", " ", "syntax"}], " ", 
+        "*)"}], "\n", "\t\t", 
+       RowBox[{"toGraph", "=", 
+        RowBox[{"Table", "[", "\n", "\t\t", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"nodeList", "[", 
+              RowBox[{"[", "i", "]"}], "]"}], "\[UndirectedEdge]", "#"}], 
+            "&"}], "/@", 
+           RowBox[{"linkList", "[", 
+            RowBox[{"[", "i", "]"}], "]"}]}], ",", "\n", "\t\t", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", 
+            RowBox[{"Length", "@", "nodeList"}]}], "}"}]}], "]"}]}], ";", 
+       "\n", "\n", "\t\t", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "remove", " ", "cases", " ", "of", " ", "a", " ", "repeated", " ", 
+         "edge"}], " ", "*)"}], "\n", "\t\t", 
+       RowBox[{"noDoubleLinks", "=", 
+        RowBox[{"DeleteDuplicates", "[", 
+         RowBox[{
+          RowBox[{"Flatten", "[", "toGraph", "]"}], ",", 
+          RowBox[{
+           RowBox[{"#1", "==", 
+            RowBox[{"Reverse", "[", "#2", "]"}]}], "&"}]}], "]"}]}], ";", 
+       "\n", "\n", "\t\t", 
+       RowBox[{"out", "=", 
+        RowBox[{"Graph", "[", 
+         RowBox[{"noDoubleLinks", ",", "graphstyle"}], "]"}]}], ";", "\n", 
+       "\t", 
+       RowBox[{"Return", "[", "out", "]"}]}], ")"}]}]}], "\n", "]"}], 
+  ";"}]], "Code",
+ CellChangeTimes->{{3.911318912790996*^9, 3.911318918241693*^9}, {
+  3.91136409733156*^9, 3.911364175263303*^9}, {3.911364217538772*^9, 
+  3.9113642964683*^9}, {3.911365016078944*^9, 
+  3.911365046002454*^9}},ExpressionUUID->"67e721bd-e308-450d-abd3-\
+a95c6f4ed61a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DrawGraph", "/@", 
+  RowBox[{"FindGraph", "[", "state", "]"}]}]], "Input",
+ CellChangeTimes->{{3.911318273963656*^9, 3.911318289722158*^9}, {
+  3.9113641146085377`*^9, 3.911364120411613*^9}},
+ CellLabel->
+  "In[861]:=",ExpressionUUID->"ba878ce9-b7bc-4dcb-a3e8-d05fd7f1e85d"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   GraphicsBox[
+    NamespaceBox["NetworkGraphics",
+     DynamicModuleBox[{Typeset`graph = HoldComplete[
+       Graph[{2, 3, 1}, {Null, {{1, 2}, {2, 3}}}, {EdgeStyle -> {
+           Directive[
+            GrayLevel[0], 
+            Thickness[Large], 
+            Opacity[1]]}, GraphLayout -> "CircularEmbedding", 
+         ImageSize -> {146.99479166666538`, Automatic}, VertexLabels -> {
+           Placed["Name", {0.525, 0.525}]}, VertexLabelStyle -> {
+           Directive[
+            GrayLevel[1], FontFamily -> "IBM Plex Mono", 20]}, 
+         VertexSize -> {0.4}, VertexStyle -> {
+           Directive[
+            EdgeForm[{
+              Thickness[Large], 
+              Opacity[1], 
+              RGBColor[0, 0, 1]}], 
+            RGBColor[0, 0, 1]]}}]]}, 
+      TagBox[GraphicsGroupBox[{
+         {GrayLevel[0], Thickness[Large], Opacity[1], 
+          LineBox[{{{-0.8660254037844384, -0.4999999999999994}, {
+           0.8660254037844389, -0.5000000000000012}}, {{
+           0.8660254037844389, -0.5000000000000012}, {
+           1.8369701987210297`*^-16, 1.}}}]}, 
+         {RGBColor[0, 0, 1], EdgeForm[{RGBColor[0, 0, 1], Opacity[1], 
+          Thickness[
+          Large]}], {
+           DiskBox[{-0.8660254037844384, -0.4999999999999994}, 
+            0.34641016151377535], InsetBox[
+            StyleBox["2",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {-0.8487048957087495, -0.48267949192431053},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.8660254037844389, -0.5000000000000012}, 
+            0.34641016151377535], InsetBox[
+            StyleBox["3",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.8833459118601277, -0.4826794919243124},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1.8369701987210297*^-16, 1.}, 0.34641016151377535], 
+           InsetBox[
+            StyleBox["1",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.017320508075688967, 1.0173205080756889},
+            
+            BaseStyle->"Graphics"]}}}],
+       MouseAppearanceTag["NetworkGraphics"]],
+      AllowKernelInitialization->False]],
+    DefaultBaseStyle->{
+     "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+    
+    FormatType->TraditionalForm,
+    FrameTicks->None,
+    ImageSize->{146.99479166666538`, Automatic}], ",", 
+   GraphicsBox[
+    NamespaceBox["NetworkGraphics",
+     DynamicModuleBox[{Typeset`graph = HoldComplete[
+       Graph[{3, 2, 1}, {Null, {{1, 2}, {2, 3}}}, {EdgeStyle -> {
+           Directive[
+            GrayLevel[0], 
+            Thickness[Large], 
+            Opacity[1]]}, GraphLayout -> "CircularEmbedding", 
+         ImageSize -> {146.99479166666538`, Automatic}, VertexLabels -> {
+           Placed["Name", {0.525, 0.525}]}, VertexLabelStyle -> {
+           Directive[
+            GrayLevel[1], FontFamily -> "IBM Plex Mono", 20]}, 
+         VertexSize -> {0.4}, VertexStyle -> {
+           Directive[
+            EdgeForm[{
+              Thickness[Large], 
+              Opacity[1], 
+              RGBColor[0, 0, 1]}], 
+            RGBColor[0, 0, 1]]}}]]}, 
+      TagBox[GraphicsGroupBox[{
+         {GrayLevel[0], Thickness[Large], Opacity[1], 
+          LineBox[{{{-0.8660254037844384, -0.4999999999999994}, {
+           0.8660254037844389, -0.5000000000000012}}, {{
+           0.8660254037844389, -0.5000000000000012}, {
+           1.8369701987210297`*^-16, 1.}}}]}, 
+         {RGBColor[0, 0, 1], EdgeForm[{RGBColor[0, 0, 1], Opacity[1], 
+          Thickness[
+          Large]}], {
+           DiskBox[{-0.8660254037844384, -0.4999999999999994}, 
+            0.34641016151377535], InsetBox[
+            StyleBox["3",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {-0.8487048957087495, -0.48267949192431053},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{0.8660254037844389, -0.5000000000000012}, 
+            0.34641016151377535], InsetBox[
+            StyleBox["2",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.8833459118601277, -0.4826794919243124},
+            
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{1.8369701987210297*^-16, 1.}, 0.34641016151377535], 
+           InsetBox[
+            StyleBox["1",
+             StripOnInput->False,
+             LineColor->GrayLevel[1],
+             FrontFaceColor->GrayLevel[1],
+             BackFaceColor->GrayLevel[1],
+             GraphicsColor->GrayLevel[1],
+             FontFamily->"IBM Plex Mono",
+             FontSize->20,
+             FontColor->GrayLevel[1]], {0.017320508075688967, 1.0173205080756889},
+            
+            BaseStyle->"Graphics"]}}}],
+       MouseAppearanceTag["NetworkGraphics"]],
+      AllowKernelInitialization->False]],
+    DefaultBaseStyle->{
+     "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+    
+    FormatType->TraditionalForm,
+    FrameTicks->None,
+    ImageSize->{146.99479166666538`, Automatic}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.911318290289116*^9, 3.9113183091926403`*^9}, {
+   3.911318922117222*^9, 3.911318934584969*^9}, 3.911364121137051*^9, {
+   3.911364164234445*^9, 3.911364169863168*^9}, 3.911375081124322*^9},
+ CellLabel->
+  "Out[861]=",ExpressionUUID->"d20e494e-df41-457a-bf28-d4f954d1f317"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{634, 1139},
+WindowMargins->{{Automatic, 4}, {Automatic, 4}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->FrontEnd`FileName[{$RootDirectory, "Users", 
+   "alexanderpickston", "Documents", "GitHub", "Mathematica stylesheets"}, 
+  "Mono.nb", CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 249, 5, 24, "Input",ExpressionUUID->"d13bb91d-59c1-4b5e-befb-54cc32d42547"],
+Cell[810, 27, 321, 9, 64, "Text",ExpressionUUID->"6d0f09ab-4783-4468-ac1f-a0173ac4da88"],
+Cell[CellGroupData[{
+Cell[1156, 40, 160, 3, 50, "Chapter",ExpressionUUID->"db0435d5-d983-4ee3-988e-92a70827f86c"],
+Cell[CellGroupData[{
+Cell[1341, 47, 158, 3, 34, "Subsubsection",ExpressionUUID->"fc085d1b-893c-4f62-a1df-0f6485c36f90"],
+Cell[1502, 52, 2264, 56, 169, "Input",ExpressionUUID->"233889c0-7908-4444-b83a-b22d880682be"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3803, 113, 175, 3, 34, "Subsubsection",ExpressionUUID->"28b25e0d-ed4c-4d35-913c-05ebbc4c9a07"],
+Cell[3981, 118, 2098, 50, 197, "Input",ExpressionUUID->"ec973499-66d9-4ff4-83d7-5fbf27eab962",
+ InitializationCell->True],
+Cell[CellGroupData[{
+Cell[6104, 172, 729, 19, 24, "Input",ExpressionUUID->"cee9de4d-0ec6-4e7a-97e7-212e15f6a647"],
+Cell[6836, 193, 4934, 119, 136, "Output",ExpressionUUID->"3be35d4a-3fda-4372-8bfd-5540f7edc5ff"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11819, 318, 153, 3, 48, "Section",ExpressionUUID->"de323a80-d146-4592-9c5e-03153abc9fd4"],
+Cell[CellGroupData[{
+Cell[11997, 325, 160, 3, 42, "Subsection",ExpressionUUID->"23c8a6a2-b02a-424f-ad09-0edb2129c6fc"],
+Cell[12160, 330, 401, 10, 41, "Input",ExpressionUUID->"0e337785-dd87-4170-a8da-ae9da4245c0e"],
+Cell[12564, 342, 1467, 49, 121, "Input",ExpressionUUID->"2d0139ea-ede6-4a7f-aa65-8a270f8cec98"],
+Cell[14034, 393, 13210, 305, 866, "Input",ExpressionUUID->"bb8842e4-2130-4d96-9c1a-18f80da27722"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[27281, 703, 165, 3, 42, "Subsection",ExpressionUUID->"37a7bcc6-8aba-4197-aad1-1bb5e5ba2220"],
+Cell[27449, 708, 3930, 87, 401, "Code",ExpressionUUID->"e6954c07-7b2d-4acf-978e-d7dc47c8fd6a"],
+Cell[CellGroupData[{
+Cell[31404, 799, 561, 10, 24, "Input",ExpressionUUID->"4ad2c3c8-a8ee-4a9a-82ea-e2585a238f57"],
+Cell[31968, 811, 5802, 135, 136, "Output",ExpressionUUID->"845f70d8-63d7-4a49-b850-4043c88c711c"]
+}, Open  ]],
+Cell[37785, 949, 3356, 76, 326, "Code",ExpressionUUID->"50df3f6e-fa7b-4055-b45c-df5e104b53e7"],
+Cell[CellGroupData[{
+Cell[41166, 1029, 263, 5, 24, "Input",ExpressionUUID->"09e6c204-a09d-4f5e-bc7c-f3d75cf0110f"],
+Cell[41432, 1036, 54385, 1276, 434, "Output",ExpressionUUID->"fea8658c-ce73-4217-bc3b-352ba0cd3d87"]
+}, Open  ]],
+Cell[95832, 2315, 125, 2, 22, "Input",ExpressionUUID->"b84dfe55-d89c-43f0-bf87-074c849a8eef"],
+Cell[95960, 2319, 3735, 84, 318, "Code",ExpressionUUID->"1a518a95-f53a-45f4-969b-c5dfab435e5d"],
+Cell[99698, 2405, 453, 11, 38, "Input",ExpressionUUID->"db4ae060-8d35-4999-9d09-b91dd52e61fa"],
+Cell[100154, 2418, 6133, 137, 508, "Code",ExpressionUUID->"8d9592b5-cb52-4923-a824-3578acd3034d"],
+Cell[CellGroupData[{
+Cell[106312, 2559, 415, 8, 22, "Input",ExpressionUUID->"aa425700-161c-4be3-830f-04999f8cd56d"],
+Cell[106730, 2569, 4041, 96, 87, "Output",ExpressionUUID->"2937c601-96da-41ce-bfc5-67cfd16c0ad0"]
+}, Open  ]],
+Cell[110786, 2668, 1024, 24, 112, "Code",ExpressionUUID->"0aa79419-8cac-4711-a6fb-7c0621f76e50"],
+Cell[CellGroupData[{
+Cell[111835, 2696, 287, 6, 22, "Input",ExpressionUUID->"2a361230-19ed-4ded-bc81-2bfdc87922fa"],
+Cell[112125, 2704, 4408, 104, 136, "Output",ExpressionUUID->"3cfcdb5d-8c4a-489d-9acc-b877c3cac81d"]
+}, Open  ]],
+Cell[116548, 2811, 2148, 52, 215, "Code",ExpressionUUID->"95904597-d97a-4f22-a5db-7a198a721438"],
+Cell[CellGroupData[{
+Cell[118721, 2867, 240, 5, 22, "Input",ExpressionUUID->"e5ea3cb6-d3af-47c2-b176-8969d6b50b5f"],
+Cell[118964, 2874, 4417, 104, 136, "Output",ExpressionUUID->"9a8db069-af7e-4b8c-90c3-438fe38d36f0"]
+}, Open  ]],
+Cell[123396, 2981, 13777, 332, 670, "Code",ExpressionUUID->"97ae4a1a-e8e0-40c2-a710-3e0b9e6a0a61"],
+Cell[CellGroupData[{
+Cell[137198, 3317, 794, 18, 22, "Input",ExpressionUUID->"71d908c7-419f-4857-b694-2ba7d27ea367"],
+Cell[137995, 3337, 890, 22, 40, "Output",ExpressionUUID->"fb4b5719-c4b4-4a50-94f4-58f854daf385"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[138922, 3364, 219, 4, 22, "Input",ExpressionUUID->"b2d7c3aa-df36-4700-8688-03a4c671ffbb"],
+Cell[139144, 3370, 2338, 55, 72, "Output",ExpressionUUID->"ab167d28-2fae-4329-8b29-ff10e7783360"]
+}, Open  ]],
+Cell[141497, 3428, 10584, 254, 684, "Code",ExpressionUUID->"d328f71d-bfaf-4c8d-b1e9-80b3861e43dc"],
+Cell[CellGroupData[{
+Cell[152106, 3686, 215, 4, 22, "Input",ExpressionUUID->"47130ab0-3633-49eb-b058-5afd00b6b96f"],
+Cell[152324, 3692, 1740, 42, 57, "Output",ExpressionUUID->"a0c34213-94f3-49f7-91d9-70f105a01a26"]
+}, Open  ]],
+Cell[154079, 3737, 3113, 80, 288, "Code",ExpressionUUID->"67e721bd-e308-450d-abd3-a95c6f4ed61a"],
+Cell[CellGroupData[{
+Cell[157217, 3821, 298, 6, 22, "Input",ExpressionUUID->"ba878ce9-b7bc-4dcb-a3e8-d05fd7f1e85d"],
+Cell[157518, 3829, 6542, 157, 114, "Output",ExpressionUUID->"d20e494e-df41-457a-bf28-d4f954d1f317"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
