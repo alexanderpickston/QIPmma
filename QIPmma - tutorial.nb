@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     49231,       1629]
-NotebookOptionsPosition[     47697,       1594]
-NotebookOutlinePosition[     48454,       1617]
-CellTagsIndexPosition[     48349,       1612]
+NotebookDataLength[     84689,       2504]
+NotebookOptionsPosition[     82431,       2455]
+NotebookOutlinePosition[     83096,       2477]
+CellTagsIndexPosition[     82991,       2472]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -25,8 +25,9 @@ Cell[BoxData[{
   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "\"\<QIPmma.m\>\""}]}], "Input",
  CellChangeTimes->{{3.909720502809649*^9, 3.909720540242867*^9}, {
-  3.909720634958075*^9, 3.909720643201323*^9}},
- CellLabel->"In[64]:=",ExpressionUUID->"fd3a6c7c-7832-4ed3-bff5-96a3b7ffe417"],
+  3.909720634958075*^9, 3.909720643201323*^9}, {3.914428368059403*^9, 
+  3.9144283686697187`*^9}, {3.914489004351669*^9, 3.9144890155849853`*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"fd3a6c7c-7832-4ed3-bff5-96a3b7ffe417"],
 
 Cell[BoxData["\<\"/Users/alexanderpickston/Documents/GitHub/QIPmma\"\>"], \
 "Output",
@@ -34,8 +35,13 @@ Cell[BoxData["\<\"/Users/alexanderpickston/Documents/GitHub/QIPmma\"\>"], \
    3.909720643585991*^9, 3.909721036956832*^9, 3.909721088824428*^9, 
    3.911902850879511*^9, 3.911902920552734*^9, 3.9119029961878567`*^9, {
    3.9119030697510633`*^9, 3.911903098666394*^9}, 3.911903893106331*^9, 
-   3.911974154749494*^9},
- CellLabel->"Out[64]=",ExpressionUUID->"0ce9e9f6-b181-4d93-8f81-b79d474fbe55"],
+   3.911974154749494*^9, 3.91442836928783*^9, 3.91442844443655*^9, 
+   3.914488799124625*^9, 3.9144888920551147`*^9, {3.914489007138672*^9, 
+   3.914489015934197*^9}, 3.9144893092049303`*^9, 3.914489381423181*^9, 
+   3.9144894259013033`*^9, 3.9144895634536033`*^9, 3.9145095263444223`*^9, 
+   3.914601977659869*^9, {3.914602218635828*^9, 3.914602237541119*^9}, 
+   3.91460230557689*^9, 3.914602371223604*^9},
+ CellLabel->"Out[1]=",ExpressionUUID->"a54c56d7-1d94-4df4-aca8-6c3b2fc7c597"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -1207,12 +1213,13 @@ Cell[BoxData[
     RGBColor[0, 0, 1], Bold]],
   Editable->False]], "Print",
  CellChangeTimes->{
-  3.9097210370927963`*^9, 3.9097210888598146`*^9, 3.911902850930975*^9, 
-   3.911902920570249*^9, 3.911902996203546*^9, {3.911903069794436*^9, 
-   3.911903098682459*^9}, 3.91190389315103*^9, 3.911974154909423*^9},
+  3.914489015947608*^9, 3.914489309283883*^9, 3.914489381870577*^9, 
+   3.9144894259540577`*^9, 3.9144895634977417`*^9, 3.914509526402339*^9, 
+   3.914601977670351*^9, {3.91460221864828*^9, 3.9146022375773067`*^9}, 
+   3.914602305587696*^9, 3.914602371269252*^9},
  CellLabel->
   "During evaluation of \
-In[64]:=",ExpressionUUID->"c49a2210-9407-4ee7-95ae-54ca14c89103"]
+In[1]:=",ExpressionUUID->"65757c05-9437-4b61-8c1f-558f2b3cbf5a"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1222,7 +1229,7 @@ Cell[BoxData[
  CellChangeTimes->{{3.911902855925005*^9, 3.911902889416108*^9}, {
   3.9119039081299467`*^9, 3.911903914105114*^9}, {3.911904175649044*^9, 
   3.911904182790835*^9}},
- CellLabel->"In[66]:=",ExpressionUUID->"272eb540-d2bb-49ae-ab76-e3654a6ffe9f"],
+ CellLabel->"In[3]:=",ExpressionUUID->"272eb540-d2bb-49ae-ab76-e3654a6ffe9f"],
 
 Cell[BoxData[
  StyleBox[
@@ -1259,23 +1266,389 @@ Cell[BoxData[
             PaneBox[GridBox[{
                {
                 ButtonBox[
-                 StyleBox["DensityMatrix", "InformationGridButton"],
+                 StyleBox["b", "InformationGridButton"],
                  Appearance->None,
                  BaseStyle->"InformationGridLink",
                  
                  ButtonData:>{
-                  "Info-88471770-ac1c-4071-ba6f-f5d2c161bf52", {
-                   "DensityMatrix", "QIPmma`"}, False},
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "b", "QIPmma`"}, False},
                  ButtonNote->"QIPmma`",
                  Evaluator->Automatic], 
                 ButtonBox[
-                 StyleBox["Fidelity", "InformationGridButton"],
+                 StyleBox["DepolControl", "InformationGridButton"],
                  Appearance->None,
                  BaseStyle->"InformationGridLink",
                  
                  ButtonData:>{
-                  "Info-88471770-ac1c-4071-ba6f-f5d2c161bf52", {
-                   "Fidelity", "QIPmma`"}, False},
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "DepolControl", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["h", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "h", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["out", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "out", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["q", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "q", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["sz", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "sz", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic]},
+               {
+                ButtonBox[
+                 StyleBox["BitFlip", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "BitFlip", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["DepolMemory", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "DepolMemory", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["HWP", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "HWP", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["out$", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "out$", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["Qubits", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "Qubits", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["t", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "t", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic]},
+               {
+                ButtonBox[
+                 StyleBox["BitPhaseFlip", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "BitPhaseFlip", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["dm", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "dm", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["i", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "i", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["p", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "p", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["QWP", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "QWP", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["TraceSystem", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "TraceSystem", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic]},
+               {
+                ButtonBox[
+                 StyleBox["c", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "c", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["EigenSolve", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "EigenSolve", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["idealdm", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "idealdm", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["perm", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "perm", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["rho", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "rho", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["TrkM", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "TrkM", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic]},
+               {
+                ButtonBox[
+                 StyleBox["cI", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "cI", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["eigenvalues", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "eigenvalues", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["j", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "j", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["Permut", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "Permut", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["s0", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "s0", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["v", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "v", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic]},
+               {
+                ButtonBox[
+                 StyleBox["cX", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "cX", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["eigenvectors", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "eigenvectors", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["k", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "k", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["PhaseFlip", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "PhaseFlip", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["state", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "state", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["x", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "x", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic]},
+               {
+                ButtonBox[
+                 StyleBox["cY", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "cY", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["expr", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "expr", "QIPmma`"}, False},
                  ButtonNote->"QIPmma`",
                  Evaluator->Automatic], 
                 ButtonBox[
@@ -1284,8 +1657,251 @@ Cell[BoxData[
                  BaseStyle->"InformationGridLink",
                  
                  ButtonData:>{
-                  "Info-88471770-ac1c-4071-ba6f-f5d2c161bf52", {
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
                    "Kron", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["pos1", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "pos1", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["StateMeasurement", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "StateMeasurement", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["y", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "y", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic]},
+               {
+                ButtonBox[
+                 StyleBox["cZ", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "cZ", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["Fidelity", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "Fidelity", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["M", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "M", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["pos2", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "pos2", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["StateMeasurementPure", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "StateMeasurementPure", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["\[Eta]", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "\[Eta]", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic]},
+               {
+                ButtonBox[
+                 StyleBox["DensityMatrix", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "DensityMatrix", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["FidelityPure", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "FidelityPure", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["matrix", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "matrix", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["proj", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "proj", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["SwapParts", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "SwapParts", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["\[Theta]", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "\[Theta]", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic]},
+               {
+                ButtonBox[
+                 StyleBox["Depol", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "Depol", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["GetAngle", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "GetAngle", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["n", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "n", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["ProjectionMeasurement", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "ProjectionMeasurement", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["sx", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "sx", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["\[Theta]$", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "\[Theta]$", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic]},
+               {
+                ButtonBox[
+                 StyleBox["Depol1", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "Depol1", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["GetProjectionAngles", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "GetProjectionAngles", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["nQubit", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "nQubit", "QIPmma`"}, False},
                  ButtonNote->"QIPmma`",
                  Evaluator->Automatic], 
                 ButtonBox[
@@ -1294,17 +1910,88 @@ Cell[BoxData[
                  BaseStyle->"InformationGridLink",
                  
                  ButtonData:>{
-                  "Info-88471770-ac1c-4071-ba6f-f5d2c161bf52", {
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
                    "Purity", "QIPmma`"}, False},
                  ButtonNote->"QIPmma`",
-                 Evaluator->Automatic]}
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["sy", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "sy", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["\[Rho]", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "\[Rho]", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic]},
+               {
+                ButtonBox[
+                 StyleBox["Depol2", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "Depol2", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["GHZ", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "GHZ", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["operator", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "operator", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["p$", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "p$", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], 
+                ButtonBox[
+                 StyleBox["sys", "InformationGridButton"],
+                 Appearance->None,
+                 BaseStyle->"InformationGridLink",
+                 
+                 ButtonData:>{
+                  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", {
+                   "sys", "QIPmma`"}, False},
+                 ButtonNote->"QIPmma`",
+                 Evaluator->Automatic], ""}
               },
               DefaultBaseStyle->"Text",
               
               GridBoxAlignment->{
                "Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
               GridBoxItemSize->{"Columns" -> {{
-                   Scaled[0.2375]}}}],
+                   Scaled[0.15833333333333333`]}}}],
              ImageMargins->{{10, 0}, {0, 2}}]}
           },
           GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}}],
@@ -1322,23 +2009,32 @@ Cell[BoxData[
         Offset[0.2]}}],
    BaseStyle->"InformationTitleFrame"], "InformationGridPlain"]], "Output",
  CellChangeTimes->{
-  3.911902860139304*^9, 3.9119028901407843`*^9, 3.911902922515209*^9, 
+  3.911902860139304*^9, 3.911902890140784*^9, 3.911902922515209*^9, 
    3.9119029978153067`*^9, {3.9119030724984293`*^9, 3.911903145975692*^9}, 
-   3.911903896972558*^9, 3.91197415834804*^9},
- CellLabel->"Out[66]=",ExpressionUUID->"17047cc8-a1e2-45e2-899e-56839912ac42"],
+   3.911903896972558*^9, 3.91197415834804*^9, 3.914488895780676*^9, 
+   3.914601980000205*^9, 3.914602307351239*^9, {3.9146023532578697`*^9, 
+   3.914602374574822*^9}},
+ CellLabel->"Out[3]=",ExpressionUUID->"0cf47b9c-e1e3-411c-9c7c-95ac54007fef"],
 
 Cell[BoxData[
  InterpretationBox[
   StyleBox[
    FrameBox[
-    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+    DynamicModuleBox[{System`InformationDump`open$$ = True, 
      System`InformationDump`mouseOver$$ = False}, 
      PaneSelectorBox[{True->
       TagBox[GridBox[{
          {
           ItemBox[
            PaneBox[
-            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+            StyleBox[
+             TagBox[
+              TooltipBox[
+               StyleBox["\<\" Symbol\"\>", "InformationRowLabel",
+                StripOnInput->False],
+               "\"Symbol\"",
+               TooltipStyle->"TextStyling"],
+              Annotation[#, "Symbol", "Tooltip"]& ], "InformationTitleText",
              StripOnInput->False,
              BaseStyle -> None],
             FrameMargins->{{4, 0}, {-1, 1}}],
@@ -1351,9 +2047,10 @@ Cell[BoxData[
           ItemBox[
            PaneBox[
             
-            StyleBox["\<\"Purity[\\!\\(\\*\\nStyleBox[\\\"rho\\\",\\\
-nFontColor->RGBColor[0, 0, 1]]\\)]\\nCalculate the purity of a quantum state \
-rho\"\>", "InformationUsageText",
+            StyleBox["\<\"EigenSolve[\\!\\(\\* \
+StyleBox[\\\"matrix\\\",\\nFontColor->RGBColor[0, 0, 1]]\\)] Returns the \
+eigenvalues and eigenvectors of the given matrix\"\>", "InformationUsageText",
+             
              StripOnInput->False,
              LineSpacing->{1.5, 1.5, 3.}],
             FrameMargins->{{10, 10}, {8, 10}}],
@@ -1363,34 +2060,69 @@ rho\"\>", "InformationUsageText",
            BaseStyle->"InformationUsageSubtitleBackground",
            StripOnInput->False]},
          {
+          PaneBox[
+           TagBox[GridBox[{
+              {
+               StyleBox[
+                TagBox[
+                 TooltipBox[
+                  StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                   StripOnInput->False],
+                  "\"Definitions\"",
+                  TooltipStyle->"TextStyling"],
+                 Annotation[#, "Definitions", "Tooltip"]& ], "DialogStyle",
+                StripOnInput->False]},
+              {
+               TemplateBox[{"\"\[ThinSpace]\"", 
+                 GridBox[{{
+                    RowBox[{
+                    RowBox[{"EigenSolve", "[", "matrix_", "]"}], ":=", 
+                    RowBox[{"Block", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"eigenvalues", ",", "eigenvectors"}], "}"}], ",", 
+                    
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"eigenvalues", ",", "eigenvectors"}], "}"}], "=", 
+                    
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    
+                    RowBox[{"#1", "\[LeftDoubleBracket]", "1", 
+                    "\[RightDoubleBracket]"}], ",", 
+                    
+                    RowBox[{"#1", "\[LeftDoubleBracket]", "2", 
+                    "\[RightDoubleBracket]"}]}], "}"}], "&"}], ")"}], "/@", 
+                    RowBox[{"Eigensystem", "[", "matrix", "]"}]}]}], ";", 
+                    RowBox[{"{", 
+                    RowBox[{"eigenvalues", ",", 
+                    RowBox[{"Normalize", "/@", "eigenvectors"}]}], "}"}]}]}], 
+                    "]"}]}]}, {" "}}, 
+                  GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                  DefaultBaseStyle -> "Column", 
+                  GridBoxItemSize -> {
+                   "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                "RowDefault"]}
+             },
+             DefaultBaseStyle->"Column",
+             GridBoxAlignment->{"Columns" -> {{Left}}},
+             
+             GridBoxItemSize->{
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+            "Column"],
+           FrameMargins->{{6, 0}, {3, 6}}], "\<\"\"\>"},
+         {
           PaneBox[GridBox[{
              {
               
               DynamicModuleBox[{System`InformationDump`open$$ = {
-               False, False, False, False, False, False, False, False, False, 
-                False, False, False}}, 
+               False, False, False, False, False, False}}, 
                StyleBox[GridBox[{
-                  {
-                   TagBox[
-                    TooltipBox[
-                    StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
-                    StripOnInput->False],
-                    "\"Definitions\"",
-                    TooltipStyle->"TextStyling"],
-                    Annotation[#, "Definitions", "Tooltip"]& ], GridBox[{
-                    {
-                    RowBox[{
-                    RowBox[{"Purity", "[", "QIPmma`Private`\[Rho]_", "]"}], ":=", 
-                    RowBox[{"Tr", "[", 
-                    RowBox[{
-                    "QIPmma`Private`\[Rho]", ".", "QIPmma`Private`\[Rho]"}], 
-                    "]"}]}]}
-                    },
-                    DefaultBaseStyle->"Column",
-                    GridBoxAlignment->{"Columns" -> {{Left}}},
-                    
-                    GridBoxItemSize->{
-                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
                   {
                    TagBox[
                     TooltipBox[
@@ -1400,7 +2132,7 @@ rho\"\>", "InformationUsageText",
                     TooltipStyle->"TextStyling"],
                     
                     Annotation[#, "FullName", 
-                    "Tooltip"]& ], "\<\"QIPmma`Purity\"\>"}
+                    "Tooltip"]& ], "\<\"QIPmma`EigenSolve\"\>"}
                  },
                  AutoDelete->False,
                  GridBoxAlignment->{"Columns" -> {Right, Left}},
@@ -1429,7 +2161,7 @@ rho\"\>", "InformationUsageText",
                 Offset[0.2], {
                  Offset[3.6]}, 
                 Offset[0.2]}}],
-           FrameMargins->6], ""},
+           FrameMargins->{{6, 6}, {6, 3}}], ""},
          {
           ItemBox[
            TagBox[
@@ -1437,10 +2169,12 @@ rho\"\>", "InformationUsageText",
              PaneSelectorBox[{False->
               
               DynamicBox[FEPrivate`FrontEndResource[
-               "FEBitmaps", "UpPointerOpener"]], True->
+               "FEBitmaps", "UpPointerOpener"],
+               ImageSizeCache->{8., {1., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
-               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+               "FEBitmaps", "UpPointerOpenerHot"],
+               ImageSizeCache->{8., {1., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -1477,7 +2211,14 @@ rho\"\>", "InformationUsageText",
          {
           ItemBox[
            PaneBox[
-            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+            StyleBox[
+             TagBox[
+              TooltipBox[
+               StyleBox["\<\" Symbol\"\>", "InformationRowLabel",
+                StripOnInput->False],
+               "\"Symbol\"",
+               TooltipStyle->"TextStyling"],
+              Annotation[#, "Symbol", "Tooltip"]& ], "InformationTitleText",
              StripOnInput->False],
             FrameMargins->{{4, 0}, {-1, 1}}],
            BaseStyle->"InformationTitleBackground",
@@ -1489,9 +2230,10 @@ rho\"\>", "InformationUsageText",
           ItemBox[
            PaneBox[
             
-            StyleBox["\<\"Purity[\\!\\(\\*\\nStyleBox[\\\"rho\\\",\\\
-nFontColor->RGBColor[0, 0, 1]]\\)]\\nCalculate the purity of a quantum state \
-rho\"\>", "InformationUsageText",
+            StyleBox["\<\"EigenSolve[\\!\\(\\* \
+StyleBox[\\\"matrix\\\",\\nFontColor->RGBColor[0, 0, 1]]\\)] Returns the \
+eigenvalues and eigenvectors of the given matrix\"\>", "InformationUsageText",
+             
              StripOnInput->False,
              LineSpacing->{1.5, 1.5, 3.}],
             FrameMargins->{{10, 10}, {8, 10}}],
@@ -1552,84 +2294,217 @@ rho\"\>", "InformationUsageText",
     BaseStyle->"InformationGridFrame",
     StripOnInput->False], "InformationGridPlain",
    StripOnInput->False],
-  InformationData[
-   Association[
+  InformationData[<|
    "ObjectType" -> "Symbol", "Usage" -> 
-    "Purity[\!\(\*\nStyleBox[\"rho\",\nFontColor->RGBColor[0, 0, 1]]\)]\n\
-Calculate the purity of a quantum state rho", "Documentation" -> None, 
-    "OwnValues" -> None, "UpValues" -> None, "DownValues" -> 
-    Information`InformationValueForm[DownValues, QIPmma`Purity, {QIPmma`Purity[
-         Pattern[QIPmma`Private`\[Rho], 
-          Blank[]]] :> Tr[
-         Dot[QIPmma`Private`\[Rho], QIPmma`Private`\[Rho]]]}], "SubValues" -> 
-    None, "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
-    "Options" -> None, "Attributes" -> {}, "FullName" -> "QIPmma`Purity"], 
-   False]]], "Print",
+    "EigenSolve[\!\(\* StyleBox[\"matrix\",\nFontColor->RGBColor[0, 0, 1]]\)] \
+Returns the eigenvalues and eigenvectors of the given matrix", 
+    "Documentation" -> None, "OwnValues" -> None, "UpValues" -> None, 
+    "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, QIPmma`EigenSolve, {QIPmma`EigenSolve[
+         Pattern[QIPmma`matrix, 
+          Blank[]]] :> 
+       Block[{QIPmma`eigenvalues, 
+          QIPmma`eigenvectors}, {QIPmma`eigenvalues, QIPmma`eigenvectors} = 
+          Map[{
+             Part[#, 1], 
+             Part[#, 2]}& , 
+            Eigensystem[QIPmma`matrix]]; {QIPmma`eigenvalues, 
+           Map[Normalize, QIPmma`eigenvectors]}]}], "SubValues" -> None, 
+    "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
+    "Options" -> None, "Attributes" -> {}, "FullName" -> 
+    "QIPmma`EigenSolve"|>, False]]], "Print",
  CellTags->
-  "Info-88471770-ac1c-4071-ba6f-f5d2c161bf52",ExpressionUUID->"291e324f-50f7-\
-46bd-ae15-821693860e5d"]
+  "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef",ExpressionUUID->"2dff0b10-f691-\
+47aa-9ffc-9ac3c42ae7f7"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Stabilizers", "Subsection",
+ CellChangeTimes->{{3.914429445938423*^9, 
+  3.9144294551005163`*^9}},ExpressionUUID->"48e58b01-9908-49aa-9c8f-\
+51e5a5b297ed"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"stabilizers", "=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"Kron", "[", 
+     RowBox[{"sz", ",", "sz"}], "]"}], ",", 
+    RowBox[{"Kron", "[", 
+     RowBox[{"sx", ",", "sx"}], "]"}]}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.91442925232441*^9, 3.9144292581163397`*^9}, {
+  3.914429418801449*^9, 3.914429422632539*^9}, {3.9144296125969*^9, 
+  3.914429621522972*^9}, {3.9144297406575947`*^9, 3.914429754921832*^9}},
+ CellLabel->"In[4]:=",ExpressionUUID->"6692a610-a2bd-4f29-a6bc-ed6c4f0c81e1"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0", ",", "0", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", 
+       RowBox[{"-", "1"}], ",", "0", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0", ",", 
+       RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0", ",", "0", ",", "1"}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0", ",", "1", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "1", ",", "0", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0", ",", "0", ",", "0"}], "}"}]}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.914429252959702*^9, 3.914429258514105*^9}, 
+   3.914429429718132*^9, 3.914429622162383*^9, {3.914429749548832*^9, 
+   3.914429755389331*^9}, 3.914489428899056*^9, 3.91448956655873*^9, 
+   3.91450952911368*^9, 3.9146022009218493`*^9, 3.914602300790792*^9, 
+   3.914602430647215*^9},
+ CellLabel->"Out[4]=",ExpressionUUID->"f3ca7463-3aaa-4cb5-a287-7914b653f158"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"state", "=", 
+  RowBox[{
+   RowBox[{"1", "/", 
+    RowBox[{"\[Sqrt]", "2"}]}], 
+   RowBox[{"(", 
+    RowBox[{"hh", "+", "vv"}], ")"}]}]}]], "Input",
+ CellChangeTimes->{{3.91442932442589*^9, 3.914429398793539*^9}},
+ CellLabel->"In[12]:=",ExpressionUUID->"2dee89e6-e698-4c12-8b36-a8c8e7555688"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    FractionBox["1", 
+     SqrtBox["2"]], "}"}], ",", 
+   RowBox[{"{", "0", "}"}], ",", 
+   RowBox[{"{", "0", "}"}], ",", 
+   RowBox[{"{", 
+    FractionBox["1", 
+     SqrtBox["2"]], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.914429379136291*^9, 3.914429399485017*^9}, 
+   3.91442943149819*^9, 3.914489567941464*^9, 3.914509530677423*^9, 
+   3.914602261850368*^9},
+ CellLabel->"Out[12]=",ExpressionUUID->"57cf5b8b-8e31-4c64-be24-f1937def0b67"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"HWP", "[", 
-   RowBox[{"45", "*", 
-    RowBox[{"\[Pi]", "/", "180"}]}], "]"}], ".", "h"}]], "Input",
- CellChangeTimes->{{3.909720557321239*^9, 3.909720569920397*^9}, {
-  3.90972485086464*^9, 3.909724871965316*^9}, {3.9097281253933153`*^9, 
-  3.9097281254854317`*^9}},
- CellLabel->"In[92]:=",ExpressionUUID->"8c594895-a171-405e-95dd-9c943a39b723"],
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"#", ".", "state"}], "\[Equal]", "state"}], ")"}], "&"}], "/@", 
+  "stabilizers"}]], "Input",
+ CellChangeTimes->{{3.914429382177311*^9, 3.914429440222209*^9}, {
+  3.914429628717547*^9, 3.914429635814621*^9}},
+ CellLabel->"In[13]:=",ExpressionUUID->"c6b1f693-a5c6-4eac-b00f-402876fbf126"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"True", ",", "True"}], "}"}]], "Output",
+ CellChangeTimes->{{3.9144294024696813`*^9, 3.914429440432274*^9}, 
+   3.914429636185131*^9, 3.914429751533168*^9, 3.914489569545108*^9, 
+   3.914602264207123*^9},
+ CellLabel->"Out[13]=",ExpressionUUID->"c815c209-9b01-4071-a973-8199a6bda36c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"GHZ", "[", "3", "]"}]], "Input",
+ CellChangeTimes->{{3.914602206565041*^9, 3.914602209758519*^9}},
+ CellLabel->"In[11]:=",ExpressionUUID->"332d3e67-b4fc-4d03-8864-d9b507326551"],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{
+   RowBox[{"{", 
+    FractionBox["1", 
+     SqrtBox["2"]], "}"}], ",", 
    RowBox[{"{", "0", "}"}], ",", 
-   RowBox[{"{", "\[ImaginaryI]", "}"}]}], "}"}]], "Output",
- CellChangeTimes->{{3.9097205603576307`*^9, 3.9097205704655933`*^9}, {
-   3.909724854170786*^9, 3.909724872553244*^9}, 3.9097281258894997`*^9},
- CellLabel->"Out[92]=",ExpressionUUID->"c8d2422a-d716-411b-8abd-89f3f69c176e"]
+   RowBox[{"{", "0", "}"}], ",", 
+   RowBox[{"{", "0", "}"}], ",", 
+   RowBox[{"{", "0", "}"}], ",", 
+   RowBox[{"{", "0", "}"}], ",", 
+   RowBox[{"{", "0", "}"}], ",", 
+   RowBox[{"{", 
+    FractionBox["1", 
+     SqrtBox["2"]], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.914602210485133*^9, 3.914602249377719*^9},
+ CellLabel->"Out[11]=",ExpressionUUID->"c349e797-1844-434d-9c0d-847c640f15c1"]
+}, Open  ]]
 }, Open  ]]
 },
-WindowSize->{634, 1139},
-WindowMargins->{{Automatic, 4}, {Automatic, 4}},
-FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
-StyleDefinitions->FrontEnd`FileName[{$RootDirectory, "Users", 
-   "alexanderpickston", "Documents", "GitHub", "Mathematica stylesheets"}, 
-  "Mono.nb", CharacterEncoding -> "UTF-8"]
+WindowSize->{953, 1137},
+WindowMargins->{{Automatic, 5}, {Automatic, 5}},
+FrontEndVersion->"14.0 for Mac OS X x86 (64-bit) (December 12, 2023)",
+StyleDefinitions->"Mono.nb",
+ExpressionUUID->"fb396e81-04a9-4eb7-85d4-e9c017faf800"
 ]
 (* End of Notebook Content *)
 
 (* Internal cache information *)
 (*CellTagsOutline
 CellTagsIndex->{
- "Info-88471770-ac1c-4071-ba6f-f5d2c161bf52"->{
-  Cell[37271, 1329, 9633, 240, 86, "Print",ExpressionUUID->"291e324f-50f7-46bd-ae15-821693860e5d",
-   CellTags->"Info-88471770-ac1c-4071-ba6f-f5d2c161bf52"]}
+ "Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef"->{
+  Cell[66114, 2018, 11947, 300, 183, "Print",ExpressionUUID->"2dff0b10-f691-47aa-9ffc-9ac3c42ae7f7",
+   CellTags->"Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef"]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"Info-88471770-ac1c-4071-ba6f-f5d2c161bf52", 48167, 1606}
+ {"Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef", 82807, 2466}
  }
 *)
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 361, 6, 41, "Input",ExpressionUUID->"fd3a6c7c-7832-4ed3-bff5-96a3b7ffe417"],
-Cell[944, 30, 472, 7, 27, "Output",ExpressionUUID->"0ce9e9f6-b181-4d93-8f81-b79d474fbe55"],
-Cell[1419, 39, 31421, 1175, 18, "Print",ExpressionUUID->"c49a2210-9407-4ee7-95ae-54ca14c89103"]
+Cell[580, 22, 459, 7, 41, "Input",ExpressionUUID->"fd3a6c7c-7832-4ed3-bff5-96a3b7ffe417"],
+Cell[1042, 31, 854, 12, 27, "Output",ExpressionUUID->"a54c56d7-1d94-4df4-aca8-6c3b2fc7c597"],
+Cell[1899, 45, 31470, 1176, 18, "Print",ExpressionUUID->"65757c05-9437-4b61-8c1f-558f2b3cbf5a"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[32877, 1219, 296, 5, 24, "Input",ExpressionUUID->"272eb540-d2bb-49ae-ab76-e3654a6ffe9f"],
-Cell[33176, 1226, 4092, 101, 76, "Output",ExpressionUUID->"17047cc8-a1e2-45e2-899e-56839912ac42"],
-Cell[37271, 1329, 9633, 240, 86, "Print",ExpressionUUID->"291e324f-50f7-46bd-ae15-821693860e5d",
- CellTags->"Info-88471770-ac1c-4071-ba6f-f5d2c161bf52"]
+Cell[33406, 1226, 295, 5, 24, "Input",ExpressionUUID->"272eb540-d2bb-49ae-ab76-e3654a6ffe9f"],
+Cell[33704, 1233, 32407, 783, 272, "Output",ExpressionUUID->"0cf47b9c-e1e3-411c-9c7c-95ac54007fef"],
+Cell[66114, 2018, 11947, 300, 183, "Print",ExpressionUUID->"2dff0b10-f691-47aa-9ffc-9ac3c42ae7f7",
+ CellTags->"Info-25dcc8d9-b97a-4f4d-8126-ba11923218ef"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[46941, 1574, 381, 8, 24, "Input",ExpressionUUID->"8c594895-a171-405e-95dd-9c943a39b723"],
-Cell[47325, 1584, 356, 7, 27, "Output",ExpressionUUID->"c8d2422a-d716-411b-8abd-89f3f69c176e"]
+Cell[78098, 2323, 161, 3, 42, "Subsection",ExpressionUUID->"48e58b01-9908-49aa-9c8f-51e5a5b297ed"],
+Cell[CellGroupData[{
+Cell[78284, 2330, 517, 11, 24, "Input",ExpressionUUID->"6692a610-a2bd-4f29-a6bc-ed6c4f0c81e1"],
+Cell[78804, 2343, 1226, 31, 27, "Output",ExpressionUUID->"f3ca7463-3aaa-4cb5-a287-7914b653f158"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[80067, 2379, 316, 8, 26, "Input",ExpressionUUID->"2dee89e6-e698-4c12-8b36-a8c8e7555688"],
+Cell[80386, 2389, 505, 14, 44, "Output",ExpressionUUID->"57cf5b8b-8e31-4c64-be24-f1937def0b67"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[80928, 2408, 365, 9, 24, "Input",ExpressionUUID->"c6b1f693-a5c6-4eac-b00f-402876fbf126"],
+Cell[81296, 2419, 322, 6, 27, "Output",ExpressionUUID->"c815c209-9b01-4071-a973-8199a6bda36c"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[81655, 2430, 201, 3, 24, "Input",ExpressionUUID->"332d3e67-b4fc-4d03-8864-d9b507326551"],
+Cell[81859, 2435, 544, 16, 44, "Output",ExpressionUUID->"c349e797-1844-434d-9c0d-847c640f15c1"]
+}, Open  ]]
 }, Open  ]]
 }
 ]
